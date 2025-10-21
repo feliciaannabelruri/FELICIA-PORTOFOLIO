@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Jeko:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Jeko', 'Poppins', sans-serif;
+}
+
+.experience-item ul {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.experience-item li {
+  color: #4a5568;
+  font-size: 0.9em;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
