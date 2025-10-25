@@ -1,7 +1,34 @@
-import ProfileCard from './ProfileCard';
-import CardSwap, { Card } from './CardSwap';
+import ProfileCard from './ProfileCard.jsx';
+import Masonry from './Mansory.jsx';
 
 export default function ProfileSection() {
+  const projectItems = [
+    {
+      id: "1",
+      img: "/assets/lanyard/seblak.png",
+      title: "Seblak Business",
+      description: "Website programming for Business",
+      height: 500,
+      onClick: () => console.log("Seblak clicked")
+    },
+    {
+      id: "2",
+      img: "/assets/lanyard/thelazzyjannah.png",
+      title: "The Lazzy Jannah",
+      description: "Game Development",
+      height: 600,
+      onClick: () => console.log("Game clicked")
+    },
+    {
+      id: "3",
+      img: "/assets/lanyard/eventmanagement.png",
+      title: "Event Management",
+      description: "Campus & Community Figma Project",
+      height: 450,
+      onClick: () => console.log("Event clicked")
+    }
+  ];
+
   return (
     <div className="profile-section-container">
       {/* Profile Card */}
@@ -29,50 +56,42 @@ export default function ProfileSection() {
           Hi, I'm <span style={{ color: '#d2a574' }}>Felicia</span>
         </h2>
         <p className="profile-description">
-          A detail-oriented and tech-driven Informatics Engineering student at Multimedia Nusantara University with strong interest in IT project management and digital solutions. Skilled in data analysis, software development fundamentals, and problem-solving within cross-functional teams. Experienced in managing social media and digital marketing projects, combining technical and creative approaches to deliver measurable results. Eager to contribute technical expertise and strategic thinking in the IT industry.
+          Saya adalah mahasiswa tahun kedua jurusan Teknik Informatika di Universitas Multimedia Nusantara. 
+          Saya memiliki minat dalam mengelola Social Media di bagian promosi atau periklanan. Saya memahami 
+          konsep marketing dan mampu membuat konten yang menarik serta membangun engagement dengan audiens. 
+          Saya juga mampu memahami data analitik untuk mengukur kesuksesan dalam kampanye marketing. Saat ini 
+          saya bekerja sebagai Junior Digital Marketing di berbagai perusahaan secara part-time dan freelance.
         </p>
       </div>
 
-      {/* CardSwap - Project Showcase */}
-      <div className="cardswap-wrapper">
-        <div style={{ height: '450px', position: 'relative' }}>
-          <CardSwap
-            width={320}
-            height={400}
-            cardDistance={40}
-            verticalDistance={50}
-            delay={4000}
-            pauseOnHover={true}
-          >
-            <Card>
-              <img src="/assets/lanyard/seblak.png" alt="Seblak Project" />
-              <div className="card-content">
-                <h3>Seblak Business</h3>
-                <p>Website programming for Business</p>
-              </div>
-            </Card>
-            <Card>
-              <img src="/assets/lanyard/thelazzyjannah.png" alt="The Lazzy Jannah" />
-              <div className="card-content">
-                <h3>The Lazzy Jannah</h3>
-                <p>Game Development</p>
-              </div>
-            </Card>
-            <Card>
-              <img src="/assets/lanyard/eventmanagement.png" alt="Event Management" />
-              <div className="card-content">
-                <h3>Event Management</h3>
-                <p>Campus & Community Figma Project</p>
-              </div>
-            </Card>
-          </CardSwap>
-        </div>
+      {/* Masonry - Project Showcase */}
+      <div className="masonry-wrapper">
+        <h3 style={{ 
+          textAlign: 'center', 
+          color: '#2d3748', 
+          marginBottom: '20px',
+          fontSize: '1.5em',
+          fontWeight: 700
+        }}>
+          Featured Projects
+        </h3>
+        <Masonry
+          items={projectItems}
+          ease="power3.out"
+          duration={0.6}
+          stagger={0.1}
+          animateFrom="bottom"
+          scaleOnHover={true}
+          hoverScale={1.05}
+          blurToFocus={true}
+          colorShiftOnHover={false}
+        />
       </div>
 
       <style>{`
         .profile-section-container {
           display: grid;
-          grid-template-columns: 380px 1fr 350px;
+          grid-template-columns: 380px 1fr 380px;
           gap: 40px;
           margin-bottom: 60px;
           align-items: start;
@@ -114,21 +133,22 @@ export default function ProfileSection() {
           font-size: 1rem;
         }
 
-        .cardswap-wrapper {
+        .masonry-wrapper {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          background: white;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
-        /* TABLET - 1024px ke bawah */
+        /* LAPTOP - 1200px ke bawah */
         @media (max-width: 1200px) {
           .profile-section-container {
             grid-template-columns: 1fr 1fr;
             gap: 30px;
           }
 
-          .cardswap-wrapper {
+          .masonry-wrapper {
             grid-column: 1 / -1;
             margin-top: 20px;
           }
@@ -155,8 +175,8 @@ export default function ProfileSection() {
             font-size: 1.6em;
           }
 
-          .cardswap-wrapper {
-            margin: 0 auto;
+          .masonry-wrapper {
+            padding: 25px;
           }
         }
 
@@ -184,6 +204,14 @@ export default function ProfileSection() {
             font-size: 0.95rem;
             line-height: 1.7;
           }
+
+          .masonry-wrapper {
+            padding: 20px;
+          }
+
+          .masonry-wrapper h3 {
+            font-size: 1.3em;
+          }
         }
 
         /* SMALL MOBILE - 480px ke bawah */
@@ -208,6 +236,15 @@ export default function ProfileSection() {
           .profile-description {
             font-size: 0.9rem;
             line-height: 1.6;
+          }
+
+          .masonry-wrapper {
+            padding: 15px;
+          }
+
+          .masonry-wrapper h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
           }
         }
       `}</style>
