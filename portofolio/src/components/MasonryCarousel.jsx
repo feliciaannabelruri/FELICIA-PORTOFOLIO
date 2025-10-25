@@ -12,7 +12,7 @@ export default function MasonryCarousel() {
       title: "Seblak Business",
       description: "Website programming for Business",
       height: 500,
-      onClick: () => window.open('https://github.com/feliciaannabelruri', '_blank')
+      onClick: () => window.open('https://github.com/feliciaannabelruri/seb-lakweb', '_blank')
     },
     {
       id: "2",
@@ -20,7 +20,7 @@ export default function MasonryCarousel() {
       title: "The Lazzy Jannah",
       description: "Game Development",
       height: 600,
-      onClick: () => window.open('https://github.com/feliciaannabelruri', '_blank')
+      onClick: () => window.open('https://github.com/JazeL2304/TheLazyJannah', '_blank')
     },
     {
       id: "3",
