@@ -1,14 +1,15 @@
 .list {
   position: relative;
   width: 100%;
-  height: 600px;
+  min-height: 600px;
 }
 
 .item-wrapper {
   position: absolute;
+  width: 100%;
   will-change: transform, width, height, opacity;
   cursor: pointer;
-  padding: 5px;
+  padding: 10px 0;
   box-sizing: border-box;
 }
 
@@ -61,7 +62,7 @@
 
 @media (max-width: 1024px) {
   .list {
-    height: 500px;
+    min-height: 500px;
   }
   
   .item-content h3 {
@@ -75,11 +76,11 @@
 
 @media (max-width: 768px) {
   .list {
-    height: 400px;
+    min-height: 400px;
   }
   
   .item-wrapper {
-    padding: 3px;
+    padding: 8px 0;
   }
   
   .item-img {
@@ -101,6 +102,22 @@
 
 @media (max-width: 480px) {
   .list {
-    height: 350px;
+    min-height: 350px;
+  }
+  
+  .item-wrapper {
+    padding: 6px 0;
+  }
+  
+  .item-content {
+    padding: 12px;
+  }
+  
+  .item-content h3 {
+    font-size: 0.85em;
+  }
+  
+  .item-content p {
+    font-size: 0.75em;
   }
 }

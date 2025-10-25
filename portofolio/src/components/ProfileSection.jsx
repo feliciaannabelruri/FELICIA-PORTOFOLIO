@@ -1,34 +1,7 @@
 import ProfileCard from './ProfileCard.jsx';
-import Masonry from './Mansory.jsx';
+import MasonryCarousel from './MasonryCarousel.jsx';
 
 export default function ProfileSection() {
-  const projectItems = [
-    {
-      id: "1",
-      img: "/assets/lanyard/seblak.png",
-      title: "Seblak Business",
-      description: "Website programming for Business",
-      height: 500,
-      onClick: () => console.log("Seblak clicked")
-    },
-    {
-      id: "2",
-      img: "/assets/lanyard/thelazzyjannah.png",
-      title: "The Lazzy Jannah",
-      description: "Game Development",
-      height: 600,
-      onClick: () => console.log("Game clicked")
-    },
-    {
-      id: "3",
-      img: "/assets/lanyard/eventmanagement.png",
-      title: "Event Management",
-      description: "Campus & Community Figma Project",
-      height: 450,
-      onClick: () => console.log("Event clicked")
-    }
-  ];
-
   return (
     <div className="profile-section-container">
       {/* Profile Card */}
@@ -64,7 +37,7 @@ export default function ProfileSection() {
         </p>
       </div>
 
-      {/* Masonry - Project Showcase */}
+      {/* Masonry Carousel - Project Showcase */}
       <div className="masonry-wrapper">
         <h3 style={{ 
           textAlign: 'center', 
@@ -75,17 +48,7 @@ export default function ProfileSection() {
         }}>
           Featured Projects
         </h3>
-        <Masonry
-          items={projectItems}
-          ease="power3.out"
-          duration={0.6}
-          stagger={0.1}
-          animateFrom="bottom"
-          scaleOnHover={true}
-          hoverScale={1.05}
-          blurToFocus={true}
-          colorShiftOnHover={false}
-        />
+        <MasonryCarousel />
       </div>
 
       <style>{`
