@@ -25,7 +25,7 @@ export default function MasonryCarousel() {
     {
       id: "3",
       img: "/assets/lanyard/eventmanagement.png",
-      title: "Event Management",
+      title: "GatherHub",
       description: "Campus & Community Figma Project",
       height: 450,
       onClick: () => window.open('https://www.figma.com/proto/CN8cAiYv9ANEHwhvz1yF5z/Event-management-mobile-app?node-id=1327-503&p=f&t=TkAQyYwFSxzPCOEV-0&scaling=min-zoom&content-scaling=fixed&page-id=1327%3A454&starting-point-node-id=1327%3A503', '_blank')
