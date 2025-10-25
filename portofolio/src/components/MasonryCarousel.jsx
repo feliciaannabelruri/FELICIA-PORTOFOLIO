@@ -28,7 +28,7 @@ export default function MasonryCarousel() {
       title: "Event Management",
       description: "Campus & Community Figma Project",
       height: 450,
-      onClick: () => window.open('https://github.com/feliciaannabelruri', '_blank')
+      onClick: () => window.open('https://www.figma.com/proto/CN8cAiYv9ANEHwhvz1yF5z/Event-management-mobile-app?node-id=1327-503&p=f&t=TkAQyYwFSxzPCOEV-0&scaling=min-zoom&content-scaling=fixed&page-id=1327%3A454&starting-point-node-id=1327%3A503', '_blank')
     }
   ];
 
@@ -74,7 +74,7 @@ export default function MasonryCarousel() {
       id: "8",
       img: "/assets/lanyard/tsitp.png",
       title: "The Summer I Turned Pretty",
-      description: "Marketing Campaign",
+      description: "Unboxing Marketing Campaign TSITP Series",
       height: 550,
       onClick: () => window.open('https://the-summer-i-turned-pretty-marketin.vercel.app', '_blank')
     },
@@ -82,7 +82,7 @@ export default function MasonryCarousel() {
       id: "9",
       img: "/assets/lanyard/michelle.png",
       title: "Michelle Portfolio",
-      description: "Personal Portfolio Website",
+      description: "Making Michelle Personal Portfolio Website",
       height: 500,
       onClick: () => window.open('https://michelle-seven.vercel.app', '_blank')
     }
@@ -108,11 +108,11 @@ export default function MasonryCarousel() {
     },
     {
       id: "12",
-      img: "/assets/lanyard/gatherhub.png",
-      title: "GatherHub",
-      description: "Event Management Mobile App",
+      img: "/assets/lanyard/eventweb.png",
+      title: "Web Project",
+      description: "Event Management Mobile Website",
       height: 480,
-      onClick: () => window.open('https://www.figma.com/proto/CN8cAiYv9ANEHwhvz1yF5z/Event-management-mobile-app?node-id=1327-503&p=f&t=TkAQyYwFSxzPCOEV-0&scaling=min-zoom&content-scaling=fixed&page-id=1327%3A454&starting-point-node-id=1327%3A503', '_blank')
+      onClick: () => window.open('https://github.com/feliciaannabelruri/eventreg', '_blank')
     }
   ];
 
