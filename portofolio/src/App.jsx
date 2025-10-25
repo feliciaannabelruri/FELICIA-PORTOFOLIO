@@ -440,7 +440,13 @@ export default function App() {
   ];
 
   return (
-    <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px' }}>
+    <>
+      <WelcomeScreen onComplete={handleWelcomeComplete} />
+      
+      {visitorName && <GreetingNameDisplay name={visitorName} />}
+      
+      <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px' }}>
+
       {/* Scroll Progress Bar */}
       <div style={{
         position: 'fixed',
@@ -577,7 +583,8 @@ export default function App() {
             font-size: 4em;
           }
         }
-      `}</style>
+`}</style>
     </div>
+    </>
   );
 }

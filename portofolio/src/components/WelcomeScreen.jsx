@@ -4,6 +4,9 @@ export default function WelcomeScreen({ onComplete }) {
   const [name, setName] = useState('');
   const [isAnimating, setIsAnimating] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+  const [audioError, setAudioError] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [countdown, setCountdown] = useState(5);
   const audioRef = useRef(null);
 
   // Check if user already visited
@@ -15,25 +18,76 @@ export default function WelcomeScreen({ onComplete }) {
     }
   }, [onComplete]);
 
+  // Block scroll while playing audio
+  useEffect(() => {
+    if (isPlayingAudio) {
+      // Disable scroll
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
+      return () => {
+        // Re-enable scroll
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      };
+    }
+  }, [isPlayingAudio]);
+
+  // Countdown timer
+  useEffect(() => {
+    if (isPlayingAudio && countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(prev => prev - 1);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isPlayingAudio, countdown]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
       setIsAnimating(true);
+      setIsPlayingAudio(true);
       
       // Save name to localStorage
       localStorage.setItem('visitorName', name.trim());
       
-      // Play audio greeting (ganti dengan path audio kamu)
-      if (audioRef.current) {
-        audioRef.current.play().catch(err => console.log('Audio play failed:', err));
+      // Try to play audio
+      if (audioRef.current && !audioError) {
+        audioRef.current.play()
+          .then(() => {
+            console.log('Audio playing successfully');
+          })
+          .catch(err => {
+            console.log('Audio play blocked:', err.message);
+            setAudioError(true);
+            // If audio blocked, continue after 5 seconds anyway
+          });
       }
       
-      // Wait for animation and audio
+      // Wait for audio to finish (5 seconds) OR audio ends
       setTimeout(() => {
+        setIsPlayingAudio(false);
         setShowWelcome(false);
         onComplete(name.trim());
-      }, 3000);
+      }, 5000);
     }
+  };
+
+  const handleAudioEnded = () => {
+    console.log('Audio ended');
+    // Audio selesai lebih cepat dari 5 detik
+    if (isPlayingAudio) {
+      setIsPlayingAudio(false);
+      setShowWelcome(false);
+      onComplete(name.trim());
+    }
+  };
+
+  const handleAudioError = () => {
+    setAudioError(true);
+    console.log('Audio file not found');
   };
 
   if (!showWelcome) return null;
@@ -45,51 +99,94 @@ export default function WelcomeScreen({ onComplete }) {
       left: 0,
       right: 0,
       bottom: 0,
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: '#f8f5f2',
       zIndex: 9999,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      animation: isAnimating ? 'fadeOut 1s ease-out forwards' : 'none'
+      animation: isAnimating && !isPlayingAudio ? 'fadeOut 0.5s ease-out forwards' : 'none'
     }}>
       <audio 
         ref={audioRef} 
         src="/assets/audio/greeting.mp3"
         preload="auto"
+        onError={handleAudioError}
+        onEnded={handleAudioEnded}
       />
+
+      {/* Animated Background Elements */}
+      <div style={{
+        position: 'absolute',
+        width: '300px',
+        height: '300px',
+        borderRadius: '50%',
+        background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+        top: '10%',
+        left: '5%',
+        animation: 'float 6s ease-in-out infinite',
+        filter: 'blur(40px)'
+      }} />
+      
+      <div style={{
+        position: 'absolute',
+        width: '250px',
+        height: '250px',
+        borderRadius: '50%',
+        background: 'linear-gradient(135deg, rgba(118,75,162,0.15) 0%, rgba(102,126,234,0.15) 100%)',
+        bottom: '15%',
+        right: '10%',
+        animation: 'float 8s ease-in-out infinite',
+        animationDelay: '2s',
+        filter: 'blur(40px)'
+      }} />
 
       <div style={{
         background: 'white',
-        padding: '60px 80px',
-        borderRadius: '30px',
-        boxShadow: '0 30px 100px rgba(0,0,0,0.3)',
+        padding: '50px 60px',
+        borderRadius: '20px',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
         textAlign: 'center',
         maxWidth: '500px',
         width: '90%',
-        animation: isAnimating ? 'scaleOut 1s ease-out forwards' : 'scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        position: 'relative',
+        animation: isAnimating && !isPlayingAudio ? 'scaleOut 0.5s ease-out forwards' : 'scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+        zIndex: 10
       }}>
+        {/* Top Gradient Line */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '5px',
+          background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+          borderRadius: '20px 20px 0 0'
+        }} />
+
         {!isAnimating ? (
           <>
+            {/* Welcome Icon */}
             <div style={{
-              width: '120px',
-              height: '120px',
+              width: '100px',
+              height: '100px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              margin: '0 auto 30px',
+              background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+              margin: '0 auto 25px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '60px',
-              animation: 'wave 1s ease-in-out infinite'
+              fontSize: '50px',
+              animation: 'bounce 2s ease-in-out infinite'
             }}>
               👋
             </div>
 
             <h1 style={{
               fontSize: '2.5em',
-              marginBottom: '15px',
+              marginBottom: '10px',
               color: '#2d3748',
-              fontWeight: 700
+              fontWeight: 700,
+              letterSpacing: '-1px'
             }}>
               Welcome!
             </h1>
@@ -97,30 +194,41 @@ export default function WelcomeScreen({ onComplete }) {
             <p style={{
               color: '#718096',
               marginBottom: '30px',
-              fontSize: '1.1em',
+              fontSize: '1em',
               lineHeight: '1.6'
             }}>
-              Hi! I'm <span style={{ color: '#667eea', fontWeight: 600 }}>Felicia Annabel</span>.<br />
+              Hi! I'm <span style={{ 
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 700
+              }}>Felicia Annabel</span>.<br />
               Before we start, may I know your name?
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <div style={{ position: 'relative' }}>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Type your name here..."
                 autoFocus
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSubmit(e);
+                  }
+                }}
                 style={{
                   width: '100%',
-                  padding: '18px 25px',
-                  fontSize: '1.1em',
+                  padding: '16px 20px',
+                  fontSize: '1em',
                   border: '2px solid #e2e8f0',
-                  borderRadius: '15px',
+                  borderRadius: '12px',
                   outline: 'none',
-                  marginBottom: '20px',
+                  marginBottom: '15px',
                   transition: 'all 0.3s ease',
-                  fontFamily: "'Jeko', 'Poppins', sans-serif"
+                  fontFamily: "'Jeko', 'Poppins', sans-serif",
+                  boxSizing: 'border-box'
                 }}
                 onFocus={(e) => {
                   e.target.style.borderColor = '#667eea';
@@ -133,60 +241,88 @@ export default function WelcomeScreen({ onComplete }) {
               />
 
               <button
-                type="submit"
+                onClick={handleSubmit}
                 disabled={!name.trim()}
                 style={{
                   width: '100%',
-                  padding: '18px',
-                  fontSize: '1.1em',
+                  padding: '16px',
+                  fontSize: '1em',
                   fontWeight: 600,
                   background: name.trim() 
                     ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                    : '#cbd5e0',
-                  color: 'white',
+                    : '#e2e8f0',
+                  color: name.trim() ? 'white' : '#a0aec0',
                   border: 'none',
-                  borderRadius: '15px',
+                  borderRadius: '12px',
                   cursor: name.trim() ? 'pointer' : 'not-allowed',
                   transition: 'all 0.3s ease',
-                  fontFamily: "'Jeko', 'Poppins', sans-serif"
+                  fontFamily: "'Jeko', 'Poppins', sans-serif",
+                  boxShadow: name.trim() ? '0 5px 20px rgba(102,126,234,0.3)' : 'none'
                 }}
                 onMouseEnter={(e) => {
                   if (name.trim()) {
-                    e.target.style.transform = 'translateY(-3px)';
+                    e.target.style.transform = 'translateY(-2px)';
                     e.target.style.boxShadow = '0 10px 30px rgba(102,126,234,0.4)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = 'none';
+                  if (name.trim()) {
+                    e.target.style.boxShadow = '0 5px 20px rgba(102,126,234,0.3)';
+                  }
                 }}
               >
                 Let's Start! ✨
               </button>
-            </form>
+            </div>
           </>
         ) : (
           <div style={{
             animation: 'fadeIn 0.5s ease-in'
           }}>
+            {/* Playing Audio State */}
             <div style={{
-              width: '120px',
-              height: '120px',
+              width: '100px',
+              height: '100px',
               borderRadius: '50%',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              margin: '0 auto 30px',
+              margin: '0 auto 25px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '60px',
-              animation: 'pulse 1s ease-in-out infinite'
+              fontSize: '50px',
+              animation: isPlayingAudio ? 'pulse 1s ease-in-out infinite' : 'none',
+              position: 'relative'
             }}>
-              🎉
+              {isPlayingAudio ? '🔊' : '🎉'}
+              
+              {/* Countdown Badge */}
+              {isPlayingAudio && countdown > 0 && (
+                <div style={{
+                  position: 'absolute',
+                  top: '-10px',
+                  right: '-10px',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: 'white',
+                  border: '3px solid #667eea',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#667eea',
+                  boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
+                }}>
+                  {countdown}
+                </div>
+              )}
             </div>
 
             <h1 style={{
               fontSize: '2.5em',
-              marginBottom: '15px',
+              marginBottom: '10px',
               background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -198,10 +334,19 @@ export default function WelcomeScreen({ onComplete }) {
 
             <p style={{
               color: '#718096',
-              fontSize: '1.1em',
+              fontSize: '1em',
               animation: 'slideUp 0.5s ease-out 0.2s backwards'
             }}>
-              Let me show you my portfolio...
+              {isPlayingAudio ? (
+                <>
+                  🎵 Playing welcome message...<br />
+                  <span style={{ fontSize: '0.85em', color: '#a0aec0' }}>
+                    Please wait {countdown} second{countdown !== 1 ? 's' : ''}
+                  </span>
+                </>
+              ) : (
+                'Let me show you my portfolio...'
+              )}
             </p>
           </div>
         )}
@@ -217,7 +362,7 @@ export default function WelcomeScreen({ onComplete }) {
 
         @keyframes scaleIn {
           from {
-            transform: scale(0.8);
+            transform: scale(0.9);
             opacity: 0;
           }
           to {
@@ -228,20 +373,25 @@ export default function WelcomeScreen({ onComplete }) {
 
         @keyframes scaleOut {
           to {
-            transform: scale(0.9);
+            transform: scale(0.95);
             opacity: 0;
           }
         }
 
-        @keyframes wave {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(-20deg); }
-          75% { transform: rotate(20deg); }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
         }
 
         @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
+          0%, 100% { 
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% { 
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
         }
 
         @keyframes fadeIn {
@@ -260,8 +410,17 @@ export default function WelcomeScreen({ onComplete }) {
           }
         }
 
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-30px) rotate(5deg);
+          }
+        }
+
         @media (max-width: 768px) {
-          div[style*="padding: 60px 80px"] {
+          div[style*="padding: 50px 60px"] {
             padding: 40px 30px !important;
           }
 
@@ -270,7 +429,33 @@ export default function WelcomeScreen({ onComplete }) {
           }
 
           p {
-            font-size: 1em !important;
+            font-size: 0.95em !important;
+          }
+
+          input {
+            font-size: 0.95em !important;
+            padding: 14px 18px !important;
+          }
+
+          button {
+            font-size: 0.95em !important;
+            padding: 14px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 50px 60px"] {
+            padding: 30px 25px !important;
+          }
+
+          h1 {
+            font-size: 1.8em !important;
+          }
+
+          div[style*="width: 100px"] {
+            width: 80px !important;
+            height: 80px !important;
+            font-size: 40px !important;
           }
         }
       `}</style>
