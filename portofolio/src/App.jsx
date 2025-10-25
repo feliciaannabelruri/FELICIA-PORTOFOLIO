@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import ProfileSection from './components/ProfileSection.jsx';
@@ -8,11 +9,15 @@ import ProjectFolder from './components/ProjectFolder.jsx';
 import SplitText from './components/SplitText.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import Modal from './components/Modal.jsx';
+import WelcomeScreen from './components/WelcomeScreen.jsx';
+import GreetingNameDisplay from './components/GreetingNameDisplay.jsx';
 import { projectDetails } from './data/projectDetails.js';
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [visitorName, setVisitorName] = useState('');
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +30,11 @@ export default function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleWelcomeComplete = (name) => {
+    setVisitorName(name);
+    setShowContent(true);
+  };
 
   const currentExperiences = [
     {
