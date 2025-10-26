@@ -457,7 +457,7 @@ export default function App() {
       
       {showContent && <GooeyNav items={navItems} initialActiveIndex={0} />}
       
-      <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px' }}>
+      <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px',paddingTop: '80px' }}>
 
       {/* Scroll Progress Bar */}
       <div style={{
