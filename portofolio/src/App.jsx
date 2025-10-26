@@ -449,15 +449,17 @@ export default function App() {
     { id: 'event-organization', title: 'EVENT ORGANIZATION', description: 'Campus Events & Volunteer Activities', color: '#6EA8DC', number: '6' }
   ];
 
-  return (
-    <>
-      <WelcomeScreen onComplete={handleWelcomeComplete} />
-      
-      {visitorName && <GreetingNameDisplay name={visitorName} />}
-      
-      {showContent && <GooeyNav items={navItems} initialActiveIndex={0} />}
-      
-      <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px' }}>
+  // Di bagian return App.jsx, ganti bagian ini:
+
+return (
+  <>
+    <WelcomeScreen onComplete={handleWelcomeComplete} />
+    
+    {visitorName && <GreetingNameDisplay name={visitorName} />}
+    
+    {showContent && <GooeyNav items={navItems} initialActiveIndex={0} />}
+    
+    <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '100px 20px 40px 20px' }}>
 
       {/* Scroll Progress Bar */}
       <div style={{
@@ -590,6 +592,35 @@ export default function App() {
       )}
 
       <style>{`
+        @media (max-width: 768px) {
+          body {
+            padding-top: 80px;
+          }
+          
+          /* Project card responsive */
+          div[style*="display: grid"][style*="gridTemplateColumns: repeat(auto-fit, minmax(280px, 1fr))"] {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          
+          /* Content padding mobile */
+          div[style*="padding: 100px 20px 40px 20px"] {
+            padding: 80px 15px 40px 15px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          /* Content padding small mobile */
+          div[style*="padding: 100px 20px 40px 20px"] {
+            padding: 70px 10px 30px 10px !important;
+          }
+          
+          /* Projects grid mobile */
+          div[style*="display: grid"][style*="gap: 40px"] {
+            gap: 20px !important;
+          }
+        }
+
         .project-number {
           font-size: 2em;
           color: rgba(210, 165, 116, 0.6);
@@ -607,9 +638,23 @@ export default function App() {
           .projects-title {
             font-size: 4em;
           }
+          
+          .project-number {
+            font-size: 1.5em;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .projects-title {
+            font-size: 3em;
+          }
+          
+          .project-number {
+            font-size: 1.2em;
+          }
         }
       `}</style>
     </div>
-    </>
-  );
+  </>
+);
 }

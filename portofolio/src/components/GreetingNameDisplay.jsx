@@ -4,14 +4,14 @@ export default function GreetingNameDisplay({ name }) {
   return (
     <div style={{
       position: 'fixed',
-      top: '20px',
+      top: '80px',
       right: '20px',
       background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
       backdropFilter: 'blur(10px)',
       padding: '12px 25px',
       borderRadius: '50px',
       boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-      zIndex: 999,
+      zIndex: 1999,
       display: 'flex',
       alignItems: 'center',
       gap: '10px',
@@ -74,11 +74,11 @@ export default function GreetingNameDisplay({ name }) {
         }
 
         @media (max-width: 768px) {
-          div[style*="position: fixed"][style*="top: 20px"][style*="right: 20px"] {
-            top: 60px !important;
+          div[style*="position: fixed"][style*="top: 80px"][style*="right: 20px"] {
+            top: 70px !important;
             right: 10px !important;
             padding: 8px 15px !important;
-            z-index: 999 !important;
+            z-index: 1999 !important;
           }
 
           div[style*="width: 35px"][style*="height: 35px"] {
@@ -97,8 +97,8 @@ export default function GreetingNameDisplay({ name }) {
         }
 
         @media (max-width: 480px) {
-          div[style*="position: fixed"][style*="top: 20px"][style*="right: 20px"] {
-            top: 55px !important;
+          div[style*="position: fixed"][style*="top: 80px"][style*="right: 20px"] {
+            top: 65px !important;
             right: 8px !important;
             padding: 6px 12px !important;
           }
