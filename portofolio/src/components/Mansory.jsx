@@ -33,11 +33,11 @@ const Masonry = ({
     preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
-  // Vertical grid - satu kolom penuh
+  // Vertical grid - satu kolom penuh dengan tinggi yang konsisten
   const grid = useMemo(() => {
     return items.map((child, index) => {
-      const y = index * 220; // spacing antar item
-      const height = 200; // fixed height untuk setiap item
+      const y = index * 280; // spacing antar item lebih besar
+      const height = 250; // fixed height untuk setiap item lebih besar
       
       return { 
         ...child, 
@@ -142,10 +142,10 @@ const Masonry = ({
     }
   };
 
-  const totalHeight = items.length * 220;
+  const totalHeight = items.length * 280;
 
   return (
-    <div ref={containerRef} className="list" style={{ height: `${totalHeight}px` }}>
+    <div ref={containerRef} className="list" style={{ height: `${totalHeight}px`, position: 'relative', width: '100%' }}>
       {grid.map(item => {
         return (
           <div

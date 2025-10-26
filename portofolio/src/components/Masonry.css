@@ -9,7 +9,7 @@
   width: 100%;
   will-change: transform, width, height, opacity;
   cursor: pointer;
-  padding: 10px 0;
+  padding: 15px 0;
   box-sizing: border-box;
 }
 
@@ -18,6 +18,7 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.3s ease;
@@ -26,6 +27,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  min-height: 250px;
 }
 
 .item-img:hover {
@@ -38,7 +40,7 @@
   left: 0;
   right: 0;
   padding: 20px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
   color: white;
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -65,8 +67,12 @@
     min-height: 500px;
   }
   
+  .item-img {
+    min-height: 220px;
+  }
+  
   .item-content h3 {
-    font-size: 1em;
+    font-size: 1.1em;
   }
   
   .item-content p {
@@ -76,15 +82,16 @@
 
 @media (max-width: 768px) {
   .list {
-    min-height: 400px;
+    min-height: 450px;
   }
   
   .item-wrapper {
-    padding: 8px 0;
+    padding: 12px 0;
   }
   
   .item-img {
-    border-radius: 8px;
+    border-radius: 10px;
+    min-height: 200px;
   }
   
   .item-content {
@@ -92,7 +99,7 @@
   }
   
   .item-content h3 {
-    font-size: 0.9em;
+    font-size: 1em;
   }
   
   .item-content p {
@@ -102,11 +109,15 @@
 
 @media (max-width: 480px) {
   .list {
-    min-height: 350px;
+    min-height: 400px;
   }
   
   .item-wrapper {
-    padding: 6px 0;
+    padding: 10px 0;
+  }
+  
+  .item-img {
+    min-height: 180px;
   }
   
   .item-content {
@@ -114,10 +125,32 @@
   }
   
   .item-content h3 {
-    font-size: 0.85em;
+    font-size: 0.95em;
   }
   
   .item-content p {
     font-size: 0.75em;
+  }
+}
+
+@media (max-width: 360px) {
+  .list {
+    min-height: 350px;
+  }
+  
+  .item-img {
+    min-height: 160px;
+  }
+  
+  .item-content {
+    padding: 10px;
+  }
+  
+  .item-content h3 {
+    font-size: 0.9em;
+  }
+  
+  .item-content p {
+    font-size: 0.7em;
   }
 }

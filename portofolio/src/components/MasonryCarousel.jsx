@@ -11,7 +11,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/seblak.png",
       title: "Seblak Business",
       description: "Website programming for Business",
-      height: 500,
+      height: 400,
       onClick: () => window.open('https://github.com/feliciaannabelruri/seb-lakweb', '_blank')
     },
     {
@@ -19,7 +19,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/thelazzyjannah.png",
       title: "The Lazzy Jannah",
       description: "Game Development",
-      height: 600,
+      height: 400,
       onClick: () => window.open('https://github.com/JazeL2304/TheLazyJannah', '_blank')
     },
     {
@@ -27,7 +27,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/eventmanagement.png",
       title: "GatherHub",
       description: "Campus & Community Figma Project",
-      height: 450,
+      height: 400,
       onClick: () => window.open('https://www.figma.com/proto/CN8cAiYv9ANEHwhvz1yF5z/Event-management-mobile-app?node-id=1327-503&p=f&t=TkAQyYwFSxzPCOEV-0&scaling=min-zoom&content-scaling=fixed&page-id=1327%3A454&starting-point-node-id=1327%3A503', '_blank')
     }
   ];
@@ -39,7 +39,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/SimakPajak.png",
       title: "SimakPajak",
       description: "Tax Consultation Website",
-      height: 500,
+      height: 400,
       onClick: () => window.open('https://simakpajak.com', '_blank')
     },
     {
@@ -47,7 +47,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/MelaliInBali.png",
       title: "Melali In Bali",
       description: "Bali Tourism Platform",
-      height: 550,
+      height: 400,
       onClick: () => window.open('https://melali-in-bali.vercel.app', '_blank')
     },
     {
@@ -55,7 +55,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/Rewear.png",
       title: "Rewear",
       description: "Sustainable Fashion Platform",
-      height: 480,
+      height: 400,
       onClick: () => window.open('https://rewear-chi.vercel.app', '_blank')
     }
   ];
@@ -67,7 +67,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/ggaisales.png",
       title: "Genius Growth AI Sales",
       description: "AI Sales Platform",
-      height: 520,
+      height: 400,
       onClick: () => window.open('https://genius-growth-ai-sales.vercel.app', '_blank')
     },
     {
@@ -75,7 +75,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/tsitp.png",
       title: "The Summer I Turned Pretty",
       description: "Unboxing Marketing Campaign TSITP Series",
-      height: 550,
+      height: 400,
       onClick: () => window.open('https://the-summer-i-turned-pretty-marketin.vercel.app', '_blank')
     },
     {
@@ -83,7 +83,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/michelle.png",
       title: "Michelle Portfolio",
       description: "Making Michelle Personal Portfolio Website",
-      height: 500,
+      height: 400,
       onClick: () => window.open('https://michelle-seven.vercel.app', '_blank')
     }
   ];
@@ -95,7 +95,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/socialbread.png",
       title: "Social Bread Inventory",
       description: "Inventory Management System",
-      height: 530,
+      height: 400,
       onClick: () => window.open('https://social-bread-inventory.vercel.app', '_blank')
     },
     {
@@ -103,7 +103,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/xdemia.png",
       title: "Xdemia Revamp",
       description: "Educational Platform Design",
-      height: 500,
+      height: 400,
       onClick: () => window.open('https://www.figma.com/proto/dXb8mw5SgRNWv0s6o8c9cl/XDEMIA-REVAMP?m=draw&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&node-id=36-118&starting-point-node-id=392%3A4059&show-proto-sidebar=1', '_blank')
     },
     {
@@ -111,7 +111,7 @@ export default function MasonryCarousel() {
       img: "/assets/lanyard/eventweb.png",
       title: "Web Project",
       description: "Event Management Mobile Website",
-      height: 480,
+      height: 400,
       onClick: () => window.open('https://github.com/feliciaannabelruri/eventreg', '_blank')
     }
   ];
@@ -127,7 +127,7 @@ export default function MasonryCarousel() {
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width: '100%' }}>
       {/* Arrow Kiri */}
       <button
         onClick={prevSlide}
@@ -164,7 +164,7 @@ export default function MasonryCarousel() {
       </button>
 
       {/* Masonry Content */}
-      <div style={{ overflow: 'hidden' }}>
+      <div style={{ overflow: 'hidden', minHeight: '500px' }}>
         <Masonry
           key={currentSlide}
           items={slides[currentSlide]}
@@ -252,6 +252,24 @@ export default function MasonryCarousel() {
             width: 40px !important;
             height: 40px !important;
             font-size: 18px !important;
+            left: 5px !important;
+            right: 5px !important;
+          }
+          
+          div[style*="minHeight: 500px"] {
+            min-height: 400px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          button {
+            width: 35px !important;
+            height: 35px !important;
+            font-size: 16px !important;
+          }
+          
+          div[style*="minHeight: 500px"] {
+            min-height: 350px !important;
           }
         }
       `}</style>
