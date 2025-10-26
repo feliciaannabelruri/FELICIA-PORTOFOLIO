@@ -34,7 +34,7 @@ export default function ScrollToTop() {
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(100px)',
         transition: 'all 0.3s ease',
-        zIndex: 999,
+        zIndex: 998,
         boxShadow: '0 5px 20px rgba(0,0,0,0.3)'
       }}
       onClick={scrollToTop}
@@ -48,6 +48,28 @@ export default function ScrollToTop() {
       }}
     >
       ↑
+      
+      <style>{`
+        @media (max-width: 768px) {
+          div[style*="bottom: 30px"] {
+            bottom: 90px !important;
+            right: 20px !important;
+            width: 45px !important;
+            height: 45px !important;
+            font-size: 1.3em !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="bottom: 30px"] {
+            bottom: 85px !important;
+            right: 15px !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 1.2em !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

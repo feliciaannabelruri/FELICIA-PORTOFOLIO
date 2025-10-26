@@ -11,7 +11,7 @@ export default function GreetingNameDisplay({ name }) {
       padding: '12px 25px',
       borderRadius: '50px',
       boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-      zIndex: 1000,
+      zIndex: 999,
       display: 'flex',
       alignItems: 'center',
       gap: '10px',
@@ -24,6 +24,7 @@ export default function GreetingNameDisplay({ name }) {
       e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.15)';
     }}
     onMouseLeave={(e) => {
+      e.currentTarget.style.transform =
       e.currentTarget.style.transform = 'translateX(0)';
       e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
     }}
@@ -74,10 +75,11 @@ export default function GreetingNameDisplay({ name }) {
         }
 
         @media (max-width: 768px) {
-          div[style*="position: fixed"] {
-            top: 10px !important;
+          div[style*="position: fixed"][style*="top: 20px"] {
+            top: 70px !important;
             right: 10px !important;
             padding: 8px 15px !important;
+            z-index: 999 !important;
           }
 
           div[style*="width: 35px"] {
@@ -92,6 +94,28 @@ export default function GreetingNameDisplay({ name }) {
 
           div[style*="font-size: 1em"] {
             font-size: 0.85em !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="position: fixed"][style*="top: 20px"] {
+            top: 60px !important;
+            right: 8px !important;
+            padding: 6px 12px !important;
+          }
+
+          div[style*="width: 35px"] {
+            width: 24px !important;
+            height: 24px !important;
+            font-size: 12px !important;
+          }
+
+          div[style*="font-size: 0.75em"] {
+            font-size: 0.6em !important;
+          }
+
+          div[style*="font-size: 1em"] {
+            font-size: 0.8em !important;
           }
         }
       `}</style>

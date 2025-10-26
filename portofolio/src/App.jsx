@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import ProfileSection from './components/ProfileSection.jsx';
@@ -11,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import Modal from './components/Modal.jsx';
 import WelcomeScreen from './components/WelcomeScreen.jsx';
 import GreetingNameDisplay from './components/GreetingNameDisplay.jsx';
+import GooeyNav from './components/GooeyNav.jsx';
 import { projectDetails } from './data/projectDetails.js';
 
 export default function App() {
@@ -35,6 +35,16 @@ export default function App() {
     setVisitorName(name);
     setShowContent(true);
   };
+
+  // Navigation items
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" }
+  ];
 
   const currentExperiences = [
     {
@@ -445,6 +455,8 @@ export default function App() {
       
       {visitorName && <GreetingNameDisplay name={visitorName} />}
       
+      {showContent && <GooeyNav items={navItems} initialActiveIndex={0} />}
+      
       <div style={{ fontFamily: "'Jeko', 'Poppins', sans-serif", background: '#f8f5f2', minHeight: '100vh', padding: '40px 20px' }}>
 
       {/* Scroll Progress Bar */}
@@ -460,26 +472,39 @@ export default function App() {
       }} />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <Header />
-        <ProfileSection />
+        <div id="home">
+          <Header />
+        </div>
+        
+        <div id="about">
+          <ProfileSection />
+        </div>
         
         {/* Details Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '60px' }}>
+        <div id="experience" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '60px' }}>
           <ExperienceCard title="CURRENT POSITIONS (2025)" experiences={currentExperiences} />
           <ExperienceCard title="RECENT EXPERIENCE (Late 2024 - Early 2025)" experiences={recentExperiences} />
           <ExperienceCard title="2024 EXPERIENCE" experiences={year2024Experiences} />
           <ExperienceCard title="2023 EXPERIENCE" experiences={year2023Experiences} />
           <ExperienceCard title="LONG-TERM PROJECTS (2020-2023)" experiences={longTermExperiences} />
-          <ContactCard contacts={contacts} />
-          <SkillsCard 
-            softwareTools={softwareTools} 
-            programmingTools={programmingTools} 
-          />
+          
+          <div id="contact">
+            <ContactCard contacts={contacts} />
+          </div>
+          
+          <div id="skills">
+            <SkillsCard 
+              softwareTools={softwareTools} 
+              programmingTools={programmingTools} 
+            />
+          </div>
+          
           <SkillsCard 
             title="KEY SKILLS" 
             skills={skills} 
             fullWidth 
           />
+          
           <div style={{
             background: 'white',
             padding: '25px',
@@ -514,7 +539,7 @@ export default function App() {
         </div>
 
         {/* Projects Title with SplitText */}
-        <div style={{ textAlign: 'center', margin: '80px 0 60px' }}>
+        <div id="projects" style={{ textAlign: 'center', margin: '80px 0 60px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
             {['01', '02', '03', '04', '05'].map((num) => (
               <SplitText
@@ -583,7 +608,7 @@ export default function App() {
             font-size: 4em;
           }
         }
-`}</style>
+      `}</style>
     </div>
     </>
   );
