@@ -11,7 +11,7 @@ export default function ProfileSection() {
           title="Digital Marketing Specialist"
           handle="feliciaannabel"
           status="Available for Work"
-          contactText="Contact Me"
+          contactText="📧"
           avatarUrl="/assets/lanyard/lanyard.png"
           miniAvatarUrl="/assets/lanyard/lanyard.png"
           showUserInfo={true}
@@ -29,11 +29,7 @@ export default function ProfileSection() {
           Hi, I'm <span style={{ color: '#d2a574' }}>Felicia</span>
         </h2>
         <p className="profile-description">
-          Saya adalah mahasiswa tahun kedua jurusan Teknik Informatika di Universitas Multimedia Nusantara. 
-          Saya memiliki minat dalam mengelola Social Media di bagian promosi atau periklanan. Saya memahami 
-          konsep marketing dan mampu membuat konten yang menarik serta membangun engagement dengan audiens. 
-          Saya juga mampu memahami data analitik untuk mengukur kesuksesan dalam kampanye marketing. Saat ini 
-          saya bekerja sebagai Junior Digital Marketing di berbagai perusahaan secara part-time dan freelance.
+          A detail-oriented and tech-driven Informatics Engineering student at Multimedia Nusantara University with strong interest in IT project management and digital solutions. Skilled in data analysis, software development fundamentals, and problem-solving within cross-functional teams. Experienced in managing social media and digital marketing projects, combining technical and creative approaches to deliver measurable results. Eager to contribute technical expertise and strategic thinking in the IT industry.
         </p>
       </div>
 

@@ -104,6 +104,7 @@ export default function WelcomeScreen({ onComplete }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      padding: '20px',
       animation: isAnimating && !isPlayingAudio ? 'fadeOut 0.5s ease-out forwards' : 'none'
     }}>
       <audio 
@@ -147,7 +148,7 @@ export default function WelcomeScreen({ onComplete }) {
         boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
         textAlign: 'center',
         maxWidth: '500px',
-        width: '90%',
+        width: '100%',
         position: 'relative',
         animation: isAnimating && !isPlayingAudio ? 'scaleOut 0.5s ease-out forwards' : 'scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
         zIndex: 10
@@ -206,7 +207,7 @@ export default function WelcomeScreen({ onComplete }) {
               Before we start, may I know your name?
             </p>
 
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
               <input
                 type="text"
                 value={name}
@@ -240,40 +241,50 @@ export default function WelcomeScreen({ onComplete }) {
                 }}
               />
 
-              <button
-                onClick={handleSubmit}
-                disabled={!name.trim()}
-                style={{
-                  width: '100%',
-                  padding: '16px',
-                  fontSize: '1em',
-                  fontWeight: 600,
-                  background: name.trim() 
-                    ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
-                    : '#e2e8f0',
-                  color: name.trim() ? 'white' : '#a0aec0',
-                  border: 'none',
-                  borderRadius: '12px',
-                  cursor: name.trim() ? 'pointer' : 'not-allowed',
-                  transition: 'all 0.3s ease',
-                  fontFamily: "'Jeko', 'Poppins', sans-serif",
-                  boxShadow: name.trim() ? '0 5px 20px rgba(102,126,234,0.3)' : 'none'
-                }}
-                onMouseEnter={(e) => {
-                  if (name.trim()) {
-                    e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 10px 30px rgba(102,126,234,0.4)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  if (name.trim()) {
-                    e.target.style.boxShadow = '0 5px 20px rgba(102,126,234,0.3)';
-                  }
-                }}
-              >
-                Let's Start! ✨
-              </button>
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <button
+                  onClick={handleSubmit}
+                  disabled={!name.trim()}
+                  className="start-button"
+                  style={{
+                    padding: '14px 40px',
+                    fontSize: '1em',
+                    fontWeight: 600,
+                    background: name.trim() 
+                      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
+                      : '#e2e8f0',
+                    color: name.trim() ? 'white' : '#a0aec0',
+                    border: 'none',
+                    borderRadius: '12px',
+                    cursor: name.trim() ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.3s ease',
+                    fontFamily: "'Jeko', 'Poppins', sans-serif",
+                    boxShadow: name.trim() ? '0 5px 20px rgba(102,126,234,0.3)' : 'none',
+                    minHeight: '50px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    whiteSpace: 'nowrap',
+                    maxWidth: '100%',
+                    width: 'auto'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (name.trim()) {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 10px 30px rgba(102,126,234,0.4)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    if (name.trim()) {
+                      e.target.style.boxShadow = '0 5px 20px rgba(102,126,234,0.3)';
+                    }
+                  }}
+                >
+                  <span className="button-text-full">Let's Start! ✨</span>
+                  Start
+                </button>
+              </div>
             </div>
           </>
         ) : (
@@ -353,6 +364,14 @@ export default function WelcomeScreen({ onComplete }) {
       </div>
 
       <style>{`
+        .button-text-full {
+          display: inline;
+        }
+        
+        .button-text-short {
+          display: none;
+        }
+
         @keyframes fadeOut {
           to {
             opacity: 0;
@@ -420,30 +439,14 @@ export default function WelcomeScreen({ onComplete }) {
         }
 
         @media (max-width: 768px) {
-          div[style*="padding: 50px 60px"] {
-            padding: 40px 30px !important;
+          .button-text-full {
+            display: none;
+          }
+          
+          .button-text-short {
+            display: inline;
           }
 
-          h1 {
-            font-size: 2em !important;
-          }
-
-          p {
-            font-size: 0.95em !important;
-          }
-
-          input {
-            font-size: 0.95em !important;
-            padding: 14px 18px !important;
-          }
-
-          button {
-            font-size: 0.95em !important;
-            padding: 14px !important;
-          }
-        }
-
-        @media (max-width: 480px) {
           div[style*="padding: 50px 60px"] {
             padding: 30px 25px !important;
           }
@@ -452,10 +455,114 @@ export default function WelcomeScreen({ onComplete }) {
             font-size: 1.8em !important;
           }
 
+          p {
+            font-size: 0.9em !important;
+            margin-bottom: 20px !important;
+          }
+
           div[style*="width: 100px"] {
-            width: 80px !important;
-            height: 80px !important;
-            font-size: 40px !important;
+            width: 70px !important;
+            height: 70px !important;
+            font-size: 35px !important;
+            margin-bottom: 20px !important;
+          }
+
+          input {
+            font-size: 0.9em !important;
+            padding: 12px 16px !important;
+          }
+
+          button {
+            font-size: 0.9em !important;
+            padding: 12px 28px !important;
+            min-height: 44px !important;
+          }
+
+          div[style*="width: 40px"][style*="height: 40px"] {
+            width: 35px !important;
+            height: 35px !important;
+            font-size: 14px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 50px 60px"] {
+            padding: 25px 20px !important;
+          }
+
+          h1 {
+            font-size: 1.6em !important;
+          }
+
+          p {
+            font-size: 0.85em !important;
+            line-height: 1.5 !important;
+            margin-bottom: 20px !important;
+          }
+
+          div[style*="width: 100px"] {
+            width: 60px !important;
+            height: 60px !important;
+            font-size: 30px !important;
+            margin-bottom: 18px !important;
+          }
+
+          input {
+            font-size: 0.85em !important;
+            padding: 10px 14px !important;
+            margin-bottom: 12px !important;
+          }
+
+          button {
+            font-size: 0.85em !important;
+            padding: 10px 24px !important;
+            min-height: 40px !important;
+          }
+
+          div[style*="width: 40px"][style*="height: 40px"] {
+            width: 32px !important;
+            height: 32px !important;
+            font-size: 13px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          div[style*="padding: 50px 60px"] {
+            padding: 20px 15px !important;
+          }
+
+          h1 {
+            font-size: 1.4em !important;
+          }
+
+          p {
+            font-size: 0.8em !important;
+            margin-bottom: 18px !important;
+          }
+
+          div[style*="width: 100px"] {
+            width: 50px !important;
+            height: 50px !important;
+            font-size: 25px !important;
+            margin-bottom: 15px !important;
+          }
+
+          input {
+            font-size: 0.8em !important;
+            padding: 10px 12px !important;
+            margin-bottom: 10px !important;
+          }
+
+          button {
+            font-size: 0.8em !important;
+            padding: 10px 22px !important;
+            min-height: 38px !important;
+          }
+
+          div[style*="width: 40px"][style*="height: 40px"] {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 12px !important;
           }
         }
       `}</style>

@@ -293,19 +293,19 @@
   backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
-  padding: 12px 14px;
+  padding: 8px 10px;
   pointer-events: auto;
 }
 
 .pc-user-details {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .pc-mini-avatar {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -327,28 +327,31 @@
 }
 
 .pc-handle {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1;
 }
 
 .pc-status {
-  font-size: 14px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1;
 }
 
 .pc-contact-btn {
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 14px;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 9px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.9);
   cursor: pointer;
   transition: all 0.2s ease;
   backdrop-filter: blur(10px);
+  white-space: nowrap;
+  max-width: 80px;
+  text-align: center;
 }
 
 .pc-contact-btn:hover {
@@ -432,58 +435,16 @@
   }
 }
 
+/* TABLET & MOBILE - 768px ke bawah */
 @media (max-width: 768px) {
-  .pc-card {
-    height: 70svh;
-    max-height: 450px;
+  .pc-card-wrapper {
+    perspective: 300px;
   }
 
-  .pc-details {
-    top: 2em;
-  }
-
-  .pc-details h3 {
-    font-size: min(4svh, 2.5em);
-  }
-
-  .pc-details p {
-    font-size: 14px;
-  }
-
-  .pc-user-info {
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    padding: 10px 12px;
-  }
-
-  .pc-mini-avatar {
-    width: 28px;
-    height: 28px;
-  }
-
-  .pc-user-details {
-    gap: 10px;
-  }
-
-  .pc-handle {
-    font-size: 13px;
-  }
-
-  .pc-status {
-    font-size: 10px;
-  }
-
-  .pc-contact-btn {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
   .pc-card {
     height: 60svh;
-    max-height: 380px;
+    max-height: 400px;
+    aspect-ratio: 0.7;
   }
 
   .pc-details {
@@ -499,12 +460,141 @@
     top: -8px;
   }
 
+  .pc-avatar-content .avatar {
+    bottom: 0px;
+    transform: translateX(-50%) scale(0.95);
+  }
+
   .pc-user-info {
     bottom: 12px;
     left: 12px;
     right: 12px;
     padding: 8px 10px;
-    border-radius: 50px;
+    border-radius: 12px;
+  }
+
+  .pc-mini-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pc-user-details {
+    gap: 8px;
+  }
+
+  .pc-handle {
+    font-size: 11px;
+  }
+
+  .pc-status {
+    font-size: 9px;
+  }
+
+  .pc-contact-btn {
+    padding: 6px 10px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+}
+
+/* SMALL MOBILE - 480px ke bawah */
+@media (max-width: 480px) {
+  .pc-card-wrapper {
+    perspective: 250px;
+  }
+
+  .pc-card {
+    height: 55svh;
+    max-height: 350px;
+    aspect-ratio: 0.68;
+  }
+
+  .pc-details {
+    top: 1em;
+  }
+
+  .pc-details h3 {
+    font-size: min(3svh, 1.6em);
+  }
+
+  .pc-details p {
+    font-size: 11px;
+    top: -6px;
+  }
+
+  .pc-avatar-content .avatar {
+    bottom: 0px;
+    transform: translateX(-50%) scale(0.9);
+  }
+
+  .pc-user-info {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 6px 8px;
+    border-radius: 10px;
+  }
+
+  .pc-mini-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .pc-user-details {
+    gap: 6px;
+  }
+
+  .pc-handle {
+    font-size: 10px;
+  }
+
+  .pc-status {
+    font-size: 8px;
+  }
+
+  .pc-contact-btn {
+    padding: 5px 10px;
+    font-size: 9px;
+    border-radius: 6px;
+  }
+}
+
+/* VERY SMALL MOBILE - 320px ke bawah */
+@media (max-width: 320px) {
+  .pc-card-wrapper {
+    perspective: 200px;
+  }
+
+  .pc-card {
+    height: 50svh;
+    max-height: 300px;
+    aspect-ratio: 0.65;
+  }
+
+  .pc-details {
+    top: 0.8em;
+  }
+
+  .pc-details h3 {
+    font-size: min(2.5svh, 1.3em);
+  }
+
+  .pc-details p {
+    font-size: 10px;
+    top: -5px;
+  }
+
+  .pc-avatar-content .avatar {
+    bottom: 0px;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  .pc-user-info {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    padding: 5px 6px;
+    border-radius: 8px;
   }
 
   .pc-mini-avatar {
@@ -513,63 +603,20 @@
   }
 
   .pc-user-details {
-    gap: 8px;
+    gap: 5px;
   }
 
   .pc-handle {
-    font-size: 12px;
-  }
-
-  .pc-status {
     font-size: 9px;
   }
 
-  .pc-contact-btn {
-    padding: 5px 10px;
-    font-size: 10px;
-    border-radius: 50px;
-  }
-}
-
-@media (max-width: 320px) {
-  .pc-card {
-    height: 55svh;
-    max-height: 320px;
-  }
-
-  .pc-details h3 {
-    font-size: min(3svh, 1.5em);
-  }
-
-  .pc-details p {
-    font-size: 11px;
-  }
-
-  .pc-user-info {
-    padding: 6px 8px;
-    border-radius: 50px;
-  }
-
-  .pc-mini-avatar {
-    width: 20px;
-    height: 20px;
-  }
-
-  .pc-user-details {
-    gap: 6px;
-  }
-
-  .pc-handle {
-    font-size: 11px;
-  }
-
   .pc-status {
+    font-size: 7px;
+  }
+
+  .pc-contact-btn {
+    padding: 4px 10px;
     font-size: 8px;
-  }
-
-  .pc-contact-btn {
-    padding: 4px 8px;
-    font-size: 9px;
-    border-radius: 50px;
+    border-radius: 5px;
   }
 }
