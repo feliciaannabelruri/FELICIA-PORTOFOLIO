@@ -16,6 +16,21 @@ const GooeyNav = ({
   const filterRef = useRef(null);
   const textRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Detect scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 
@@ -154,7 +169,10 @@ const GooeyNav = ({
   }, [activeIndex]);
 
   return (
-    <div className="gooey-nav-container" ref={containerRef}>
+    <div 
+      className={`gooey-nav-container ${isScrolled ? 'scrolled' : ''}`} 
+      ref={containerRef}
+    >
       <nav>
         <ul ref={navRef}>
           {items.map((item, index) => (

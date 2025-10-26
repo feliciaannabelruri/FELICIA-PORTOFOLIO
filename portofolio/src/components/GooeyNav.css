@@ -7,14 +7,21 @@
 
 .gooey-nav-container {
   position: fixed;
-  top: 20px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
+  background: transparent;
+  backdrop-filter: none;
   border-radius: 50px;
   padding: 8px 16px;
+  box-shadow: none;
+  transition: all 0.4s ease;
+}
+
+.gooey-nav-container.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
@@ -50,6 +57,7 @@
   font-weight: 600;
   font-size: 0.9em;
   transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .gooey-nav-container nav ul li::after {
@@ -66,6 +74,7 @@
 
 .gooey-nav-container nav ul li.active a {
   color: black;
+  text-shadow: none;
 }
 
 .gooey-nav-container nav ul li.active::after {
@@ -90,10 +99,12 @@
   color: white;
   transition: color 0.3s ease;
   font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .gooey-nav-container .effect.text.active {
   color: black;
+  text-shadow: none;
 }
 
 .gooey-nav-container .effect.filter {
@@ -202,7 +213,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .gooey-nav-container {
-    top: 10px;
+    top: 8px;
     padding: 6px 12px;
   }
 
@@ -218,7 +229,7 @@
 
 @media (max-width: 480px) {
   .gooey-nav-container {
-    top: 10px;
+    top: 8px;
     padding: 5px 10px;
   }
 

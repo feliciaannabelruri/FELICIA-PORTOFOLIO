@@ -24,7 +24,6 @@ export default function GreetingNameDisplay({ name }) {
       e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.15)';
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.transform =
       e.currentTarget.style.transform = 'translateX(0)';
       e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
     }}
@@ -75,46 +74,46 @@ export default function GreetingNameDisplay({ name }) {
         }
 
         @media (max-width: 768px) {
-          div[style*="position: fixed"][style*="top: 20px"] {
-            top: 70px !important;
+          div[style*="position: fixed"][style*="top: 20px"][style*="right: 20px"] {
+            top: 60px !important;
             right: 10px !important;
             padding: 8px 15px !important;
             z-index: 999 !important;
           }
 
-          div[style*="width: 35px"] {
+          div[style*="width: 35px"][style*="height: 35px"] {
             width: 28px !important;
             height: 28px !important;
             font-size: 14px !important;
           }
 
-          div[style*="font-size: 0.75em"] {
+          div > div[style*="font-size: 0.75em"] {
             font-size: 0.65em !important;
           }
 
-          div[style*="font-size: 1em"] {
+          div > div[style*="font-size: 1em"]:last-child {
             font-size: 0.85em !important;
           }
         }
 
         @media (max-width: 480px) {
-          div[style*="position: fixed"][style*="top: 20px"] {
-            top: 60px !important;
+          div[style*="position: fixed"][style*="top: 20px"][style*="right: 20px"] {
+            top: 55px !important;
             right: 8px !important;
             padding: 6px 12px !important;
           }
 
-          div[style*="width: 35px"] {
+          div[style*="width: 35px"][style*="height: 35px"] {
             width: 24px !important;
             height: 24px !important;
             font-size: 12px !important;
           }
 
-          div[style*="font-size: 0.75em"] {
+          div > div[style*="font-size: 0.75em"] {
             font-size: 0.6em !important;
           }
 
-          div[style*="font-size: 1em"] {
+          div > div[style*="font-size: 1em"]:last-child {
             font-size: 0.8em !important;
           }
         }
