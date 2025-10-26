@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useImperativeHandle, forwardRef } from 'react';
 import './Folder.css';
 
 const darkenColor = (hex, percent) => {
@@ -16,7 +16,7 @@ const darkenColor = (hex, percent) => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
-export default function Folder({ color = '#5227FF', size = 1, items = [], className = '' }) {
+const Folder = forwardRef(({ color = '#5227FF', size = 1, items = [], className = '' }, ref) => {
   const maxItems = 3;
   const papers = items.slice(0, maxItems);
   while (papers.length < maxItems) {
@@ -25,6 +25,14 @@ export default function Folder({ color = '#5227FF', size = 1, items = [], classN
 
   const [open, setOpen] = useState(false);
   const [paperOffsets, setPaperOffsets] = useState(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
+
+  // Expose resetFolder method ke parent
+  useImperativeHandle(ref, () => ({
+    resetFolder: () => {
+      setOpen(false);
+      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
+    }
+  }));
 
   const folderBackColor = darkenColor(color, 0.08);
   const paper1 = darkenColor('#ffffff', 0.1);
@@ -99,4 +107,8 @@ export default function Folder({ color = '#5227FF', size = 1, items = [], classN
       </div>
     </div>
   );
-}
+});
+
+Folder.displayName = 'Folder';
+
+export default Folder;

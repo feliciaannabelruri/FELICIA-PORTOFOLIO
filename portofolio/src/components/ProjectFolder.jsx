@@ -1,6 +1,21 @@
+import { useRef } from 'react';
 import Folder from './Folder';
 
 export default function ProjectFolder({ id, title, description, color, number, onClick }) {
+  const folderRef = useRef(null);
+
+  const handleClick = () => {
+    // Trigger onClick untuk buka modal
+    onClick();
+    
+    // Reset folder animation setelah delay
+    setTimeout(() => {
+      if (folderRef.current) {
+        folderRef.current.resetFolder();
+      }
+    }, 300);
+  };
+
   return (
     <div
       style={{
@@ -16,7 +31,7 @@ export default function ProjectFolder({ id, title, description, color, number, o
         display: 'flex',
         flexDirection: 'column'
       }}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-15px) scale(1.02)';
         e.currentTarget.style.boxShadow = '0 25px 60px rgba(0,0,0,0.2)';
@@ -48,7 +63,7 @@ export default function ProjectFolder({ id, title, description, color, number, o
         position: 'relative',
         marginBottom: '20px'
       }}>
-        <Folder size={1.2} color={color} />
+        <Folder ref={folderRef} size={1.2} color={color} />
         <div style={{
           position: 'absolute',
           bottom: '10px',
