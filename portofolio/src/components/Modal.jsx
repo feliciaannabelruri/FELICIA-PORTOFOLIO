@@ -25,7 +25,7 @@ export default function Modal({ project, onClose }) {
         bottom: 0,
         background: 'rgba(0,0,0,0.8)',
         backdropFilter: 'blur(10px)',
-        zIndex: 2000,
+        zIndex: 2001,
         padding: '20px',
         overflowY: 'auto',
         animation: 'fadeIn 0.3s ease-out',
@@ -33,6 +33,42 @@ export default function Modal({ project, onClose }) {
       }}
       onClick={onClose}
     >
+      {/* Close Button - Outside content box */}
+      <button
+        style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          fontSize: '2em',
+          cursor: 'pointer',
+          color: 'white',
+          background: 'rgba(0,0,0,0.5)',
+          border: '2px solid rgba(255,255,255,0.3)',
+          width: '50px',
+          height: '50px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '50%',
+          transition: 'all 0.3s ease',
+          flexShrink: 0,
+          zIndex: 2002
+        }}
+        onClick={onClose}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)';
+          e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = 'rgba(0,0,0,0.5)';
+          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+          e.currentTarget.style.transform = 'rotate(0deg) scale(1)';
+        }}
+      >
+        ×
+      </button>
+
       <div
         style={{
           background: 'white',
@@ -49,48 +85,13 @@ export default function Modal({ project, onClose }) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            fontSize: '2em',
-            cursor: 'pointer',
-            color: '#718096',
-            background: 'rgba(0,0,0,0.05)',
-            border: 'none',
-            width: '50px',
-            height: '50px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: '50%',
-            transition: 'all 0.3s ease',
-            flexShrink: 0
-          }}
-          onClick={onClose}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-            e.currentTarget.style.color = 'white';
-            e.currentTarget.style.transform = 'rotate(90deg) scale(1.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(0,0,0,0.05)';
-            e.currentTarget.style.color = '#718096';
-            e.currentTarget.style.transform = 'rotate(0deg) scale(1)';
-          }}
-        >
-          ×
-        </button>
-
         <h2 style={{ 
           color: '#2d3748', 
           marginBottom: '10px', 
           fontWeight: 700,
           wordWrap: 'break-word',
           overflowWrap: 'break-word',
-          hyphens: 'auto',
-          paddingRight: '60px'
+          hyphens: 'auto'
         }}>
           {project.title}
         </h2>
@@ -106,6 +107,7 @@ export default function Modal({ project, onClose }) {
           {project.subtitle}
         </h3>
         <div 
+          className="modal-content"
           dangerouslySetInnerHTML={{ __html: project.content }} 
           style={{
             wordWrap: 'break-word',
@@ -133,40 +135,65 @@ export default function Modal({ project, onClose }) {
         }
 
         /* Modal Content Styling */
-        div[dangerouslySetInnerHTML] h4 {
+        .modal-content h4 {
           word-wrap: break-word;
           overflow-wrap: break-word;
           hyphens: auto;
         }
 
-        div[dangerouslySetInnerHTML] ul {
+        .modal-content ul {
           word-wrap: break-word;
           overflow-wrap: break-word;
           padding-left: 20px;
+          margin-left: 0;
         }
 
-        div[dangerouslySetInnerHTML] li {
+        .modal-content li {
           word-wrap: break-word;
           overflow-wrap: break-word;
           hyphens: auto;
           margin-bottom: 8px;
         }
 
-        div[dangerouslySetInnerHTML] strong {
+        .modal-content strong {
           word-wrap: break-word;
           overflow-wrap: break-word;
         }
 
-        div[dangerouslySetInnerHTML] > div {
+        .modal-content > div {
           overflow-x: hidden;
+        }
+
+        /* Force grid to single column on mobile */
+        .modal-content div[style*="display: grid"] {
+          display: block !important;
+        }
+
+        .modal-content div[style*="display: grid"] > div {
+          margin-bottom: 15px;
+          width: 100%;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-          div[style*="padding: 20px"] {
+          /* Close button mobile */
+          button[style*="position: fixed"][style*="top: 20px"] {
+            top: 15px !important;
+            right: 15px !important;
+            width: 45px !important;
+            height: 45px !important;
+            font-size: 1.8em !important;
+            background: rgba(255,255,255,0.95) !important;
+            color: #2d3748 !important;
+            border: 2px solid rgba(102,126,234,0.3) !important;
+          }
+
+          /* Outer padding */
+          div[style*="padding: 20px"][style*="overflowY"] {
             padding: 15px !important;
           }
 
+          /* Content box */
           div[style*="padding: 50px"] {
             padding: 30px 20px !important;
             border-radius: 20px !important;
@@ -175,7 +202,6 @@ export default function Modal({ project, onClose }) {
 
           h2 {
             font-size: 1.3em !important;
-            padding-right: 50px !important;
             margin-bottom: 8px !important;
           }
 
@@ -184,49 +210,52 @@ export default function Modal({ project, onClose }) {
             margin-bottom: 15px !important;
           }
 
-          button[style*="width: 50px"] {
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 1.5em !important;
-            top: 15px !important;
-            right: 15px !important;
-          }
-
-          div[dangerouslySetInnerHTML] h4 {
+          .modal-content h4 {
             font-size: 0.95em !important;
             margin-bottom: 8px !important;
           }
 
-          div[dangerouslySetInnerHTML] ul {
+          .modal-content ul {
             padding-left: 15px !important;
-            margin-left: 0 !important;
           }
 
-          div[dangerouslySetInnerHTML] li {
+          .modal-content li {
             font-size: 0.85em !important;
             line-height: 1.5 !important;
             margin-bottom: 6px !important;
           }
 
-          div[dangerouslySetInnerHTML] strong {
+          .modal-content strong {
             font-size: 0.9em !important;
           }
 
-          div[dangerouslySetInnerHTML] > div[style*="display: grid"] {
+          /* Force all grids to stack */
+          .modal-content div[style*="grid-template-columns"] {
             grid-template-columns: 1fr !important;
-            gap: 10px !important;
+            gap: 12px !important;
           }
 
-          div[dangerouslySetInnerHTML] > div[style*="padding: 15px"] {
+          .modal-content div[style*="padding: 15px"] {
             padding: 12px !important;
           }
         }
 
         @media (max-width: 480px) {
-          div[style*="padding: 20px"] {
+          /* Close button small mobile */
+          button[style*="position: fixed"][style*="top: 20px"] {
+            top: 10px !important;
+            right: 10px !important;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 1.6em !important;
+          }
+
+          /* Outer padding */
+          div[style*="padding: 20px"][style*="overflowY"] {
             padding: 10px !important;
           }
 
+          /* Content box */
           div[style*="padding: 50px"] {
             padding: 25px 15px !important;
             border-radius: 15px !important;
@@ -234,7 +263,6 @@ export default function Modal({ project, onClose }) {
 
           h2 {
             font-size: 1.1em !important;
-            padding-right: 45px !important;
           }
 
           h3 {
@@ -242,33 +270,37 @@ export default function Modal({ project, onClose }) {
             margin-bottom: 12px !important;
           }
 
-          button[style*="width: 50px"] {
-            width: 35px !important;
-            height: 35px !important;
-            font-size: 1.3em !important;
-            top: 12px !important;
-            right: 12px !important;
-          }
-
-          div[dangerouslySetInnerHTML] h4 {
+          .modal-content h4 {
             font-size: 0.9em !important;
           }
 
-          div[dangerouslySetInnerHTML] ul {
+          .modal-content ul {
             padding-left: 12px !important;
           }
 
-          div[dangerouslySetInnerHTML] li {
+          .modal-content li {
             font-size: 0.8em !important;
             line-height: 1.4 !important;
           }
 
-          div[dangerouslySetInnerHTML] strong {
+          .modal-content strong {
             font-size: 0.85em !important;
+          }
+
+          .modal-content div[style*="padding: 15px"] {
+            padding: 10px !important;
           }
         }
 
         @media (max-width: 360px) {
+          button[style*="position: fixed"][style*="top: 20px"] {
+            top: 8px !important;
+            right: 8px !important;
+            width: 35px !important;
+            height: 35px !important;
+            font-size: 1.4em !important;
+          }
+
           div[style*="padding: 50px"] {
             padding: 20px 12px !important;
           }
@@ -281,7 +313,7 @@ export default function Modal({ project, onClose }) {
             font-size: 0.85em !important;
           }
 
-          div[dangerouslySetInnerHTML] li {
+          .modal-content li {
             font-size: 0.75em !important;
           }
         }
