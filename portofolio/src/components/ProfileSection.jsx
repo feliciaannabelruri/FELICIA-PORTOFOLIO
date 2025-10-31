@@ -8,7 +8,7 @@ export default function ProfileSection() {
       <div className="profile-card-wrapper">
         <ProfileCard
           name="Felicia Annabel"
-          title="Digital Marketing Specialist"
+          title="Backend Developer & IT Enthusiast"
           handle="feliciaannabel"
           status="Available for Work"
           contactText="📧"
