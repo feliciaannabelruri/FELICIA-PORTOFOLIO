@@ -59,18 +59,6 @@ export default function App() {
       ]
     },
     {
-      title: "Marketing Director – Head of Sales & Marketing",
-      company: "GENIUS GROWTH AI",
-      period: "Jul 2025 - Present",
-      responsibilities: [
-        "Spearheaded full-cycle marketing and sales operations for the launch of Genius Growth AI, achieving 400+ early sign-ups in the first month",
-        "Led ad campaigns and sales initiatives that generated a 3.2× increase in leads and a 56% engagement uplift",
-        "Directed creative production including video scripting, editing, and pitching materials that reached 10K+ organic views",
-        "Secured five B2B partnerships through client presentations and optimized pitch decks",
-        "Managed a cross-functional team of five and improved sales response time by 37% through optimized CRM systems"
-      ]
-    },
-    {
       title: "Social Media Marketing Specialist",
       company: "WINOSA MITRA - Part-Time",
       period: "June 2025 - Present",
@@ -113,7 +101,19 @@ export default function App() {
         "Wrote SEO-driven articles and social posts generating +10% monthly impressions",
         "Streamlined social media workflows and analytics reporting"
       ]
-    }
+    },
+        {
+      title: "Marketing Director – Head of Sales & Marketing",
+      company: "GENIUS GROWTH AI",
+      period: "Jul 2025 - Nov 2025",
+      responsibilities: [
+        "Spearheaded full-cycle marketing and sales operations for the launch of Genius Growth AI, achieving 400+ early sign-ups in the first month",
+        "Led ad campaigns and sales initiatives that generated a 3.2× increase in leads and a 56% engagement uplift",
+        "Directed creative production including video scripting, editing, and pitching materials that reached 10K+ organic views",
+        "Secured five B2B partnerships through client presentations and optimized pitch decks",
+        "Managed a cross-functional team of five and improved sales response time by 37% through optimized CRM systems"
+      ]
+    },
   ];
 
   const recentExperiences = [
