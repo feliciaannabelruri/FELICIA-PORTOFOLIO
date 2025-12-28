@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import BubbleMenu from './components/BubbleMenu.jsx';
 import Header from './components/Header.jsx';
 import ProfileSection from './components/ProfileSection.jsx';
+import ExperienceCard from './components/ExperienceCard.jsx';
 import ContactCard from './components/ContactCard.jsx';
 import SkillsCard from './components/SkillsCard.jsx';
 import ProjectFolder from './components/ProjectFolder.jsx';
@@ -10,6 +11,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import Modal from './components/Modal.jsx';
 import WelcomeScreen from './components/WelcomeScreen.jsx';
 import GreetingNameDisplay from './components/GreetingNameDisplay.jsx';
+import FeaturedProjectCarousel from './components/FeaturedProjectCarousel.jsx';
 import { projectDetails } from './data/projectDetails.js';
 
 export default function App() {
@@ -35,7 +37,6 @@ export default function App() {
     setShowContent(true);
   };
 
-  // Bubble Menu Items - Coral Wave Colors
   const menuItems = [
     {
       label: 'home',
@@ -52,62 +53,163 @@ export default function App() {
       hoverStyles: { bgColor: '#FFD464', textColor: '#1A1A1A' }
     },
     {
+      label: 'experience',
+      href: '#experience',
+      ariaLabel: 'Experience',
+      rotation: -8,
+      hoverStyles: { bgColor: '#E23C64', textColor: '#ffffff' }
+    },
+    {
       label: 'skills',
       href: '#skills',
       ariaLabel: 'Skills',
-      rotation: -8,
+      rotation: 8,
       hoverStyles: { bgColor: '#FCEDD8', textColor: '#1A1A1A' }
     },
     {
       label: 'projects',
       href: '#projects',
       ariaLabel: 'Projects',
-      rotation: 8,
+      rotation: -8,
       hoverStyles: { bgColor: '#B0183D', textColor: '#ffffff' }
     },
     {
       label: 'contact',
       href: '#contact',
       ariaLabel: 'Contact',
-      rotation: -8,
+      rotation: 8,
       hoverStyles: { bgColor: '#FF5E5E', textColor: '#ffffff' }
     }
   ];
 
-  const contacts = [
-    { icon: "📧", text: "ffeliciaannabelruriyanto@gmail.com", copyable: true },
-    { icon: "📱", text: "+62 877-3678-6969", copyable: true },
-    { icon: "💼", text: "linkedin.com/in/felicia-annabel-ruriyanto", link: "https://linkedin.com/in/felicia-annabel-ruriyanto-227a9125b" },
-    { icon: "📍", text: "Kab. Tangerang, Pagedangan, Banten" }
+  const currentExperiences = [
+    {
+      title: "Content Creator",
+      company: "CHAMELYONE INTERIORS - Part-Time",
+      period: "Sept 2025 - Present"
+    },
+    {
+      title: "Social Media Marketing Specialist",
+      company: "WINOSA MITRA - Part-Time",
+      period: "June 2025 - Present"
+    },
+    {
+      title: "Content Creator",
+      company: "JOKI PROYEK - Freelance",
+      period: "Jan 2025 - Present"
+    },
+    {
+      title: "Digital Marketing Executive",
+      company: "MOVEABROAD.CO - Part-time",
+      period: "Jan 2025 - Present"
+    },
+    {
+      title: "Digital Marketing",
+      company: "XDEMIA - Internship",
+      period: "Nov 2024 - Present"
+    },
+    {
+      title: "Marketing Director – Head of Sales & Marketing",
+      company: "GENIUS GROWTH AI",
+      period: "Jul 2025 - Nov 2025"
+    }
   ];
 
-  const softwareTools = [
-    { name: "Canva", color: "#00C4CC" },
-    { name: "CapCut", color: "#000000" },
-    { name: "MS Office", color: "#2B579A" },
-    { name: "Notion", color: "#000000" },
-    { name: "Trello", color: "#0066FF" },
-    { name: "Social Blade", color: "#FF6B6B" }
+  const recentExperiences = [
+    {
+      title: "Human Resources Assistant",
+      company: "PT OAKM TECH INDONESIA - Freelance",
+      period: "Nov 2024 - Jun 2025"
+    },
+    {
+      title: "Content Creator",
+      company: "LEARNRITHM.AI - Internship",
+      period: "Nov 2024 - Jun 2025"
+    },
+    {
+      title: "Content Researcher",
+      company: "MONTIER DESIGN - Contract",
+      period: "Feb 2025 - May 2025"
+    },
+    {
+      title: "Personal Assistant",
+      company: "INDO AQUATIC TRADE - Internship",
+      period: "Nov 2024 - Feb 2025"
+    },
+    {
+      title: "Social Media Officer",
+      company: "BOTANI BAR - Freelance",
+      period: "Nov 2024 - Jan 2025"
+    },
+    {
+      title: "Content Creator",
+      company: "PERSONAL BRANDING - Part-Time",
+      period: "Oct 2024 - Jan 2025"
+    }
   ];
 
-  const programmingTools = [
-    { name: "VS Code", color: "#007ACC" },
-    { name: "PHP", color: "#777BB4" },
-    { name: "HTML", color: "#E34F26" },
-    { name: "Laravel", color: "#FF2D20" },
-    { name: "JS", color: "#F7DF1E", textColor: "#000" },
-    { name: "C", color: "#A8B9CC", textColor: "#000" },
-    { name: "Kotlin", color: "#7F52FF" },
-    { name: "Python", color: "#3776AB" }
+  const year2024Experiences = [
+    {
+      title: "Live Streaming Operator",
+      company: "PEGASUS NET TECHNOLOGIES - Full-Time",
+      period: "Sep 2024 - Des 2024"
+    },
+    {
+      title: "Content Creator",
+      company: "TILIEK CREATIVE AGENCY - Internship",
+      period: "Aug 2024 - Oct 2024"
+    },
+    {
+      title: "Social Media Specialist",
+      company: "PT.NAKAHAMA HANDAL KONSULTAMA - Freelance",
+      period: "Jul 2024 - Oct 2024"
+    },
+    {
+      title: "Live Shopping",
+      company: "PT. SOSIAL BERKAT KREATIF INDONESIA - Internship",
+      period: "Jun 2024 - Sep 2024"
+    },
+    {
+      title: "Social Media Specialist",
+      company: "PT. ACR BERSATU SEJAHTERA - Freelance",
+      period: "Feb 2024 - Jun 2024"
+    }
   ];
 
-  const skills = [
-    "Social Media Management", "Content Creation", "Copywriting",
-    "Video Editing", "Data Analysis", "SEO Optimization",
-    "Public Speaking", "Marketing Campaigns",
-    "Customer Relationship Management", "Design",
-    "Networking", "Problem Solving", "Live Streaming",
-    "Influencer Relations", "Campaign Strategy"
+  const year2023Experiences = [
+    {
+      title: "Host Live",
+      company: "CLOUT INDONESIA GROUP - Freelance",
+      period: "Nov 2023 - Jan 2024"
+    },
+    {
+      title: "KOL Specialist",
+      company: "PT. LANTIH ADHIP GRUP - Freelance",
+      period: "Sep 2023 - Jan 2024"
+    },
+    {
+      title: "Marketing Specialist & KOL Specialist",
+      company: "PT. ACR BERSATU SEJAHTERA - Freelance",
+      period: "Apr 2023 - Jun 2023"
+    },
+    {
+      title: "Marketing Specialist",
+      company: "CICISGENK.ID - Freelance",
+      period: "Apr 2023 - Jun 2023"
+    }
+  ];
+
+  const longTermExperiences = [
+    {
+      title: "Social Media Specialist",
+      company: "NUGASITUDUIT - Freelance",
+      period: "Oct 2021 - Jul 2023"
+    },
+    {
+      title: "Content Marketing",
+      company: "CRAFTBBARO - Freelance",
+      period: "May 2020 - Feb 2023"
+    }
   ];
 
   const organizations = [
@@ -206,48 +308,12 @@ export default function App() {
   ];
 
   const projects = [
-    { 
-      id: 'digital-marketing', 
-      title: 'DIGITAL MARKETING', 
-      description: 'Social Media Management & Content Strategy', 
-      color: '#FF5E5E', 
-      number: '1' 
-    },
-    { 
-      id: 'content-creation', 
-      title: 'CONTENT CREATION', 
-      description: 'Video Production, Photography & Creative Writing', 
-      color: '#FFD464', 
-      number: '2' 
-    },
-    { 
-      id: 'live-streaming', 
-      title: 'LIVE STREAMING', 
-      description: 'Live Shopping Host & Streaming Operations', 
-      color: '#E23C64', 
-      number: '3' 
-    },
-    { 
-      id: 'kol-management', 
-      title: 'KOL MANAGEMENT', 
-      description: 'Influencer Relations & Campaign Management', 
-      color: '#FCEDD8', 
-      number: '4' 
-    },
-    { 
-      id: 'web-development', 
-      title: 'WEB DEVELOPMENT', 
-      description: 'Website Projects & Technical Skills', 
-      color: '#B0183D', 
-      number: '5' 
-    },
-    { 
-      id: 'event-organization', 
-      title: 'EVENT ORGANIZATION', 
-      description: 'Campus Events & Volunteer Activities', 
-      color: '#FF5E5E', 
-      number: '6' 
-    }
+    { id: 'digital-marketing', title: 'DIGITAL MARKETING', description: 'Social Media Management & Content Strategy', color: '#FF5E5E', number: '1' },
+    { id: 'content-creation', title: 'CONTENT CREATION', description: 'Video Production, Photography & Creative Writing', color: '#FFD464', number: '2' },
+    { id: 'live-streaming', title: 'LIVE STREAMING', description: 'Live Shopping Host & Streaming Operations', color: '#E23C64', number: '3' },
+    { id: 'kol-management', title: 'KOL MANAGEMENT', description: 'Influencer Relations & Campaign Management', color: '#FCEDD8', number: '4' },
+    { id: 'web-development', title: 'WEB DEVELOPMENT', description: 'Website Projects & Technical Skills', color: '#B0183D', number: '5' },
+    { id: 'event-organization', title: 'EVENT ORGANIZATION', description: 'Campus Events & Volunteer Activities', color: '#FF5E5E', number: '6' }
   ];
 
   return (
@@ -258,7 +324,6 @@ export default function App() {
       
       {showContent && (
         <>
-          {/* Bubble Menu Navigation */}
           <BubbleMenu
             logo={
               <span style={{ 
@@ -281,7 +346,6 @@ export default function App() {
             staggerDelay={0.12}
           />
 
-          {/* Scroll Progress Bar */}
           <div style={{
             position: 'fixed',
             top: 0,
@@ -300,149 +364,198 @@ export default function App() {
         background: '#FAFAFA', 
         minHeight: '100vh', 
         padding: '120px 20px 40px 20px' 
-      }}>
+      }} className="main-container">
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          {/* Home Section */}
-          <div id="home">
+          
+          {/* HOME - HEADER */}
+          <div id="home" style={{ marginBottom: '48px' }}>
             <Header />
           </div>
           
-          {/* About Section */}
+          {/* ABOUT - PROFILE SECTION */}
           <div id="about" style={{ marginBottom: '60px' }}>
             <ProfileSection />
           </div>
           
-          {/* Skills & Contact Grid - SWAPPED: Skills LEFT, Contact RIGHT */}
-          <div id="skills" style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '1fr 1fr',
-            gap: '30px', 
-            marginBottom: '60px',
-            alignItems: 'stretch'
-          }}>
-            {/* LEFT: Skills Card (Software & Programming) */}
-            <SkillsCard 
-              softwareTools={softwareTools} 
-              programmingTools={programmingTools} 
-            />
-            
-            {/* RIGHT: Contact Card - Full Height */}
-            <div id="contact" style={{ display: 'flex' }}>
-              <ContactCard contacts={contacts} />
-            </div>
-            
-            {/* Organizational Experience - Full Width Below */}
+          {/* FEATURED PROJECTS WITH CAROUSEL */}
+          <div style={{
+            background: 'white',
+            borderRadius: '20px',
+            border: '1px solid #F0F0F0',
+            padding: '40px',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+            position: 'relative',
+            overflow: 'visible',
+            marginBottom: '60px'
+          }} className="featured-section">
             <div style={{
-              background: 'white',
-              padding: '32px',
-              borderRadius: '20px',
-              border: '1px solid #F0F0F0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-              gridColumn: '1 / -1',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              {/* Coral Gradient Top Line */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '3px',
-                background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
-              }} />
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '3px',
+              background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
+            }} />
 
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              marginBottom: '32px'
+            }}>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '36px',
+                height: '36px',
+                background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
+                borderRadius: '10px',
+                fontSize: '1.125rem'
+              }}>
+                ⭐
+              </span>
               <h3 style={{
                 fontSize: '1.125rem',
-                marginBottom: '28px',
-                paddingBottom: '20px',
-                borderBottom: '1px solid #F5F5F5',
-                color: '#1A1A1A',
                 fontWeight: 700,
+                color: '#1A1A1A',
                 fontFamily: 'Outfit, sans-serif',
                 letterSpacing: '-0.01em',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
+                margin: 0
               }}>
-                <span style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '36px',
-                  height: '36px',
-                  background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
-                  borderRadius: '10px',
-                  fontSize: '1.125rem'
-                }}>
-                  🎓
-                </span>
-                ORGANIZATIONAL / VOLUNTEERING EXPERIENCE
+                Featured Projects
               </h3>
-              
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-                gap: '20px' 
-              }}>
-                {organizations.map((org, idx) => (
-                  <div key={idx} style={{ 
-                    padding: '16px 18px',
-                    background: '#FAFAFA',
-                    borderRadius: '12px',
-                    border: '1px solid #F0F0F0'
-                  }}>
-                    <h4 style={{ 
-                      color: '#1A1A1A', 
-                      fontSize: '1rem', 
-                      marginBottom: '8px',
-                      fontWeight: 600,
-                      fontFamily: 'Outfit, sans-serif'
-                    }}>
-                      {org.title}
-                    </h4>
-                    <div style={{ 
-                      color: '#9E9E9E', 
-                      fontSize: '0.8125rem', 
-                      fontStyle: 'italic', 
-                      marginBottom: '12px',
-                      fontFamily: 'Space Grotesk, sans-serif'
-                    }}>
-                      {org.period}
-                    </div>
-                    <ul style={{ marginLeft: '20px', margin: 0, padding: 0, listStyle: 'none' }}>
-                      {org.items.map((item, i) => (
-                        <li key={i} style={{ 
-                          color: '#4A5568', 
-                          fontSize: '0.875rem', 
-                          lineHeight: '1.6',
-                          marginBottom: '6px',
-                          paddingLeft: '20px',
-                          position: 'relative',
-                          fontFamily: 'Space Grotesk, sans-serif'
-                        }}>
-                          <span style={{
-                            position: 'absolute',
-                            left: 0,
-                            top: '0.6em',
-                            width: '6px',
-                            height: '6px',
-                            background: '#FF5E5E',
-                            borderRadius: '50%'
-                          }} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+            </div>
+
+            <FeaturedProjectCarousel />
+          </div>
+
+          {/* SKILLS & CONTACT SECTION */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr 1fr', 
+            gap: '30px', 
+            marginBottom: '60px' 
+          }} className="skills-contact-grid">
+            <div id="skills">
+              <SkillsCard />
+            </div>
+            
+            <div id="contact">
+              <ContactCard />
             </div>
           </div>
 
-          {/* Projects Title with SplitText */}
-          <div id="projects" style={{ textAlign: 'center', margin: '80px 0 60px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
+          {/* ORGANIZATIONAL EXPERIENCE - Full Width */}
+          <div style={{
+            background: 'white',
+            padding: '32px',
+            borderRadius: '20px',
+            border: '1px solid #F0F0F0',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+            marginBottom: '60px',
+            position: 'relative',
+            overflow: 'hidden'
+          }} className="org-section">
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '3px',
+              background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
+            }} />
+
+            <h3 style={{
+              fontSize: '1.125rem',
+              marginBottom: '28px',
+              paddingBottom: '20px',
+              borderBottom: '1px solid #F5F5F5',
+              color: '#1A1A1A',
+              fontWeight: 700,
+              fontFamily: 'Outfit, sans-serif',
+              letterSpacing: '-0.01em',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px'
+            }}>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '36px',
+                height: '36px',
+                background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
+                borderRadius: '10px',
+                fontSize: '1.125rem'
+              }}>
+                🎓
+              </span>
+              ORGANIZATIONAL / VOLUNTEERING EXPERIENCE
+            </h3>
+            
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+              gap: '20px' 
+            }} className="org-grid">
+              {organizations.map((org, idx) => (
+                <div key={idx} style={{ 
+                  padding: '16px 18px',
+                  background: '#FAFAFA',
+                  borderRadius: '12px',
+                  border: '1px solid #F0F0F0'
+                }}>
+                  <h4 style={{ 
+                    color: '#1A1A1A', 
+                    fontSize: '1rem', 
+                    marginBottom: '8px',
+                    fontWeight: 600,
+                    fontFamily: 'Outfit, sans-serif'
+                  }}>
+                    {org.title}
+                  </h4>
+                  <div style={{ 
+                    color: '#9E9E9E', 
+                    fontSize: '0.8125rem', 
+                    fontStyle: 'italic', 
+                    marginBottom: '12px',
+                    fontFamily: 'Space Grotesk, sans-serif'
+                  }}>
+                    {org.period}
+                  </div>
+                  <ul style={{ marginLeft: '20px', margin: 0, padding: 0, listStyle: 'none' }}>
+                    {org.items.map((item, i) => (
+                      <li key={i} style={{ 
+                        color: '#4A5568', 
+                        fontSize: '0.875rem', 
+                        lineHeight: '1.6',
+                        marginBottom: '6px',
+                        paddingLeft: '20px',
+                        position: 'relative',
+                        fontFamily: 'Space Grotesk, sans-serif'
+                      }}>
+                        <span style={{
+                          position: 'absolute',
+                          left: 0,
+                          top: '0.6em',
+                          width: '6px',
+                          height: '6px',
+                          background: '#FF5E5E',
+                          borderRadius: '50%'
+                        }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* PROJECTS TITLE */}
+          <div id="projects" style={{ textAlign: 'center', margin: '80px 0 60px' }} className="projects-header">
+            <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }} className="project-numbers">
               {['01', '02', '03', '04', '05', '06'].map((num) => (
                 <SplitText
                   key={num}
@@ -470,13 +583,13 @@ export default function App() {
             />
           </div>
 
-          {/* Project Folders */}
+          {/* PROJECT FOLDERS */}
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
             gap: '40px', 
             marginBottom: '60px' 
-          }}>
+          }} className="projects-grid">
             {projects.map((project) => (
               <ProjectFolder
                 key={project.id}
@@ -497,36 +610,160 @@ export default function App() {
         )}
 
         <style>{`
+          /* MOBILE RESPONSIVE STYLES */
+          
+          /* Main Container */
           @media (max-width: 768px) {
-            body {
-              padding-top: 80px;
+            .main-container {
+              padding: 100px 15px 40px 15px !important;
             }
-            
-            div[style*="display: grid"][style*="gridTemplateColumns: repeat(auto-fit, minmax(280px, 1fr))"] {
+
+            /* Experience Grid */
+            .experience-grid {
               grid-template-columns: 1fr !important;
               gap: 20px !important;
             }
 
-            /* Stack Skills and Contact vertically on mobile */
-            div[style*="gridTemplateColumns: 1fr 1fr"] {
+            /* Skills & Contact Grid */
+            .skills-contact-grid {
               grid-template-columns: 1fr !important;
+              gap: 20px !important;
             }
-            
-            div[style*="padding: 120px 20px 40px 20px"] {
-              padding: 100px 15px 40px 15px !important;
+
+            /* Organizational Section */
+            .org-section {
+              padding: 24px !important;
+            }
+
+            .org-section h3 {
+              font-size: 1rem !important;
+              margin-bottom: 20px !important;
+              padding-bottom: 16px !important;
+            }
+
+            .org-grid {
+              grid-template-columns: 1fr !important;
+              gap: 16px !important;
+            }
+
+            /* Featured Projects Section */
+            .featured-section {
+              padding: 28px !important;
+            }
+
+            .featured-section h3 {
+              font-size: 1rem !important;
+            }
+
+            /* Projects Header */
+            .projects-header {
+              margin: 60px 0 40px !important;
+            }
+
+            .project-numbers {
+              justify-content: center !important;
+            }
+
+            .project-number {
+              font-size: 1.5em !important;
+            }
+
+            .projects-title {
+              font-size: 4em !important;
+            }
+
+            /* Projects Grid */
+            .projects-grid {
+              grid-template-columns: 1fr !important;
+              gap: 20px !important;
             }
           }
 
           @media (max-width: 480px) {
-            div[style*="padding: 120px 20px 40px 20px"] {
-              padding: 90px 10px 30px 10px !important;
+            .main-container {
+              padding: 90px 12px 30px 12px !important;
             }
-            
-            div[style*="display: grid"][style*="gap: 40px"] {
-              gap: 20px !important;
+
+            .experience-grid,
+            .skills-contact-grid {
+              gap: 16px !important;
+            }
+
+            .org-section {
+              padding: 20px !important;
+            }
+
+            .org-section h3 {
+              font-size: 0.9375rem !important;
+              gap: 8px !important;
+            }
+
+            .org-grid {
+              gap: 12px !important;
+            }
+
+            .org-grid > div {
+              padding: 14px 16px !important;
+            }
+
+            .featured-section {
+              padding: 20px !important;
+            }
+
+            .projects-header {
+              margin: 50px 0 30px !important;
+            }
+
+            .project-number {
+              font-size: 1.2em !important;
+            }
+
+            .projects-title {
+              font-size: 3em !important;
+            }
+
+            .projects-grid {
+              gap: 16px !important;
             }
           }
 
+          @media (max-width: 360px) {
+            .main-container {
+              padding: 80px 10px 25px 10px !important;
+            }
+
+            .org-section {
+              padding: 16px !important;
+            }
+
+            .org-section h3 {
+              font-size: 0.875rem !important;
+            }
+
+            .org-section h3 span {
+              width: 28px !important;
+              height: 28px !important;
+              font-size: 0.9375rem !important;
+            }
+
+            .org-grid > div {
+              padding: 12px 14px !important;
+            }
+
+            .featured-section {
+              padding: 16px !important;
+            }
+
+            .project-number {
+              font-size: 1em !important;
+            }
+
+            .projects-title {
+              font-size: 2.5em !important;
+            }
+          }
+
+          /* Project Number & Title Styles */
           .project-number {
             font-size: 2em;
             color: rgba(255, 94, 94, 0.3);
@@ -538,26 +775,6 @@ export default function App() {
             font-weight: 900;
             color: rgba(0,0,0,0.05);
             margin: 0;
-          }
-
-          @media (max-width: 768px) {
-            .projects-title {
-              font-size: 4em;
-            }
-            
-            .project-number {
-              font-size: 1.5em;
-            }
-          }
-          
-          @media (max-width: 480px) {
-            .projects-title {
-              font-size: 3em;
-            }
-            
-            .project-number {
-              font-size: 1.2em;
-            }
           }
         `}</style>
       </div>

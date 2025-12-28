@@ -48,8 +48,9 @@ export default function ContactCard() {
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      height: '100%'
-    }}>
+      height: '100%',
+      width: '100%'
+    }} className="contact-card-container">
       {/* Coral Gradient Top Line */}
       <div style={{
         position: 'absolute',
@@ -148,7 +149,8 @@ export default function ContactCard() {
               {/* Content */}
               <div style={{
                 flex: 1,
-                minWidth: 0
+                minWidth: 0,
+                overflow: 'hidden'
               }}>
                 {/* Label */}
                 <div style={{
@@ -163,14 +165,16 @@ export default function ContactCard() {
                   {item.label}
                 </div>
 
-                {/* Value */}
+                {/* Value - With Word Break */}
                 <div style={{
                   fontSize: '0.875rem',
                   fontWeight: 500,
                   color: '#1A1A1A',
                   fontFamily: 'Space Grotesk, sans-serif',
                   lineHeight: '1.3',
-                  wordBreak: 'break-word'
+                  wordBreak: 'break-word',
+                  overflowWrap: 'break-word',
+                  hyphens: 'auto'
                 }}>
                   {item.value}
                 </div>
@@ -222,7 +226,7 @@ export default function ContactCard() {
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '8px'
-        }}>
+        }} className="availability-grid">
           {availability.map((item, idx) => (
             <div key={idx} style={{
               display: 'flex',
@@ -235,7 +239,8 @@ export default function ContactCard() {
                 width: '8px',
                 height: '8px',
                 borderRadius: '50%',
-                background: item.available ? '#10B981' : '#9E9E9E'
+                background: item.available ? '#10B981' : '#9E9E9E',
+                flexShrink: 0
               }} />
               <span style={{
                 color: '#4A5568',
@@ -283,7 +288,7 @@ export default function ContactCard() {
         </div>
       </div>
 
-      {/* CTA Button - Now at bottom with flex-grow spacer */}
+      {/* CTA Section - Now at bottom with flex-grow spacer */}
       <div style={{
         marginTop: 'auto',
         paddingTop: '16px'
@@ -312,7 +317,8 @@ export default function ContactCard() {
             fontFamily: 'Outfit, sans-serif',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 2px 8px rgba(255, 94, 94, 0.2)'
+            boxShadow: '0 2px 8px rgba(255, 94, 94, 0.2)',
+            display: 'block'
           }}
           onClick={() => window.open('mailto:ffeliciaannabelruriyanto@gmail.com', '_blank')}
           onMouseEnter={(e) => {
@@ -330,44 +336,111 @@ export default function ContactCard() {
 
       {/* Responsive Styles */}
       <style>{`
+        .contact-card-container {
+          min-height: auto;
+        }
+
         @media (max-width: 1024px) {
-          div[style*="height: 100%"] {
+          .contact-card-container {
             height: auto !important;
           }
         }
 
         @media (max-width: 768px) {
-          div[style*="padding: 32px"] {
+          .contact-card-container {
             padding: 24px !important;
           }
 
-          div[style*="fontSize: 0.875rem"] {
-            font-size: 0.8125rem !important;
+          .contact-card-container h3 {
+            font-size: 1rem !important;
           }
 
-          div[style*="padding: 14px 16px"] {
+          .contact-card-container > div[style*="gap: 14px"] > div {
             padding: 12px 14px !important;
           }
 
-          div[style*="width: 36px"] {
+          .contact-card-container div[style*="width: 36px"][style*="height: 36px"] {
             width: 32px !important;
             height: 32px !important;
+            font-size: 1rem !important;
+          }
+
+          .contact-card-container div[style*="fontSize: 0.875rem"] {
+            font-size: 0.8125rem !important;
+          }
+
+          .contact-card-container button {
+            padding: 10px 20px !important;
+            font-size: 0.8125rem !important;
           }
         }
 
         @media (max-width: 480px) {
-          div[style*="padding: 32px"],
-          div[style*="padding: 24px"] {
+          .contact-card-container {
             padding: 20px !important;
           }
 
-          div[style*="gridTemplateColumns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
+          .contact-card-container h3 {
+            font-size: 0.9375rem !important;
           }
 
-          button[style*="padding: 12px 24px"] {
-            padding: 10px 20px !important;
-            font-size: 0.8125rem !important;
+          .contact-card-container > div[style*="gap: 14px"] {
+            gap: 12px !important;
+          }
+
+          .contact-card-container > div[style*="gap: 14px"] > div {
+            padding: 10px 12px !important;
+          }
+
+          .contact-card-container div[style*="width: 36px"][style*="height: 36px"],
+          .contact-card-container div[style*="width: 32px"][style*="height: 32px"] {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 0.9375rem !important;
+          }
+
+          .contact-card-container div[style*="fontSize: 0.875rem"],
+          .contact-card-container div[style*="fontSize: 0.8125rem"] {
+            font-size: 0.75rem !important;
+          }
+
+          .contact-card-container div[style*="fontSize: 0.6875rem"] {
+            font-size: 0.625rem !important;
+          }
+
+          .availability-grid {
+            grid-template-columns: 1fr !important;
+            gap: 6px !important;
+          }
+
+          .contact-card-container button {
+            padding: 10px 18px !important;
+            font-size: 0.75rem !important;
+          }
+
+          .contact-card-container p {
+            font-size: 0.75rem !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .contact-card-container {
+            padding: 16px !important;
+          }
+
+          .contact-card-container > div[style*="gap: 14px"],
+          .contact-card-container > div[style*="gap: 12px"] {
+            gap: 10px !important;
+          }
+
+          .contact-card-container > div[style*="gap: 14px"] > div,
+          .contact-card-container > div[style*="gap: 12px"] > div {
+            padding: 8px 10px !important;
+          }
+
+          .contact-card-container button {
+            padding: 8px 16px !important;
+            font-size: 0.7rem !important;
           }
         }
       `}</style>

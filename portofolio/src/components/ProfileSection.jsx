@@ -1,54 +1,41 @@
-import MasonryCarousel from './MasonryCarousel.jsx';
-
 export default function ProfileSection() {
   return (
     <div style={{ marginBottom: '60px' }}>
-      {/* TOP ROW: Profile Card + About Text (Side by Side) */}
+      {/* Profile Card + About Text Grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'auto 1fr',
         gap: '30px',
         marginBottom: '30px',
         alignItems: 'stretch'
-      }}>
-        {/* LEFT: Profile Card with Photo */}
+      }} className="profile-about-grid">
+        
+        {/* LEFT: Profile Card - WHITE BACKGROUND */}
         <div style={{
-          background: 'linear-gradient(135deg, rgba(252, 237, 216, 0.3), rgba(255, 212, 100, 0.3), rgba(255, 94, 94, 0.2))',
+          background: 'white',
           borderRadius: '30px',
           padding: '40px 30px',
-          border: '1px solid rgba(255, 94, 94, 0.1)',
-          boxShadow: '0 8px 32px rgba(255, 94, 94, 0.12)',
+          border: '1px solid #F0F0F0',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
           position: 'relative',
           overflow: 'hidden',
           textAlign: 'center',
-          backdropFilter: 'blur(10px)',
           minWidth: '280px',
           maxWidth: '320px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center'
-        }}>
-          {/* Decorative Circles */}
+        }} className="profile-card">
+          
+          {/* Coral Gradient Top Line */}
           <div style={{
             position: 'absolute',
-            top: '-50px',
-            right: '-50px',
-            width: '150px',
-            height: '150px',
-            borderRadius: '50%',
-            background: 'rgba(255, 94, 94, 0.15)',
-            filter: 'blur(40px)'
-          }} />
-          <div style={{
-            position: 'absolute',
-            bottom: '-30px',
-            left: '-30px',
-            width: '120px',
-            height: '120px',
-            borderRadius: '50%',
-            background: 'rgba(255, 212, 100, 0.15)',
-            filter: 'blur(40px)'
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '3px',
+            background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
           }} />
 
           {/* Profile Photo */}
@@ -57,13 +44,11 @@ export default function ProfileSection() {
             height: '180px',
             borderRadius: '50%',
             overflow: 'hidden',
-            border: '4px solid white',
+            border: '4px solid #F0F0F0',
             boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
             marginBottom: '20px',
-            position: 'relative',
-            zIndex: 1,
             background: 'linear-gradient(135deg, #E5E7EB, #F3F4F6)'
-          }}>
+          }} className="profile-photo">
             <img 
               src="/assets/felicia-photo.jpg" 
               alt="Felicia Annabel"
@@ -79,60 +64,59 @@ export default function ProfileSection() {
             />
           </div>
 
-          {/* Name & Title */}
+          {/* Name - DARK TEXT */}
           <h2 style={{
             fontSize: '1.5rem',
             fontWeight: 800,
             color: '#1A1A1A',
             marginBottom: '6px',
             fontFamily: 'Outfit, sans-serif',
-            letterSpacing: '-0.02em',
-            position: 'relative',
-            zIndex: 1
-          }}>
+            letterSpacing: '-0.02em'
+          }} className="profile-name">
             Felicia Annabel
           </h2>
           
+          {/* Subtitle - DARK TEXT */}
           <p style={{
             fontSize: '0.9375rem',
             color: '#6B7280',
             fontWeight: 500,
             fontFamily: 'Space Grotesk, sans-serif',
-            position: 'relative',
-            zIndex: 1,
             marginBottom: '20px'
-          }}>
+          }} className="profile-subtitle">
             Backend Developer & IT Enthusiast
           </p>
 
           {/* Social Links */}
           <div style={{
             display: 'flex',
-            gap: '10px',
-            position: 'relative',
-            zIndex: 1
-          }}>
+            gap: '10px'
+          }} className="social-links">
             <a href="https://linkedin.com/in/felicia-annabel-ruriyanto-227a9125b" target="_blank" rel="noopener noreferrer" style={{
               width: '40px',
               height: '40px',
               borderRadius: '10px',
-              background: 'white',
+              background: '#FAFAFA',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#FF5E5E',
               fontSize: '1.125rem',
               textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #F0F0F0',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.2)';
+              e.currentTarget.style.background = '#FF5E5E';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+              e.currentTarget.style.background = '#FAFAFA';
+              e.currentTarget.style.color = '#FF5E5E';
+              e.currentTarget.style.boxShadow = 'none';
             }}>
               💼
             </a>
@@ -140,23 +124,27 @@ export default function ProfileSection() {
               width: '40px',
               height: '40px',
               borderRadius: '10px',
-              background: 'white',
+              background: '#FAFAFA',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#FF5E5E',
               fontSize: '1.125rem',
               textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #F0F0F0',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.2)';
+              e.currentTarget.style.background = '#FF5E5E';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+              e.currentTarget.style.background = '#FAFAFA';
+              e.currentTarget.style.color = '#FF5E5E';
+              e.currentTarget.style.boxShadow = 'none';
             }}>
               📧
             </a>
@@ -164,30 +152,34 @@ export default function ProfileSection() {
               width: '40px',
               height: '40px',
               borderRadius: '10px',
-              background: 'white',
+              background: '#FAFAFA',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#FF5E5E',
               fontSize: '1.125rem',
               textDecoration: 'none',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+              border: '1px solid #F0F0F0',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.2)';
+              e.currentTarget.style.background = '#FF5E5E';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+              e.currentTarget.style.background = '#FAFAFA';
+              e.currentTarget.style.color = '#FF5E5E';
+              e.currentTarget.style.boxShadow = 'none';
             }}>
               📱
             </a>
           </div>
         </div>
 
-        {/* RIGHT: About Me Text */}
+        {/* RIGHT: About Me Text - WHITE BACKGROUND WITH DARK TEXT */}
         <div style={{
           background: 'white',
           borderRadius: '20px',
@@ -199,7 +191,8 @@ export default function ProfileSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center'
-        }}>
+        }} className="about-card">
+          
           {/* Coral Gradient Top Line */}
           <div style={{
             position: 'absolute',
@@ -210,6 +203,7 @@ export default function ProfileSection() {
             background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
           }} />
 
+          {/* Title - DARK TEXT */}
           <h2 style={{
             fontSize: '2.25rem',
             fontWeight: 800,
@@ -217,7 +211,7 @@ export default function ProfileSection() {
             color: '#1A1A1A',
             fontFamily: 'Outfit, sans-serif',
             letterSpacing: '-0.02em'
-          }}>
+          }} className="about-title">
             Hi, I'm <span style={{
               background: 'linear-gradient(135deg, #FF5E5E, #E23C64)',
               WebkitBackgroundClip: 'text',
@@ -226,13 +220,14 @@ export default function ProfileSection() {
             }}>Felicia</span>
           </h2>
 
+          {/* About Text - DARK COLOR FOR VISIBILITY */}
           <p style={{
             fontSize: '1rem',
             lineHeight: '1.8',
-            color: '#4A5568',
+            color: '#1A1A1A',
             fontFamily: 'Space Grotesk, sans-serif',
             margin: 0
-          }}>
+          }} className="about-text">
             A detail-oriented and tech-driven <strong>Informatics Engineering student</strong> at Multimedia Nusantara University with strong interest in IT project management and digital solutions. 
             <br /><br />
             Skilled in <strong>data analysis</strong>, <strong>software development fundamentals</strong>, and <strong>problem-solving</strong> within cross-functional teams. 
@@ -244,158 +239,143 @@ export default function ProfileSection() {
         </div>
       </div>
 
-      {/* BOTTOM ROW: Featured Projects with Horizontal Masonry (Full Width) */}
-      <div style={{
-        background: 'white',
-        borderRadius: '20px',
-        border: '1px solid #F0F0F0',
-        padding: '40px',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
-        position: 'relative',
-        overflow: 'visible'
-      }}>
-        {/* Coral Gradient Top Line */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '3px',
-          background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
-        }} />
-
-        {/* Header */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          marginBottom: '32px'
-        }}>
-          <span style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '36px',
-            height: '36px',
-            background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
-            borderRadius: '10px',
-            fontSize: '1.125rem'
-          }}>
-            ⭐
-          </span>
-          <h3 style={{
-            fontSize: '1.125rem',
-            fontWeight: 700,
-            color: '#1A1A1A',
-            fontFamily: 'Outfit, sans-serif',
-            letterSpacing: '-0.01em',
-            margin: 0
-          }}>
-            Featured Projects
-          </h3>
-        </div>
-
-        {/* MasonryCarousel Component - Display Horizontal */}
-        <div style={{
-          width: '100%',
-          position: 'relative'
-        }}>
-          <MasonryCarousel />
-        </div>
-      </div>
-
       {/* Responsive Styles */}
       <style>{`
-        /* Tablet & Below - Stack Profile and About */}
+        /* Tablet & Below - Stack Vertically */
         @media (max-width: 1024px) {
-          div[style*="gridTemplateColumns: auto 1fr"] {
+          .profile-about-grid {
             grid-template-columns: 1fr !important;
           }
           
-          div[style*="minWidth: 280px"] {
+          .profile-card {
             max-width: 100% !important;
             min-width: 100% !important;
           }
         }
 
-        /* Mobile - Smaller text and padding */}
+        /* Tablet */
         @media (max-width: 768px) {
-          h2[style*="fontSize: 2.25rem"] {
-            font-size: 1.875rem !important;
-          }
-          
-          p[style*="fontSize: 1rem"] {
-            font-size: 0.9375rem !important;
+          .profile-card {
+            padding: 30px 20px !important;
           }
 
-          div[style*="padding: 40px"] {
+          .profile-photo {
+            width: 150px !important;
+            height: 150px !important;
+          }
+
+          .profile-name {
+            font-size: 1.375rem !important;
+          }
+
+          .profile-subtitle {
+            font-size: 0.875rem !important;
+          }
+
+          .social-links a {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 1rem !important;
+          }
+
+          .about-card {
             padding: 28px !important;
           }
 
-          div[style*="padding: 0 60px"] {
-            padding: 0 32px !important;
+          .about-title {
+            font-size: 1.875rem !important;
+          }
+          
+          .about-text {
+            font-size: 0.9375rem !important;
+            line-height: 1.7 !important;
           }
         }
 
-        /* Small Mobile - Compact everything */}
+        /* Mobile */
         @media (max-width: 480px) {
-          div[style*="padding: 40px"],
-          div[style*="padding: 28px"] {
-            padding: 20px !important;
-          }
-          
-          h2[style*="fontSize: 2.25rem"],
-          h2[style*="fontSize: 1.875rem"] {
-            font-size: 1.5rem !important;
-          }
-          
-          div[style*="width: 180px"] {
-            width: 140px !important;
-            height: 140px !important;
+          .profile-card {
+            padding: 24px 20px !important;
           }
 
-          div[style*="padding: 0 60px"],
-          div[style*="padding: 0 32px"] {
-            padding: 0 16px !important;
+          .profile-photo {
+            width: 130px !important;
+            height: 130px !important;
           }
 
-          button[style*="width: 56px"] {
-            width: 44px !important;
-            height: 44px !important;
+          .profile-name {
             font-size: 1.25rem !important;
           }
 
-          div[style*="height: 280px"] {
-            height: 200px !important;
+          .profile-subtitle {
+            font-size: 0.8125rem !important;
+            margin-bottom: 16px !important;
           }
 
-          h4[style*="fontSize: 1.375rem"] {
-            font-size: 1.125rem !important;
+          .social-links {
+            gap: 8px !important;
           }
 
-          div[style*="gap: 32px"] {
-            gap: 16px !important;
-            flex-direction: column !important;
+          .social-links a {
+            width: 34px !important;
+            height: 34px !important;
+            font-size: 0.9375rem !important;
           }
 
-          /* Make arrows stack vertically on very small screens */}
-          div[style*="display: flex"][style*="gap: 32px"] {
-            flex-direction: row !important;
+          .about-card {
+            padding: 24px !important;
+          }
+
+          .about-title {
+            font-size: 1.625rem !important;
+            margin-bottom: 16px !important;
+          }
+          
+          .about-text {
+            font-size: 0.875rem !important;
+            line-height: 1.65 !important;
           }
         }
 
-        /* Extra Small - Arrows above/below */}
-        @media (max-width: 380px) {
-          button[style*="width: 56px"],
-          button[style*="width: 44px"] {
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 1.125rem !important;
+        /* Small Mobile */
+        @media (max-width: 360px) {
+          .profile-card {
+            padding: 20px 16px !important;
           }
 
-          div[style*="height: 280px"],
-          div[style*="height: 200px"] {
-            height: 180px !important;
+          .profile-photo {
+            width: 110px !important;
+            height: 110px !important;
+            margin-bottom: 16px !important;
+          }
+
+          .profile-name {
+            font-size: 1.125rem !important;
+            margin-bottom: 4px !important;
+          }
+
+          .profile-subtitle {
+            font-size: 0.75rem !important;
+          }
+
+          .social-links a {
+            width: 32px !important;
+            height: 32px !important;
+            font-size: 0.875rem !important;
+          }
+
+          .about-card {
+            padding: 20px !important;
+          }
+
+          .about-title {
+            font-size: 1.5rem !important;
+            margin-bottom: 14px !important;
+          }
+          
+          .about-text {
+            font-size: 0.8125rem !important;
+            line-height: 1.6 !important;
           }
         }
       `}</style>
