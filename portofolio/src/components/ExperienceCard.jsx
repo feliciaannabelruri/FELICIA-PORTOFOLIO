@@ -2,103 +2,218 @@ export default function ExperienceCard({ title, experiences }) {
   return (
     <div style={{
       background: 'white',
-      padding: '25px',
-      borderRadius: '15px',
-      boxShadow: '0 5px 20px rgba(0,0,0,0.08)',
-      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      borderRadius: '20px',
+      border: '1px solid #F0F0F0',
+      padding: '32px',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: '100%'
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-10px)';
-      e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.15)';
+      e.currentTarget.style.transform = 'translateY(-4px)';
+      e.currentTarget.style.boxShadow = '0 8px 32px rgba(255, 94, 94, 0.12)';
+      e.currentTarget.style.borderColor = '#FCEDD8';
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 5px 20px rgba(0,0,0,0.08)';
+      e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
+      e.currentTarget.style.borderColor = '#F0F0F0';
     }}
     >
+      {/* Coral Gradient Top Line */}
       <div style={{
         position: 'absolute',
-        top: -100,
+        top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'linear-gradient(180deg, rgba(102,126,234,0.05) 0%, transparent 100%)',
-        transition: 'all 0.4s ease',
-        pointerEvents: 'none'
-      }} />
-      
-      <h3 style={{
-        fontSize: '1.3em',
-        marginBottom: '15px',
-        color: '#2d3748',
-        borderBottom: '2px solid #667eea',
-        paddingBottom: '10px',
-        fontWeight: 700,
-        position: 'relative',
-        transition: 'all 0.3s ease'
-      }}>
-        {title}
-      </h3>
+        right: 0,
+        height: '3px',
+        background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)',
+        transform: 'scaleX(0)',
+        transformOrigin: 'left',
+        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+      }}
+      className="exp-gradient"
+      />
 
-      {experiences.map((exp, idx) => (
-        <div
-          key={idx}
-          style={{
-            marginBottom: '20px',
-            paddingBottom: idx < experiences.length - 1 ? '15px' : '0',
-            borderBottom: idx < experiences.length - 1 ? '1px solid #e2e8f0' : 'none',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-            position: 'relative',
-            paddingLeft: '15px'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.paddingLeft = '20px';
-            e.currentTarget.style.background = 'rgba(102,126,234,0.02)';
-            const border = e.currentTarget.querySelector('.exp-border');
-            if (border) border.style.transform = 'scaleY(1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.paddingLeft = '15px';
-            e.currentTarget.style.background = 'transparent';
-            const border = e.currentTarget.querySelector('.exp-border');
-            if (border) border.style.transform = 'scaleY(0)';
-          }}
-        >
+      {/* Title */}
+      <div style={{
+        marginBottom: '28px',
+        paddingBottom: '20px',
+        borderBottom: '1px solid #F5F5F5'
+      }}>
+        <h3 style={{
+          fontSize: '1.125rem',
+          fontWeight: 700,
+          color: '#1A1A1A',
+          fontFamily: 'Outfit, sans-serif',
+          letterSpacing: '-0.01em',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          margin: 0
+        }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '36px',
+            height: '36px',
+            background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
+            borderRadius: '10px',
+            fontSize: '1.125rem'
+          }}>
+            💼
+          </span>
+          {title}
+        </h3>
+      </div>
+
+      {/* Experience Items - Clean Version */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '16px' 
+      }}>
+        {experiences.map((exp, idx) => (
           <div
-            className="exp-border"
+            key={idx}
             style={{
+              padding: '16px 18px',
+              background: '#FAFAFA',
+              borderRadius: '12px',
+              border: '1px solid #F0F0F0',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              position: 'relative'
+            }}
+            className="exp-item"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'white';
+              e.currentTarget.style.transform = 'translateX(4px)';
+              e.currentTarget.style.borderColor = '#FCEDD8';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 94, 94, 0.08)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#FAFAFA';
+              e.currentTarget.style.transform = 'translateX(0)';
+              e.currentTarget.style.borderColor = '#F0F0F0';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            {/* Left Coral Accent */}
+            <div style={{
               position: 'absolute',
               left: 0,
               top: 0,
               bottom: 0,
               width: '3px',
-              background: 'linear-gradient(180deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(180deg, #FF5E5E 0%, #E23C64 100%)',
               transform: 'scaleY(0)',
-              transition: 'all 0.3s ease'
+              transformOrigin: 'top',
+              transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              borderRadius: '0 3px 3px 0'
             }}
-          />
-          
-          <h4 style={{ color: '#2d3748', fontSize: '1.05em', marginBottom: '5px', fontWeight: 600, transition: 'all 0.3s ease' }}>
-            {exp.title}
-          </h4>
-          <div style={{ color: '#667eea', fontSize: '0.95em', fontWeight: 600, marginBottom: '3px' }}>
-            {exp.company}
+            className="exp-border"
+            />
+
+            {/* Title */}
+            <h4 style={{ 
+              color: '#1A1A1A', 
+              fontSize: '1rem', 
+              marginBottom: '8px', 
+              fontWeight: 600,
+              fontFamily: 'Outfit, sans-serif',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.3
+            }}>
+              {exp.title}
+            </h4>
+
+            {/* Company Badge */}
+            <div style={{ 
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, rgba(255, 94, 94, 0.1), rgba(226, 60, 100, 0.1))',
+              color: '#FF5E5E', 
+              fontSize: '0.8125rem', 
+              fontWeight: 700,
+              padding: '4px 12px',
+              borderRadius: '8px',
+              marginBottom: '8px',
+              border: '1px solid rgba(255, 94, 94, 0.15)',
+              fontFamily: 'Outfit, sans-serif',
+              letterSpacing: '-0.01em'
+            }}>
+              {exp.company}
+            </div>
+
+            {/* Period */}
+            <div style={{ 
+              color: '#9E9E9E', 
+              fontSize: '0.8125rem',
+              fontWeight: 500,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: 'Space Grotesk, sans-serif'
+            }}>
+              <span style={{
+                display: 'inline-flex',
+                width: '5px',
+                height: '5px',
+                background: '#FF5E5E',
+                borderRadius: '50%'
+              }} />
+              {exp.period}
+            </div>
           </div>
-          <div style={{ color: '#718096', fontSize: '0.85em', marginBottom: '8px', fontStyle: 'italic', fontWeight: 400 }}>
-            {exp.period}
-          </div>
-          <ul style={{ marginLeft: '20px', marginTop: '8px' }}>
-            {exp.responsibilities.map((resp, i) => (
-              <li key={i} style={{ color: '#4a5568', fontSize: '0.9em', lineHeight: '1.6', marginBottom: '4px', fontWeight: 400 }}>
-                {resp}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <style>{`
+        @media (hover: hover) {
+          div:hover .exp-gradient {
+            transform: scaleX(1);
+          }
+
+          .exp-item:hover .exp-border {
+            transform: scaleY(1);
+          }
+        }
+
+        @media (max-width: 768px) {
+          div[style*="padding: 32px"] {
+            padding: 24px !important;
+          }
+
+          h3 {
+            font-size: 1rem !important;
+          }
+
+          .exp-item {
+            padding: 14px 16px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 32px"] {
+            padding: 20px !important;
+          }
+
+          h3 {
+            font-size: 0.9375rem !important;
+          }
+
+          .exp-item {
+            padding: 12px 14px !important;
+          }
+
+          h4 {
+            font-size: 0.9375rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

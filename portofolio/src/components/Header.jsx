@@ -3,88 +3,194 @@ import SplitText from './SplitText';
 export default function Header() {
   return (
     <div style={{
-      textAlign: 'center',
-      marginBottom: '60px',
-      background: 'white',
-      padding: '60px 40px',
-      borderRadius: '20px',
-      boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+      background: 'linear-gradient(135deg, #FCEDD8 0%, #FFD464 50%, #FF5E5E 100%)',
+      padding: '100px 60px 80px',
+      borderRadius: '24px',
       position: 'relative',
       overflow: 'hidden',
-      transition: 'all 0.4s ease',
-      cursor: 'pointer'
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-5px)';
-      e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.15)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-    }}
-    >
+      marginBottom: '48px',
+      boxShadow: '0 8px 32px rgba(255, 94, 94, 0.15)'
+    }}>
+      {/* Decorative Circles */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: '5px',
-        background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-        animation: 'slideRight 3s infinite'
+        top: '-100px',
+        right: '-80px',
+        width: '300px',
+        height: '300px',
+        background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%)',
+        borderRadius: '50%',
+        animation: 'float 8s ease-in-out infinite'
       }} />
       
       <div style={{
         position: 'absolute',
-        top: '20px',
-        right: '40px',
-        fontSize: '2.5em',
-        color: '#d2a574',
-        fontWeight: 400,
-        transition: 'all 0.3s ease'
-      }}>
-        '25
-      </div>
-      
-      <SplitText
-        text="PORTFOLIO"
-        tag="h1"
-        delay={100}
-        duration={0.8}
-        ease="power4.out"
-        from={{ opacity: 0, y: -50, scale: 0.8 }}
-        to={{ opacity: 1, y: 0, scale: 1 }}
-        textAlign="center"
-      />
-      
-      <div style={{
-        fontSize: '0.9em',
-        color: '#d2a574',
-        letterSpacing: '1px',
-        marginTop: '10px',
-        fontWeight: 400
-      }}>
-        FELICIA ANNABEL RURIYANTO
+        bottom: '-80px',
+        left: '-60px',
+        width: '250px',
+        height: '250px',
+        background: 'radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
+        borderRadius: '50%',
+        animation: 'float 10s ease-in-out infinite',
+        animationDelay: '2s'
+      }} />
+
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+        {/* Portfolio Badge */}
+        <div style={{
+          display: 'inline-block',
+          padding: '8px 20px',
+          background: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '12px',
+          marginBottom: '24px',
+          border: '1px solid rgba(255, 255, 255, 0.6)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
+        }}>
+          <span style={{
+            fontSize: '0.8125rem',
+            fontWeight: 700,
+            color: '#E23C64',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            fontFamily: 'Outfit, sans-serif'
+          }}>
+            Portfolio 2025
+          </span>
+        </div>
+
+        {/* Main Title */}
+        <h1 style={{
+          fontSize: 'clamp(3rem, 6vw, 5rem)',
+          fontWeight: 900,
+          color: 'white',
+          margin: '0 0 16px 0',
+          letterSpacing: '-0.03em',
+          lineHeight: 1,
+          fontFamily: 'Outfit, sans-serif',
+          textShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+        }}>
+          FELICIA ANNABEL RURIYANTO
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{
+          fontSize: '1.5rem',
+          fontWeight: 600,
+          color: 'rgba(255, 255, 255, 0.95)',
+          marginBottom: '28px',
+          fontFamily: 'Space Grotesk, sans-serif',
+          letterSpacing: '-0.01em'
+        }}>
+          Backend Developer & IT Enthusiast
+        </p>
+
+        {/* Badges */}
+        <div style={{
+          display: 'flex',
+          gap: '12px',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          marginTop: '24px'
+        }}>
+          <div style={{
+            padding: '8px 18px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '12px',
+            fontSize: '0.875rem',
+            color: '#FF5E5E',
+            fontWeight: 700,
+            border: '1px solid rgba(255, 255, 255, 0.6)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            fontFamily: 'Outfit, sans-serif',
+            letterSpacing: '-0.01em'
+          }}>
+            🎓 UMN Student
+          </div>
+          <div style={{
+            padding: '8px 18px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '12px',
+            fontSize: '0.875rem',
+            color: '#FFD464',
+            fontWeight: 700,
+            border: '1px solid rgba(255, 255, 255, 0.6)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            fontFamily: 'Outfit, sans-serif',
+            letterSpacing: '-0.01em'
+          }}>
+            📱 Digital Marketing
+          </div>
+          <div style={{
+            padding: '8px 18px',
+            background: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '12px',
+            fontSize: '0.875rem',
+            color: '#E23C64',
+            fontWeight: 700,
+            border: '1px solid rgba(255, 255, 255, 0.6)',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+            fontFamily: 'Outfit, sans-serif',
+            letterSpacing: '-0.01em'
+          }}>
+            ✨ Content Creator
+          </div>
+        </div>
       </div>
 
       <style>{`
-        @keyframes slideRight {
-          0% { left: -100%; }
-          50% { left: 100%; }
-          100% { left: 100%; }
-        }
-        
-        h1 {
-          font-size: 4.5em;
-          font-weight: 900;
-          color: #000000;
-          margin: 10px 0;
-          letter-spacing: -2px;
-          line-height: 0.9;
+        @keyframes float {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+          }
+          33% {
+            transform: translate(20px, -20px) scale(1.05);
+          }
+          66% {
+            transform: translate(-20px, 10px) scale(0.95);
+          }
         }
 
         @media (max-width: 768px) {
+          div[style*="padding: 100px 60px 80px"] {
+            padding: 60px 32px 50px !important;
+          }
+
           h1 {
-            font-size: 2.5em;
+            font-size: 2.5rem !important;
+            margin-bottom: 12px !important;
+          }
+
+          p[style*="font-size: 1.5rem"] {
+            font-size: 1.125rem !important;
+            margin-bottom: 20px !important;
+          }
+
+          div[style*="gap: 12px"] {
+            gap: 8px !important;
+          }
+
+          div[style*="padding: 8px 18px"] {
+            padding: 6px 14px !important;
+            font-size: 0.8125rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          div[style*="padding: 100px 60px 80px"] {
+            padding: 50px 24px 40px !important;
+          }
+
+          h1 {
+            font-size: 2rem !important;
+          }
+
+          p[style*="font-size: 1.5rem"] {
+            font-size: 1rem !important;
           }
         }
       `}</style>
