@@ -1,381 +1,194 @@
+import ProfileCard from './ProfileCard.jsx';
+import MasonryCarousel from './MasonryCarousel.jsx';
+
 export default function ProfileSection() {
   return (
-    <div style={{ marginBottom: '60px' }}>
-      {/* Profile Card + About Text Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'auto 1fr',
-        gap: '30px',
-        marginBottom: '30px',
-        alignItems: 'stretch'
-      }} className="profile-about-grid">
-        
-        {/* LEFT: Profile Card - WHITE BACKGROUND */}
-        <div style={{
-          background: 'white',
-          borderRadius: '30px',
-          padding: '40px 30px',
-          border: '1px solid #F0F0F0',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-          position: 'relative',
-          overflow: 'hidden',
-          textAlign: 'center',
-          minWidth: '280px',
-          maxWidth: '320px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }} className="profile-card">
-          
-          {/* Coral Gradient Top Line */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '3px',
-            background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
-          }} />
-
-          {/* Profile Photo */}
-          <div style={{
-            width: '180px',
-            height: '180px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            border: '4px solid #F0F0F0',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
-            marginBottom: '20px',
-            background: 'linear-gradient(135deg, #E5E7EB, #F3F4F6)'
-          }} className="profile-photo">
-            <img 
-              src="/assets/felicia-photo.jpg" 
-              alt="Felicia Annabel"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.parentElement.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#FF5E5E;font-weight:800;font-family:Outfit">FA</div>';
-              }}
-            />
-          </div>
-
-          {/* Name - DARK TEXT */}
-          <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: 800,
-            color: '#1A1A1A',
-            marginBottom: '6px',
-            fontFamily: 'Outfit, sans-serif',
-            letterSpacing: '-0.02em'
-          }} className="profile-name">
-            Felicia Annabel
-          </h2>
-          
-          {/* Subtitle - DARK TEXT */}
-          <p style={{
-            fontSize: '0.9375rem',
-            color: '#6B7280',
-            fontWeight: 500,
-            fontFamily: 'Space Grotesk, sans-serif',
-            marginBottom: '20px'
-          }} className="profile-subtitle">
-            Backend Developer & IT Enthusiast
-          </p>
-
-          {/* Social Links */}
-          <div style={{
-            display: 'flex',
-            gap: '10px'
-          }} className="social-links">
-            <a href="https://linkedin.com/in/felicia-annabel-ruriyanto-227a9125b" target="_blank" rel="noopener noreferrer" style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#FAFAFA',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#FF5E5E',
-              fontSize: '1.125rem',
-              textDecoration: 'none',
-              border: '1px solid #F0F0F0',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.background = '#FF5E5E';
-              e.currentTarget.style.color = 'white';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.background = '#FAFAFA';
-              e.currentTarget.style.color = '#FF5E5E';
-              e.currentTarget.style.boxShadow = 'none';
-            }}>
-              💼
-            </a>
-            <a href="mailto:ffeliciaannabelruriyanto@gmail.com" style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#FAFAFA',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#FF5E5E',
-              fontSize: '1.125rem',
-              textDecoration: 'none',
-              border: '1px solid #F0F0F0',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.background = '#FF5E5E';
-              e.currentTarget.style.color = 'white';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.background = '#FAFAFA';
-              e.currentTarget.style.color = '#FF5E5E';
-              e.currentTarget.style.boxShadow = 'none';
-            }}>
-              📧
-            </a>
-            <a href="tel:+6287736786969" style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: '#FAFAFA',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#FF5E5E',
-              fontSize: '1.125rem',
-              textDecoration: 'none',
-              border: '1px solid #F0F0F0',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.background = '#FF5E5E';
-              e.currentTarget.style.color = 'white';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(255, 94, 94, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.background = '#FAFAFA';
-              e.currentTarget.style.color = '#FF5E5E';
-              e.currentTarget.style.boxShadow = 'none';
-            }}>
-              📱
-            </a>
-          </div>
-        </div>
-
-        {/* RIGHT: About Me Text - WHITE BACKGROUND WITH DARK TEXT */}
-        <div style={{
-          background: 'white',
-          borderRadius: '20px',
-          border: '1px solid #F0F0F0',
-          padding: '40px',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center'
-        }} className="about-card">
-          
-          {/* Coral Gradient Top Line */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '3px',
-            background: 'linear-gradient(90deg, #FCEDD8 0%, #FFD464 25%, #FF5E5E 60%, #E23C64 85%, #B0183D 100%)'
-          }} />
-
-          {/* Title - DARK TEXT */}
-          <h2 style={{
-            fontSize: '2.25rem',
-            fontWeight: 800,
-            marginBottom: '20px',
-            color: '#1A1A1A',
-            fontFamily: 'Outfit, sans-serif',
-            letterSpacing: '-0.02em'
-          }} className="about-title">
-            Hi, I'm <span style={{
-              background: 'linear-gradient(135deg, #FF5E5E, #E23C64)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Felicia</span>
-          </h2>
-
-          {/* About Text - DARK COLOR FOR VISIBILITY */}
-          <p style={{
-            fontSize: '1rem',
-            lineHeight: '1.8',
-            color: '#1A1A1A',
-            fontFamily: 'Space Grotesk, sans-serif',
-            margin: 0
-          }} className="about-text">
-            A detail-oriented and tech-driven <strong>Informatics Engineering student</strong> at Multimedia Nusantara University with strong interest in IT project management and digital solutions. 
-            <br /><br />
-            Skilled in <strong>data analysis</strong>, <strong>software development fundamentals</strong>, and <strong>problem-solving</strong> within cross-functional teams. 
-            <br /><br />
-            Experienced in managing <strong>social media</strong> and <strong>digital marketing projects</strong>, combining technical and creative approaches to deliver measurable results. 
-            <br /><br />
-            Eager to contribute technical expertise and strategic thinking in the IT industry.
-          </p>
-        </div>
+    <div className="profile-section-container">
+      {/* Profile Card */}
+      <div className="profile-card-wrapper">
+        <ProfileCard
+          name="Felicia Annabel"
+          title="Backend Developer & IT Enthusiast"
+          handle="feliciaannabel"
+          status="Available for Work"
+          contactText="📧"
+          avatarUrl="/assets/lanyard/lanyard.png"
+          miniAvatarUrl="/assets/lanyard/lanyard.png"
+          showUserInfo={true}
+          enableTilt={true}
+          enableMobileTilt={false}
+          onContactClick={() => {
+            window.location.href = 'mailto:ffeliciaannabelruriyanto@gmail.com';
+          }}
+        />
       </div>
 
-      {/* Responsive Styles */}
+      {/* Profile Info */}
+      <div className="profile-info-box">
+        <h2 className="profile-title">
+          Hi, I'm <span style={{ color: '#b8315aff' }}>Felicia</span>
+        </h2>
+        <p className="profile-description">
+          A detail-oriented and tech-driven Informatics Engineering student at Multimedia Nusantara University with strong interest in IT project management and digital solutions. Skilled in data analysis, software development fundamentals, and problem-solving within cross-functional teams. Experienced in managing social media and digital marketing projects, combining technical and creative approaches to deliver measurable results. Eager to contribute technical expertise and strategic thinking in the IT industry.
+        </p>
+      </div>
       <style>{`
-        /* Tablet & Below - Stack Vertically */
+        .profile-section-container {
+          display: grid;
+          grid-template-columns: 380px 1fr 380px;
+          gap: 40px;
+          margin-bottom: 60px;
+          align-items: start;
+          padding: 20px 0;
+        }
+
+        .profile-card-wrapper {
+          background: transparent;
+          padding: 0;
+          height: fit-content;
+        }
+
+        .profile-info-box {
+          background: white;
+          padding: 40px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+          transition: all 0.4s ease;
+          min-height: 200px;
+        }
+
+        .profile-info-box:hover {
+          box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .profile-title {
+          font-size: 1.8em;
+          margin-bottom: 15px;
+          color: #2d3748;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+
+        .profile-description {
+          color: #4a5568;
+          line-height: 1.8;
+          margin-bottom: 0;
+          font-weight: 400;
+          font-size: 1rem;
+        }
+
+        .masonry-wrapper {
+          position: relative;
+          background: white;
+          padding: 30px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        /* LAPTOP - 1200px ke bawah */
+        @media (max-width: 1200px) {
+          .profile-section-container {
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+          }
+
+          .masonry-wrapper {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+          }
+        }
+
+        /* TABLET - 1024px ke bawah */
         @media (max-width: 1024px) {
-          .profile-about-grid {
-            grid-template-columns: 1fr !important;
+          .profile-section-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 20px;
           }
-          
-          .profile-card {
-            max-width: 100% !important;
-            min-width: 100% !important;
+
+          .profile-card-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+          }
+
+          .profile-info-box {
+            padding: 30px;
+          }
+
+          .profile-title {
+            font-size: 1.6em;
+          }
+
+          .masonry-wrapper {
+            padding: 25px;
           }
         }
 
-        /* Tablet */
+        /* MOBILE - 768px ke bawah */
         @media (max-width: 768px) {
-          .profile-card {
-            padding: 30px 20px !important;
+          .profile-section-container {
+            gap: 20px;
+            padding: 15px;
           }
 
-          .profile-photo {
-            width: 150px !important;
-            height: 150px !important;
+          .profile-card-wrapper {
+            max-width: 350px;
           }
 
-          .profile-name {
-            font-size: 1.375rem !important;
+          .profile-info-box {
+            padding: 25px;
           }
 
-          .profile-subtitle {
-            font-size: 0.875rem !important;
+          .profile-title {
+            font-size: 1.5em;
+            margin-bottom: 12px;
           }
 
-          .social-links a {
-            width: 36px !important;
-            height: 36px !important;
-            font-size: 1rem !important;
+          .profile-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
           }
 
-          .about-card {
-            padding: 28px !important;
+          .masonry-wrapper {
+            padding: 20px;
           }
 
-          .about-title {
-            font-size: 1.875rem !important;
-          }
-          
-          .about-text {
-            font-size: 0.9375rem !important;
-            line-height: 1.7 !important;
+          .masonry-wrapper h3 {
+            font-size: 1.3em;
           }
         }
 
-        /* Mobile */
+        /* SMALL MOBILE - 480px ke bawah */
         @media (max-width: 480px) {
-          .profile-card {
-            padding: 24px 20px !important;
+          .profile-section-container {
+            padding: 10px;
+            gap: 15px;
           }
 
-          .profile-photo {
-            width: 130px !important;
-            height: 130px !important;
+          .profile-card-wrapper {
+            max-width: 100%;
           }
 
-          .profile-name {
-            font-size: 1.25rem !important;
+          .profile-info-box {
+            padding: 20px;
           }
 
-          .profile-subtitle {
-            font-size: 0.8125rem !important;
-            margin-bottom: 16px !important;
+          .profile-title {
+            font-size: 1.3em;
           }
 
-          .social-links {
-            gap: 8px !important;
+          .profile-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
           }
 
-          .social-links a {
-            width: 34px !important;
-            height: 34px !important;
-            font-size: 0.9375rem !important;
+          .masonry-wrapper {
+            padding: 15px;
           }
 
-          .about-card {
-            padding: 24px !important;
-          }
-
-          .about-title {
-            font-size: 1.625rem !important;
-            margin-bottom: 16px !important;
-          }
-          
-          .about-text {
-            font-size: 0.875rem !important;
-            line-height: 1.65 !important;
-          }
-        }
-
-        /* Small Mobile */
-        @media (max-width: 360px) {
-          .profile-card {
-            padding: 20px 16px !important;
-          }
-
-          .profile-photo {
-            width: 110px !important;
-            height: 110px !important;
-            margin-bottom: 16px !important;
-          }
-
-          .profile-name {
-            font-size: 1.125rem !important;
-            margin-bottom: 4px !important;
-          }
-
-          .profile-subtitle {
-            font-size: 0.75rem !important;
-          }
-
-          .social-links a {
-            width: 32px !important;
-            height: 32px !important;
-            font-size: 0.875rem !important;
-          }
-
-          .about-card {
-            padding: 20px !important;
-          }
-
-          .about-title {
-            font-size: 1.5rem !important;
-            margin-bottom: 14px !important;
-          }
-          
-          .about-text {
-            font-size: 0.8125rem !important;
-            line-height: 1.6 !important;
+          .masonry-wrapper h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
           }
         }
       `}</style>

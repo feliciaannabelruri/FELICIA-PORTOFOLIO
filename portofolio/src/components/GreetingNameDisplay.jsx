@@ -32,7 +32,7 @@ export default function GreetingNameDisplay({ name }) {
         width: '35px',
         height: '35px',
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #eab566ff 0%, #f7d25bff 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -53,7 +53,7 @@ export default function GreetingNameDisplay({ name }) {
         <div style={{
           fontSize: '1em',
           fontWeight: 700,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #ffeb3aff 0%, #ffbe0bff 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>

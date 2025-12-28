@@ -121,7 +121,7 @@ export default function WelcomeScreen({ onComplete }) {
         width: '300px',
         height: '300px',
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+        background: 'linear-gradient(135deg, rgba(255,94,94,0.1) 0%, rgba(226,60,100,0.1) 100%)',
         top: '10%',
         left: '5%',
         animation: 'float 6s ease-in-out infinite',
@@ -133,7 +133,7 @@ export default function WelcomeScreen({ onComplete }) {
         width: '250px',
         height: '250px',
         borderRadius: '50%',
-        background: 'linear-gradient(135deg, rgba(118,75,162,0.15) 0%, rgba(102,126,234,0.15) 100%)',
+        background: 'linear-gradient(135deg, rgba(176,24,61,0.15) 0%, rgba(255,94,94,0.15) 100%)',
         bottom: '15%',
         right: '10%',
         animation: 'float 8s ease-in-out infinite',
@@ -160,7 +160,7 @@ export default function WelcomeScreen({ onComplete }) {
           left: 0,
           right: 0,
           height: '5px',
-          background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(90deg, #FF5E5E 0%, #E23C64 100%)',
           borderRadius: '20px 20px 0 0'
         }} />
 
@@ -171,7 +171,7 @@ export default function WelcomeScreen({ onComplete }) {
               width: '100px',
               height: '100px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
+              background: 'linear-gradient(135deg, rgba(255,94,94,0.1) 0%, rgba(226,60,100,0.1) 100%)',
               margin: '0 auto 25px',
               display: 'flex',
               alignItems: 'center',
@@ -199,7 +199,7 @@ export default function WelcomeScreen({ onComplete }) {
               lineHeight: '1.6'
             }}>
               Hi! I'm <span style={{ 
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #FF5E5E 0%, #E23C64 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 700
@@ -232,8 +232,8 @@ export default function WelcomeScreen({ onComplete }) {
                   boxSizing: 'border-box'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#667eea';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(102,126,234,0.1)';
+                  e.target.style.borderColor = '#FF5E5E';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(255,94,94,0.1)';
                 }}
                 onBlur={(e) => {
                   e.target.style.borderColor = '#e2e8f0';
@@ -251,7 +251,7 @@ export default function WelcomeScreen({ onComplete }) {
                     fontSize: '1em',
                     fontWeight: 600,
                     background: name.trim() 
-                      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
+                      ? 'linear-gradient(135deg, #FF5E5E 0%, #E23C64 100%)' 
                       : '#e2e8f0',
                     color: name.trim() ? 'white' : '#a0aec0',
                     border: 'none',
@@ -259,7 +259,7 @@ export default function WelcomeScreen({ onComplete }) {
                     cursor: name.trim() ? 'pointer' : 'not-allowed',
                     transition: 'all 0.3s ease',
                     fontFamily: "'Jeko', 'Poppins', sans-serif",
-                    boxShadow: name.trim() ? '0 5px 20px rgba(102,126,234,0.3)' : 'none',
+                    boxShadow: name.trim() ? '0 5px 20px rgba(255,94,94,0.3)' : 'none',
                     minHeight: '50px',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -271,13 +271,13 @@ export default function WelcomeScreen({ onComplete }) {
                   onMouseEnter={(e) => {
                     if (name.trim()) {
                       e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 10px 30px rgba(102,126,234,0.4)';
+                      e.target.style.boxShadow = '0 10px 30px rgba(255,94,94,0.4)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0)';
                     if (name.trim()) {
-                      e.target.style.boxShadow = '0 5px 20px rgba(102,126,234,0.3)';
+                      e.target.style.boxShadow = '0 5px 20px rgba(255,94,94,0.3)';
                     }
                   }}
                 >
@@ -296,7 +296,7 @@ export default function WelcomeScreen({ onComplete }) {
               width: '100px',
               height: '100px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #FF5E5E 0%, #E23C64 100%)',
               margin: '0 auto 25px',
               display: 'flex',
               alignItems: 'center',
@@ -317,13 +317,13 @@ export default function WelcomeScreen({ onComplete }) {
                   height: '40px',
                   borderRadius: '50%',
                   background: 'white',
-                  border: '3px solid #667eea',
+                  border: '3px solid #FF5E5E',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '16px',
                   fontWeight: 700,
-                  color: '#667eea',
+                  color: '#FF5E5E',
                   boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
                 }}>
                   {countdown}
@@ -334,7 +334,7 @@ export default function WelcomeScreen({ onComplete }) {
             <h1 style={{
               fontSize: '2.5em',
               marginBottom: '10px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #FF5E5E 0%, #E23C64 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontWeight: 700,

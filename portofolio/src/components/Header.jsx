@@ -83,7 +83,7 @@ export default function Header() {
           fontFamily: 'Space Grotesk, sans-serif',
           letterSpacing: '-0.01em'
         }}>
-          Backend Developer & IT Enthusiast
+          Backend Developer & Marketing Enthusiast
         </p>
 
         {/* Badges */}
@@ -107,7 +107,7 @@ export default function Header() {
             fontFamily: 'Outfit, sans-serif',
             letterSpacing: '-0.01em'
           }}>
-            🎓 UMN Student
+            UMN Student
           </div>
           <div style={{
             padding: '8px 18px',
@@ -122,7 +122,7 @@ export default function Header() {
             fontFamily: 'Outfit, sans-serif',
             letterSpacing: '-0.01em'
           }}>
-            📱 Digital Marketing
+            Digital Marketing
           </div>
           <div style={{
             padding: '8px 18px',
@@ -137,7 +137,7 @@ export default function Header() {
             fontFamily: 'Outfit, sans-serif',
             letterSpacing: '-0.01em'
           }}>
-            ✨ Content Creator
+            Backend Developer
           </div>
         </div>
       </div>

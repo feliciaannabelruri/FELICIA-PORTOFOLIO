@@ -123,21 +123,28 @@ export default function FeaturedProjectCarousel() {
   };
 
   return (
-    <div style={{ 
-      position: 'relative', 
-      width: '100%',
-      minHeight: '450px'
-    }}>
+    <div 
+      className="featured-carousel-container"
+      style={{ 
+        position: 'relative', 
+        width: '100%',
+        minHeight: '500px'
+      }}
+    >
       {/* Main Content */}
-      <div style={{
-        display: 'flex',
-        gap: '32px',
-        alignItems: 'center',
-        padding: '0 60px'
-      }}>
+      <div 
+        className="carousel-content"
+        style={{
+          display: 'flex',
+          gap: '32px',
+          alignItems: 'center',
+          padding: '0 60px'
+        }}
+      >
         {/* Left Arrow */}
         <button
           onClick={prevProject}
+          className="carousel-arrow carousel-arrow-left"
           style={{
             width: '56px',
             height: '56px',
@@ -171,23 +178,29 @@ export default function FeaturedProjectCarousel() {
         </button>
 
         {/* Project Card - Single Large Display */}
-        <div style={{
-          flex: 1,
-          background: '#FAFAFA',
-          borderRadius: '16px',
-          overflow: 'hidden',
-          border: '1px solid #F0F0F0',
-          transition: 'all 0.4s ease',
-          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)'
-        }}>
-          {/* Project Image - Full Width & Large */}
-          <div style={{
-            width: '100%',
-            height: '280px',
+        <div 
+          className="project-card"
+          style={{
+            flex: 1,
+            background: '#FAFAFA',
+            borderRadius: '16px',
             overflow: 'hidden',
-            background: '#E5E7EB',
-            position: 'relative'
-          }}>
+            border: '1px solid #F0F0F0',
+            transition: 'all 0.4s ease',
+            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.06)'
+          }}
+        >
+          {/* Project Image - Full Width & Large */}
+          <div 
+            className="project-image-container"
+            style={{
+              width: '100%',
+              height: '320px',
+              overflow: 'hidden',
+              background: '#E5E7EB',
+              position: 'relative'
+            }}
+          >
             {!imageErrors[project.id] ? (
               <img 
                 key={`project-${project.id}`}
@@ -225,46 +238,59 @@ export default function FeaturedProjectCarousel() {
             )}
 
             {/* Category Badge on Image */}
-            <div style={{
-              position: 'absolute',
-              top: '16px',
-              right: '16px',
-              background: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(10px)',
-              padding: '6px 14px',
-              borderRadius: '20px',
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              color: '#FF5E5E',
-              fontFamily: 'Outfit, sans-serif',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
-            }}>
+            <div 
+              className="category-badge"
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'rgba(255, 255, 255, 0.95)',
+                backdropFilter: 'blur(10px)',
+                padding: '6px 14px',
+                borderRadius: '20px',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: '#FF5E5E',
+                fontFamily: 'Outfit, sans-serif',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+              }}
+            >
               {project.category}
             </div>
           </div>
 
           {/* Project Info */}
-          <div style={{
-            padding: '24px 28px'
-          }}>
-            <h4 style={{
-              fontSize: '1.375rem',
-              fontWeight: 700,
-              color: '#1A1A1A',
-              marginBottom: '8px',
-              fontFamily: 'Outfit, sans-serif',
-              letterSpacing: '-0.01em'
-            }}>
+          <div 
+            className="project-info"
+            style={{
+              padding: '28px 32px'
+            }}
+          >
+            <h4 
+              className="project-title"
+              style={{
+                fontSize: '1.5rem',
+                fontWeight: 700,
+                color: '#1A1A1A',
+                marginBottom: '10px',
+                fontFamily: 'Outfit, sans-serif',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.3
+              }}
+            >
               {project.title}
             </h4>
             
-            <p style={{
-              fontSize: '0.9375rem',
-              color: '#6B7280',
-              lineHeight: '1.6',
-              fontFamily: 'Space Grotesk, sans-serif',
-              marginBottom: '16px'
-            }}>
+            <p 
+              className="project-description"
+              style={{
+                fontSize: '1rem',
+                color: '#6B7280',
+                lineHeight: '1.6',
+                fontFamily: 'Space Grotesk, sans-serif',
+                marginBottom: '18px'
+              }}
+            >
               {project.description}
             </p>
 
@@ -273,15 +299,16 @@ export default function FeaturedProjectCarousel() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              className="view-project-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '10px 20px',
+                padding: '12px 24px',
                 background: 'linear-gradient(135deg, #FF5E5E, #E23C64)',
                 color: 'white',
                 borderRadius: '10px',
-                fontSize: '0.875rem',
+                fontSize: '0.9375rem',
                 fontWeight: 600,
                 fontFamily: 'Outfit, sans-serif',
                 textDecoration: 'none',
@@ -305,6 +332,7 @@ export default function FeaturedProjectCarousel() {
         {/* Right Arrow */}
         <button
           onClick={nextProject}
+          className="carousel-arrow carousel-arrow-right"
           style={{
             width: '56px',
             height: '56px',
@@ -339,35 +367,45 @@ export default function FeaturedProjectCarousel() {
       </div>
 
       {/* Dots Indicator + Counter */}
-      <div style={{
-        marginTop: '28px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '12px'
-      }}>
+      <div 
+        className="carousel-indicators"
+        style={{
+          marginTop: '32px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '14px'
+        }}
+      >
         {/* Counter */}
-        <div style={{
-          fontSize: '0.875rem',
-          color: '#9E9E9E',
-          fontFamily: 'Space Grotesk, sans-serif',
-          fontWeight: 500
-        }}>
+        <div 
+          className="carousel-counter"
+          style={{
+            fontSize: '0.9375rem',
+            color: '#9E9E9E',
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight: 500
+          }}
+        >
           {currentProject + 1} / {projects.length}
         </div>
 
         {/* Dots */}
-        <div style={{
-          display: 'flex',
-          gap: '8px',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          maxWidth: '500px'
-        }}>
+        <div 
+          className="carousel-dots"
+          style={{
+            display: 'flex',
+            gap: '8px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            maxWidth: '500px'
+          }}
+        >
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => goToProject(index)}
+              className="carousel-dot"
               style={{
                 width: index === currentProject ? '32px' : '8px',
                 height: '8px',
@@ -396,79 +434,234 @@ export default function FeaturedProjectCarousel() {
 
       {/* Responsive Styles */}
       <style>{`
+        /* Desktop - Default */
+        .featured-carousel-container {
+          min-height: 550px;
+        }
+
+        .project-image-container {
+          height: 320px;
+        }
+
+        .project-info {
+          padding: 28px 32px;
+        }
+
+        .project-title {
+          font-size: 1.5rem;
+        }
+
+        .project-description {
+          font-size: 1rem;
+        }
+
+        .view-project-btn {
+          padding: 12px 24px;
+          font-size: 0.9375rem;
+        }
+
+        /* TABLET - 1024px */
         @media (max-width: 1024px) {
-          div[style*="padding: 0 60px"] {
+          .carousel-content {
             padding: 0 40px !important;
           }
 
-          div[style*="height: 280px"] {
-            height: 240px !important;
+          .project-image-container {
+            height: 280px !important;
           }
 
-          button[style*="width: 56px"] {
-            width: 48px !important;
-            height: 48px !important;
+          .carousel-arrow {
+            width: 50px !important;
+            height: 50px !important;
             font-size: 1.5rem !important;
           }
         }
 
+        /* LARGE MOBILE - 768px */
         @media (max-width: 768px) {
-          div[style*="padding: 0 60px"],
-          div[style*="padding: 0 40px"] {
-            padding: 0 20px !important;
-            flex-direction: column !important;
+          .featured-carousel-container {
+            min-height: 600px !important;
           }
 
-          button[style*="width: 56px"],
-          button[style*="width: 48px"] {
+          .carousel-content {
+            padding: 0 !important;
+            gap: 0 !important;
+          }
+
+          .carousel-arrow {
+            position: absolute !important;
+            top: 140px !important;
+            z-index: 10 !important;
             width: 44px !important;
             height: 44px !important;
             font-size: 1.25rem !important;
           }
 
-          div[style*="height: 280px"],
-          div[style*="height: 240px"] {
-            height: 200px !important;
+          .carousel-arrow-left {
+            left: 12px !important;
           }
 
-          h4[style*="fontSize: 1.375rem"] {
-            font-size: 1.125rem !important;
+          .carousel-arrow-right {
+            right: 12px !important;
           }
 
-          p[style*="fontSize: 0.9375rem"] {
+          .project-card {
+            margin: 0 12px !important;
+          }
+
+          .project-image-container {
+            height: 280px !important;
+          }
+
+          .project-info {
+            padding: 24px !important;
+          }
+
+          .project-title {
+            font-size: 1.375rem !important;
+          }
+
+          .project-description {
+            font-size: 0.9375rem !important;
+          }
+
+          .view-project-btn {
+            padding: 11px 22px !important;
             font-size: 0.875rem !important;
           }
 
-          div[style*="gap: 32px"] {
-            gap: 16px !important;
+          .category-badge {
+            padding: 5px 12px !important;
+            font-size: 0.7rem !important;
           }
 
-          div[style*="padding: 24px 28px"] {
-            padding: 20px !important;
+          .carousel-indicators {
+            margin-top: 28px !important;
           }
         }
 
+        /* MOBILE - 480px */
         @media (max-width: 480px) {
-          div[style*="minHeight: 450px"] {
-            min-height: 380px !important;
+          .featured-carousel-container {
+            min-height: 580px !important;
           }
 
-          button[style*="width: 56px"],
-          button[style*="width: 48px"],
-          button[style*="width: 44px"] {
+          .carousel-arrow {
+            top: 130px !important;
             width: 40px !important;
             height: 40px !important;
             font-size: 1.125rem !important;
           }
 
-          div[style*="height: 280px"],
-          div[style*="height: 240px"],
-          div[style*="height: 200px"] {
-            height: 180px !important;
+          .carousel-arrow-left {
+            left: 10px !important;
           }
 
-          a[style*="padding: 10px 20px"] {
-            padding: 8px 16px !important;
+          .carousel-arrow-right {
+            right: 10px !important;
+          }
+
+          .project-card {
+            margin: 0 10px !important;
+          }
+
+          .project-image-container {
+            height: 240px !important;
+          }
+
+          .project-info {
+            padding: 20px !important;
+          }
+
+          .project-title {
+            font-size: 1.25rem !important;
+            margin-bottom: 8px !important;
+          }
+
+          .project-description {
+            font-size: 0.875rem !important;
+            margin-bottom: 16px !important;
+          }
+
+          .view-project-btn {
+            padding: 10px 20px !important;
+            font-size: 0.8125rem !important;
+            width: 100% !important;
+            justify-content: center !important;
+          }
+
+          .category-badge {
+            top: 12px !important;
+            right: 12px !important;
+            padding: 4px 10px !important;
+            font-size: 0.65rem !important;
+          }
+
+          .carousel-counter {
+            font-size: 0.875rem !important;
+          }
+
+          .carousel-indicators {
+            margin-top: 24px !important;
+            gap: 12px !important;
+          }
+        }
+
+        /* SMALL MOBILE - 360px */
+        @media (max-width: 360px) {
+          .featured-carousel-container {
+            min-height: 540px !important;
+          }
+
+          .carousel-arrow {
+            top: 120px !important;
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 1rem !important;
+          }
+
+          .carousel-arrow-left {
+            left: 8px !important;
+          }
+
+          .carousel-arrow-right {
+            right: 8px !important;
+          }
+
+          .project-card {
+            margin: 0 8px !important;
+          }
+
+          .project-image-container {
+            height: 200px !important;
+          }
+
+          .project-info {
+            padding: 16px !important;
+          }
+
+          .project-title {
+            font-size: 1.125rem !important;
+          }
+
+          .project-description {
+            font-size: 0.8125rem !important;
+            margin-bottom: 14px !important;
+          }
+
+          .view-project-btn {
+            padding: 9px 18px !important;
+            font-size: 0.75rem !important;
+          }
+
+          .category-badge {
+            top: 10px !important;
+            right: 10px !important;
+            padding: 3px 8px !important;
+            font-size: 0.6rem !important;
+          }
+
+          .carousel-counter {
             font-size: 0.8125rem !important;
           }
         }
