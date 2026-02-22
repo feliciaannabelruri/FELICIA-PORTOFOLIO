@@ -78,8 +78,66 @@ const globalCSS = `
   @keyframes modalIn { from{opacity:0;transform:scale(0.95) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
   @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
   @keyframes carouselFade { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-`;
 
+  /* ── RESPONSIVE CLASSES ── */
+  .hud-nav { padding: 11px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .hud-nav-links { display: flex; gap: 20px; }
+  .hud-xpbar { flex: 1; max-width: 380px; }
+  .main-content { max-width: 1100px; margin: 0 auto; padding: 100px 40px 80px; }
+  .section-mb { margin-bottom: 140px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .org-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .achievements-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .carousel-img { height: 260px; }
+
+  /* ── TABLET 1024px ── */
+  @media (max-width: 1024px) {
+    .hud-nav { padding: 10px 24px !important; }
+    .main-content { padding: 90px 24px 60px !important; }
+    .category-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* ── MOBILE 768px ── */
+  @media (max-width: 768px) {
+    .hud-nav { padding: 10px 16px !important; }
+    .hud-nav-links { display: none !important; }
+    .hud-xpbar { max-width: none !important; }
+    .main-content { padding: 76px 16px 50px !important; }
+    .section-mb { margin-bottom: 80px !important; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-top: 36px !important; }
+    .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+    .experience-grid { grid-template-columns: 1fr !important; }
+    .org-grid { grid-template-columns: 1fr !important; column-gap: 0 !important; }
+    .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+    .category-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+    .achievements-grid { grid-template-columns: 1fr !important; }
+    .contact-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .footer-bar { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
+    .carousel-img { height: 200px !important; }
+  }
+
+  /* ── SMALL MOBILE 480px ── */
+  @media (max-width: 768px) {
+    .hero-desc { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
+    .hero-section { min-height: auto !important; padding-top: 20px !important; }
+  }
+
+  @media (max-width: 480px) {
+    .main-content { padding: 68px 12px 40px !important; }
+    .section-mb { margin-bottom: 60px !important; }
+    .skills-grid { grid-template-columns: 1fr !important; }
+    .category-grid { grid-template-columns: 1fr !important; }
+    .carousel-img { height: 170px !important; }
+  }
+`
 const mono = { fontFamily: "'DM Mono', monospace" };
 const syne = { fontFamily: "'Syne', sans-serif" };
 const dmSans = { fontFamily: "'DM Sans', sans-serif" };
@@ -397,9 +455,9 @@ function FeaturedProjectCarousel() {
   const handleImageError = (projectId) => setImageErrors(prev => ({ ...prev, [projectId]: true }));
 
   const arrowStyle = {
-    width: '48px', height: '48px', borderRadius: '50%',
+    width: '44px', height: '44px', borderRadius: '50%',
     background: `rgba(255,60,190,0.1)`, border: `1px solid rgba(255,60,190,0.25)`,
-    color: C.accent, fontSize: '1.25rem', cursor: 'pointer',
+    color: C.accent, fontSize: '1.125rem', cursor: 'pointer',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
     flexShrink: 0, transition: 'all 0.25s',
   };
@@ -414,7 +472,7 @@ function FeaturedProjectCarousel() {
         </button>
 
         <div key={currentProject} style={{ flex: 1, background: C.surface, borderRadius: '14px', overflow: 'hidden', border: `1px solid ${C.border}`, animation: 'carouselFade 0.3s ease' }}>
-          <div style={{ width: '100%', height: '260px', overflow: 'hidden', background: '#1a1a1a', position: 'relative' }}>
+          <div className='carousel-img' style={{ width: '100%', overflow: 'hidden', background: '#1a1a1a', position: 'relative' }}>
             {!imageErrors[project.id] ? (
               <img src={project.img} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={() => handleImageError(project.id)} />
             ) : (
@@ -744,7 +802,7 @@ export default function App() {
       <div style={{ position: "fixed", inset: 0, zIndex: -1, background: "radial-gradient(ellipse at 20% 20%, rgba(176,60,255,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(255,60,190,0.08) 0%, transparent 60%), #0f0f0f" }} />
 
       {/* ── HUD NAV ─── */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, background: "rgba(10,2,18,0.72)", backdropFilter: "blur(24px)", borderBottom: `1px solid rgba(255,255,255,0.08)`, zIndex: 1000, padding: "11px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20 }}>
+      <div className="hud-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "rgba(10,2,18,0.72)", backdropFilter: "blur(24px)", borderBottom: `1px solid rgba(255,255,255,0.08)`, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "11px 40px" }}>
         <div style={{ ...syne, fontWeight: 800, fontSize: 18, color: "#fff", letterSpacing: -1 }}>FA<span style={{ color: C.accent }}>_</span></div>
         <div style={{ flex: 1, maxWidth: 380 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
@@ -755,7 +813,7 @@ export default function App() {
             <div style={{ height: "100%", width: `${levelProgress}%`, background: `linear-gradient(90deg, ${C.accent}, ${C.purple})`, borderRadius: 2, transition: "width 0.1s", boxShadow: `0 0 8px ${C.accent}70` }} />
           </div>
         </div>
-        <nav style={{ display: "flex", gap: 20 }}>
+        <nav className="hud-nav-links" style={{ display: "flex", gap: 20 }}>
           {navItems.map(n => (
             <a key={n.id} href={`#${n.id}`} style={{ ...mono, fontSize: 10, color: C.textMuted, textDecoration: "none", textTransform: "uppercase", letterSpacing: 1.5, transition: "color 0.2s" }}
               onMouseEnter={e => e.currentTarget.style.color = C.accent}
@@ -765,10 +823,10 @@ export default function App() {
       </div>
 
       {/* ── CONTENT ─── */}
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 40px 80px" }}>
+      <div className="main-content" style={{}}>
 
         {/* HERO */}
-        <section id="home" style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", marginBottom: 140 }}>
+        <section id="home" className="section-mb hero-section" style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 40 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.red, boxShadow: `0 0 12px ${C.red}` }} />
             <span style={{ ...mono, fontSize: 11, color: C.textSub, textTransform: "uppercase", letterSpacing: 3 }}>Not Available — Tangerang, Indonesia</span>
@@ -776,7 +834,7 @@ export default function App() {
           <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: "#fff", marginBottom: 8, letterSpacing: -4, textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}>Felicia</h1>
           <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: C.accent, marginBottom: 4, letterSpacing: -4, textShadow: `0 2px 30px ${C.accent}50` }}>Annabel</h1>
           <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: "rgba(255,255,255,0.25)", marginBottom: 40, letterSpacing: -4 }}>Ruriyanto</h1>
-          <div style={{ display: "flex", gap: 40, alignItems: "flex-end", flexWrap: "wrap" }}>
+          <div className="hero-desc" style={{ display: "flex", gap: 40, alignItems: "flex-end", flexWrap: "wrap" }}>
             <p style={{ ...dmSans, fontSize: 16, color: C.textSub, maxWidth: 420, lineHeight: 1.85, fontWeight: 300 }}>
               Informatics Engineering student at UMN. Digital marketer × content creator × live host × developer. 20+ roles across 5 years. Still leveling up.
             </p>
@@ -786,7 +844,7 @@ export default function App() {
               ))}
             </div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16, marginTop: 60 }}>
+          <div className="hero-stats" style={{}}>  
             <StatBadge iconKey="zap" value="6" label="Active Roles" color={C.accent} />
             <StatBadge iconKey="building" value="20+" label="Total Companies" color={C.purple} />
             <StatBadge iconKey="monitor" value="5K+" label="Peak Viewers" color={C.orange} />
@@ -795,9 +853,9 @@ export default function App() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" style={{ marginBottom: 140 }}>
+        <section id="about" className="section-mb" style={{}}>
           <SectionTag label="Character Sheet" color={C.accent} />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
+          <div className="about-grid" style={{}}>  
             <div>
               <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 24, letterSpacing: -1.5 }}>Who am I</h2>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.95, fontWeight: 300, marginBottom: 20 }}>
@@ -828,7 +886,7 @@ export default function App() {
         </section>
 
         {/* EXPERIENCE */}
-        <section id="experience" style={{ marginBottom: 140 }}>
+        <section id="experience" className="section-mb" style={{}}>
           <SectionTag label="Quest Log" color={C.green} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Experience Timeline</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 32, fontWeight: 300 }}>20+ roles across 5 years. Filter by era.</p>
@@ -837,7 +895,7 @@ export default function App() {
               <button key={key} onClick={() => setActiveTab(key)} style={{ ...mono, fontSize: 10, padding: "7px 16px", borderRadius: 8, border: `1px solid ${activeTab === key ? color : "rgba(255,255,255,0.12)"}`, background: activeTab === key ? color + "22" : "transparent", color: activeTab === key ? color : C.textMuted, cursor: "pointer", textTransform: "uppercase", letterSpacing: 1.5, transition: "all 0.2s" }}>{label}</button>
             ))}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          <div className="experience-grid" style={{}}>  
             {(tabData[activeTab] || []).map((j, i) => (
               <QuestCard key={i} {...j} status={activeTab === "current" ? "active" : "completed"} />
             ))}
@@ -845,21 +903,21 @@ export default function App() {
         </section>
 
         {/* ORGANIZATIONS */}
-        <section id="organizations" style={{ marginBottom: 140 }}>
+        <section id="organizations" className="section-mb" style={{}}>
           <SectionTag label="Guild Log" color={C.purple} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Organizational Activity</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Campus events, volunteer work, and committee roles — click to expand.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 24 }}>
+          <div className="org-grid" style={{}}>  
             {organizations.map((org, i) => <OrgCard key={i} {...org} />)}
           </div>
         </section>
 
         {/* SKILLS */}
-        <section id="skills" style={{ marginBottom: 140 }}>
+        <section id="skills" className="section-mb" style={{}}>
           <SectionTag label="Equipment" color={C.blue} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Tools & Tech Stack</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Software, platforms, and skills in active daily use.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          <div className="skills-grid" style={{}}>  
             {[
               { cat: "Marketing", items: ["Meta Ads Manager", "Google Analytics", "TikTok Ads", "Social Blade", "TikTok Studio", "Instagram Insights", "Canva"], color: C.accent, iconKey: "trending" },
               { cat: "Content & Creative", items: ["CapCut", "Video Editing", "Copywriting", "Content Strategy", "Live Production", "SEO Writing", "Script Writing"], color: C.purple, iconKey: "video" },
@@ -886,7 +944,7 @@ export default function App() {
         </section>
 
         {/* PROJECTS / INVENTORY */}
-        <section id="projects" style={{ marginBottom: 140 }}>
+        <section id="projects" className="section-mb" style={{}}>
           <SectionTag label="Inventory" color={C.orange} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Project Categories</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>6 major domains — collected across 5 years of active play.</p>
@@ -902,7 +960,7 @@ export default function App() {
           </div>
 
           {/* ── CATEGORY CARDS ── */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          <div className="category-grid" style={{}}>  
             {projectCategories.map((p) => (
               <div key={p.id}
                 onClick={() => setSelectedProject(projectDetails[p.id])}
@@ -927,20 +985,20 @@ export default function App() {
         </section>
 
         {/* ACHIEVEMENTS */}
-        <section id="achievements" style={{ marginBottom: 140 }}>
+        <section id="achievements" className="section-mb" style={{}}>
           <SectionTag label="Achievement Log" color={C.accent} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Badges Earned</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Milestones unlocked from real-world missions.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10 }}>
+          <div className="achievements-grid" style={{}}>  
             {achievements.map((a, i) => <AchievementBadge key={i} {...a} />)}
           </div>
         </section>
 
         {/* CONTACT */}
-        <section id="contact" style={{ marginBottom: 80 }}>
+        <section id="contact" className="section-mb" style={{}}>
           <SectionTag label="DM / Collab" color={C.green} />
           <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 40, letterSpacing: -1.5 }}>Start a New Quest Together</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60 }}>
+          <div className="contact-grid" style={{}}>  
             <div>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.9, fontWeight: 300, marginBottom: 32 }}>
                 Currently not available for new roles — heads down finishing my degree and ongoing projects. Feel free to reach out for future collabs though, always down to connect!
@@ -978,7 +1036,7 @@ export default function App() {
         </section>
 
         {/* FOOTER */}
-        <div style={{ borderTop: `1px solid rgba(255,255,255,0.08)`, paddingTop: 40, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+        <div className="footer-bar" style={{ borderTop: `1px solid rgba(255,255,255,0.08)`, paddingTop: 40 }}>
           <span style={{ ...mono, fontSize: 11, color: C.textDim }}>Felicia Annabel Ruriyanto — Portfolio 2026</span>
           <span style={{ ...mono, fontSize: 11, color: C.textDim }}>XP this session: <span style={{ color: C.accent }}>{xp} XP</span></span>
           <span style={{ ...mono, fontSize: 11, color: C.textDim }}>LVL {level} — Digital Marketer × Developer</span>
