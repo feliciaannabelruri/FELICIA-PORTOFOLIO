@@ -860,7 +860,7 @@ export default function App() {
       <div className="main-content" style={{}}>
 
         {/* HERO */}
-        <section id="home" className="section-mb hero-section" style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <section id="home" className="section-mb hero-section" style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "60px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 40 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.red, boxShadow: `0 0 12px ${C.red}` }} />
             <span style={{ ...mono, fontSize: 11, color: C.textSub, textTransform: "uppercase", letterSpacing: 3 }}>Not Available — Tangerang, Indonesia</span>
