@@ -109,7 +109,8 @@ const globalCSS = `
   @media (max-width: 768px) {
     .hud-nav { padding: 10px 16px !important; }
     .hud-nav-links { display: none !important; }
-    .hud-xpbar { max-width: none !important; }
+    .hud-xpbar { max-width: 200px !important; }
+    .hamburger-btn { display: flex !important; }
     .main-content { padding: 76px 16px 50px !important; }
     .section-mb { margin-bottom: 80px !important; }
     .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-top: 36px !important; }
@@ -673,6 +674,7 @@ export default function App() {
   const [level, setLevel] = useState(1);
   const [activeTab, setActiveTab] = useState("current");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -804,7 +806,7 @@ export default function App() {
       {/* ── HUD NAV ─── */}
       <div className="hud-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "rgba(10,2,18,0.72)", backdropFilter: "blur(24px)", borderBottom: `1px solid rgba(255,255,255,0.08)`, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "11px 40px" }}>
         <div style={{ ...syne, fontWeight: 800, fontSize: 18, color: "#fff", letterSpacing: -1 }}>FA<span style={{ color: C.accent }}>_</span></div>
-        <div style={{ flex: 1, maxWidth: 380 }}>
+        <div className="hud-xpbar" style={{ flex: 1, maxWidth: 380 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
             <span style={{ ...mono, fontSize: 10, color: C.textMuted }}>LVL <span style={{ color: C.accent, fontWeight: 500 }}>{level}</span> — Felicia Annabel</span>
             <span style={{ ...mono, fontSize: 10, color: C.textMuted }}><span style={{ color: C.accent }}>{currentXp}</span> / {xpToNextLevel} XP</span>
@@ -813,6 +815,8 @@ export default function App() {
             <div style={{ height: "100%", width: `${levelProgress}%`, background: `linear-gradient(90deg, ${C.accent}, ${C.purple})`, borderRadius: 2, transition: "width 0.1s", boxShadow: `0 0 8px ${C.accent}70` }} />
           </div>
         </div>
+
+        {/* Desktop nav links */}
         <nav className="hud-nav-links" style={{ display: "flex", gap: 20 }}>
           {navItems.map(n => (
             <a key={n.id} href={`#${n.id}`} style={{ ...mono, fontSize: 10, color: C.textMuted, textDecoration: "none", textTransform: "uppercase", letterSpacing: 1.5, transition: "color 0.2s" }}
@@ -820,7 +824,37 @@ export default function App() {
               onMouseLeave={e => e.currentTarget.style.color = C.textMuted}>{n.label}</a>
           ))}
         </nav>
+
+        {/* Hamburger button — mobile only */}
+        <button
+          className="hamburger-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{ display: "none", flexDirection: "column", gap: "5px", background: "transparent", border: "none", cursor: "pointer", padding: "4px", flexShrink: 0 }}
+        >
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : "#fff", borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? "transparent" : "#fff", borderRadius: 2, transition: "all 0.3s", opacity: mobileMenuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : "#fff", borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
+        </button>
       </div>
+
+      {/* Mobile dropdown menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(8,2,14,0.97)", backdropFilter: "blur(20px)", zIndex: 999, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, animation: "fadeIn 0.2s ease" }}>
+          {navItems.map((n, i) => (
+            <a
+              key={n.id}
+              href={`#${n.id}`}
+              onClick={() => setMobileMenuOpen(false)}
+              style={{ ...syne, fontSize: "clamp(22px, 7vw, 32px)", fontWeight: 700, color: "rgba(255,255,255,0.5)", textDecoration: "none", textTransform: "uppercase", letterSpacing: 2, transition: "all 0.2s", padding: "10px 0", animationDelay: `${i * 50}ms` }}
+              onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.letterSpacing = "4px"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.letterSpacing = "2px"; }}
+            >{n.label}</a>
+          ))}
+          <div style={{ ...mono, fontSize: 10, color: C.textDim, marginTop: 24, textTransform: "uppercase", letterSpacing: 3 }}>
+            LVL {level} — {currentXp} XP
+          </div>
+        </div>
+      )}
 
       {/* ── CONTENT ─── */}
       <div className="main-content" style={{}}>
