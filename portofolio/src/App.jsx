@@ -67,7 +67,8 @@ const globalCSS = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: #0f0f0f; color: #ffffff; font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+  html, body { overflow-x: hidden; max-width: 100%; }
+  body { background: #0f0f0f; color: #ffffff; font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; }
   body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px); pointer-events:none; z-index:9999; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: #111; }
@@ -86,6 +87,7 @@ const globalCSS = `
   .main-content { max-width: 1100px; margin: 0 auto; padding: 100px 40px 80px; }
   .section-mb { margin-bottom: 140px; }
   .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
+  .stat-badge { animation: floatBadge 4s ease-in-out infinite; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
   .experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .org-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
@@ -108,6 +110,9 @@ const globalCSS = `
   /* ── MOBILE 768px ── */
   @media (max-width: 768px) {
     .hud-nav { padding: 10px 16px !important; }
+    .carousel-info { flex-direction: column !important; align-items: flex-start !important; }
+    .carousel-info a { width: 100% !important; justify-content: center !important; text-align: center !important; }
+    .featured-card { padding: 16px !important; }
     .hud-nav-links { display: none !important; }
     .hud-xpbar { max-width: 200px !important; }
     .hamburger-btn { display: flex !important; }
@@ -137,6 +142,17 @@ const globalCSS = `
     .skills-grid { grid-template-columns: 1fr !important; }
     .category-grid { grid-template-columns: 1fr !important; }
     .carousel-img { height: 170px !important; }
+  }
+
+  /* Prevent ALL children from causing horizontal overflow */
+  * { box-sizing: border-box; }
+  img { max-width: 100%; height: auto; }
+  section, div { max-width: 100%; }
+
+  /* Modal inner HTML grids responsive */
+  @media (max-width: 600px) {
+    [style*='grid-template-columns: 1fr 1fr'], [style*='grid-template-columns:1fr 1fr'] { grid-template-columns: 1fr !important; }
+    [style*='grid-template-columns: 1fr 1fr 1fr'], [style*='grid-template-columns:repeat(3'] { grid-template-columns: 1fr !important; }
   }
 `
 const mono = { fontFamily: "'DM Mono', monospace" };
@@ -465,14 +481,14 @@ function FeaturedProjectCarousel() {
 
   return (
     <div style={{ position: 'relative', width: '100%' }}>
-      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', minWidth: 0 }}>
         <button onClick={prevProject} style={arrowStyle}
           onMouseEnter={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'scale(1.1)'; }}
           onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,60,190,0.1)'; e.currentTarget.style.color = C.accent; e.currentTarget.style.transform = 'scale(1)'; }}>
           ←
         </button>
 
-        <div key={currentProject} style={{ flex: 1, background: C.surface, borderRadius: '14px', overflow: 'hidden', border: `1px solid ${C.border}`, animation: 'carouselFade 0.3s ease' }}>
+        <div key={currentProject} style={{ flex: 1, minWidth: 0, background: C.surface, borderRadius: '14px', overflow: 'hidden', border: `1px solid ${C.border}`, animation: 'carouselFade 0.3s ease' }}>
           <div className='carousel-img' style={{ width: '100%', overflow: 'hidden', background: '#1a1a1a', position: 'relative' }}>
             {!imageErrors[project.id] ? (
               <img src={project.img} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} onError={() => handleImageError(project.id)} />
@@ -484,7 +500,7 @@ function FeaturedProjectCarousel() {
             <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'rgba(15,15,15,0.85)', backdropFilter: 'blur(10px)', padding: '4px 12px', borderRadius: '20px', ...mono, fontSize: '0.7rem', fontWeight: 600, color: C.accent, border: `1px solid rgba(255,60,190,0.3)` }}>{project.category}</div>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,0,15,0.7) 0%, transparent 50%)' }} />
           </div>
-          <div style={{ padding: '22px 26px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+          <div className='carousel-info' style={{ padding: '18px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', flexWrap: 'wrap' }}>
             <div>
               <h4 style={{ ...syne, fontSize: '1.125rem', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{project.title}</h4>
               <p style={{ ...dmSans, fontSize: '0.875rem', color: C.textSub }}>{project.description}</p>
@@ -544,7 +560,7 @@ function ProjectDetailModal({ project, onClose }) {
           </button>
         </div>
         {/* Body */}
-        <div style={{ padding: '24px 28px', overflowY: 'auto', flex: 1 }} dangerouslySetInnerHTML={{ __html: project.content }} />
+        <div style={{ padding: '24px 28px', overflowY: 'auto', overflowX: 'hidden', flex: 1 }} dangerouslySetInnerHTML={{ __html: project.content }} />
       </div>
     </div>
   );
@@ -575,7 +591,7 @@ function XPBar({ label, value, max = 100, color = "#ff3cbe", delay = 0 }) {
 
 function StatBadge({ iconKey, value, label, color = C.accent }) {
   return (
-    <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, position: "relative", overflow: "hidden", animation: "floatBadge 4s ease-in-out infinite", cursor: "default", backdropFilter: "blur(10px)" }}>
+    <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, position: "relative", overflow: "hidden", cursor: "default", backdropFilter: "blur(10px)" }}>
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: color }} />
       <Icon d={Icons[iconKey]} size={20} color={color} />
       <span style={{ ...syne, fontSize: 26, fontWeight: 800, color }}>{value}</span>
@@ -604,14 +620,14 @@ function QuestCard({ title, company, period, status = "completed", tags = [] }) 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }}>
         <div style={{ flex: 1 }}>
           <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 3 }}>{title}</div>
-          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginBottom: tags.length ? 8 : 0 }}>{company}</div>
+          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginBottom: tags.length ? 8 : 0, wordBreak: "break-word" }}>{company}</div>
           {tags.length > 0 && <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>{tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: s.color, background: s.color + "18", padding: "2px 7px", borderRadius: 4, textTransform: "uppercase", letterSpacing: 1 }}>{t}</span>)}</div>}
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
           <span style={{ ...mono, fontSize: 9, color: s.color, background: s.color + "18", padding: "2px 8px", borderRadius: 4, display: "flex", alignItems: "center", gap: 4 }}>
             <Icon d={Icons[s.icon]} size={9} color={s.color} strokeWidth={2.5} /> {s.label}
           </span>
-          <span style={{ ...mono, fontSize: 9, color: C.textDim }}>{period}</span>
+          <span style={{ ...mono, fontSize: 9, color: C.textDim, whiteSpace: "normal", textAlign: "right" }}>{period}</span>
         </div>
       </div>
     </div>
@@ -626,8 +642,8 @@ function OrgCard({ title, period, items }) {
       onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
       <div style={{ padding: "14px 18px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", gap: 12 }} onClick={() => setOpen(!open)}>
         <div style={{ flex: 1 }}>
-          <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text }}>{title}</div>
-          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginTop: 2 }}>{period}</div>
+          <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text, wordBreak: "break-word", overflowWrap: "break-word" }}>{title}</div>
+          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginTop: 2, wordBreak: "break-word" }}>{period}</div>
         </div>
         <div style={{ color: C.accent, transition: "transform 0.2s", transform: open ? "rotate(45deg)" : "none", flexShrink: 0 }}>
           <Icon d={Icons.plus} size={16} color={C.accent} />
@@ -865,15 +881,15 @@ export default function App() {
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: C.red, boxShadow: `0 0 12px ${C.red}` }} />
             <span style={{ ...mono, fontSize: 11, color: C.textSub, textTransform: "uppercase", letterSpacing: 3 }}>Not Available — Tangerang, Indonesia</span>
           </div>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: "#fff", marginBottom: 8, letterSpacing: -4, textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}>Felicia</h1>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: C.accent, marginBottom: 4, letterSpacing: -4, textShadow: `0 2px 30px ${C.accent}50` }}>Annabel</h1>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(48px, 8vw, 110px)", color: "rgba(255,255,255,0.25)", marginBottom: 40, letterSpacing: -4 }}>Ruriyanto</h1>
+          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: "#fff", marginBottom: 8, letterSpacing: "clamp(-2px, -0.5vw, -4px)", textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}>Felicia</h1>
+          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: C.accent, marginBottom: 4, letterSpacing: "clamp(-2px, -0.5vw, -4px)", textShadow: `0 2px 30px ${C.accent}50` }}>Annabel</h1>
+          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: "rgba(255,255,255,0.25)", marginBottom: 40, letterSpacing: "clamp(-2px, -0.5vw, -4px)" }}>Ruriyanto</h1>
           <div className="hero-desc" style={{ display: "flex", gap: 40, alignItems: "flex-end", flexWrap: "wrap" }}>
             <p style={{ ...dmSans, fontSize: 16, color: C.textSub, maxWidth: 420, lineHeight: 1.85, fontWeight: 300 }}>
-              Informatics Engineering student at UMN. Digital marketer × content creator × live host × developer. 20+ roles across 5 years. Still leveling up.
+              Informatics Engineering student at UMN. AI/ML engineer × app dev × UI/UX designer × digital marketer × content creator × live host. 20+ roles across 5 years. Still leveling up.
             </p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              {["Digital Marketing", "Content Creator", "Live Host", "KOL Specialist", "Web Dev"].map(tag => (
+              {["AI/ML Engineer", "App Developer", "UI/UX Designer", "Web Dev", "Prompt Engineer", "Digital Marketing", "Content Creator", "Live Host", "KOL Specialist"].map(tag => (
                 <span key={tag} style={{ ...mono, fontSize: 10, color: C.textSub, border: `1px solid rgba(255,255,255,0.18)`, padding: "5px 11px", borderRadius: 6, textTransform: "uppercase", letterSpacing: 1 }}>{tag}</span>
               ))}
             </div>
@@ -891,7 +907,7 @@ export default function App() {
           <SectionTag label="Character Sheet" color={C.accent} />
           <div className="about-grid" style={{}}>  
             <div>
-              <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 24, letterSpacing: -1.5 }}>Who am I</h2>
+              <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 24, letterSpacing: -1.5 }}>Who am I</h2>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.95, fontWeight: 300, marginBottom: 20 }}>
                 Informatics Engineering student at UMN with a dual-class build: digital marketer by day, developer by training. I've worked across 20+ companies — from AI startups to creative agencies — spanning content creation, live streaming, KOL management, social media, and web development.
               </p>
@@ -922,7 +938,7 @@ export default function App() {
         {/* EXPERIENCE */}
         <section id="experience" className="section-mb" style={{}}>
           <SectionTag label="Quest Log" color={C.green} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Experience Timeline</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Experience Timeline</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 32, fontWeight: 300 }}>20+ roles across 5 years. Filter by era.</p>
           <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}>
             {tabConfig.map(({ key, label, color }) => (
@@ -939,7 +955,7 @@ export default function App() {
         {/* ORGANIZATIONS */}
         <section id="organizations" className="section-mb" style={{}}>
           <SectionTag label="Guild Log" color={C.purple} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Organizational Activity</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Organizational Activity</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Campus events, volunteer work, and committee roles — click to expand.</p>
           <div className="org-grid" style={{}}>  
             {organizations.map((org, i) => <OrgCard key={i} {...org} />)}
@@ -949,7 +965,7 @@ export default function App() {
         {/* SKILLS */}
         <section id="skills" className="section-mb" style={{}}>
           <SectionTag label="Equipment" color={C.blue} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Tools & Tech Stack</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Tools & Tech Stack</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Software, platforms, and skills in active daily use.</p>
           <div className="skills-grid" style={{}}>  
             {[
@@ -980,11 +996,11 @@ export default function App() {
         {/* PROJECTS / INVENTORY */}
         <section id="projects" className="section-mb" style={{}}>
           <SectionTag label="Inventory" color={C.orange} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Project Categories</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Project Categories</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>6 major domains — collected across 5 years of active play.</p>
 
           {/* ── FEATURED CAROUSEL ── */}
-          <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: '28px', marginBottom: 40, backdropFilter: "blur(10px)", position: 'relative', overflow: 'hidden' }}>
+          <div className='featured-card' style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: '28px', marginBottom: 40, backdropFilter: "blur(10px)", position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: `linear-gradient(90deg, ${C.accent}, ${C.purple}, ${C.blue})` }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
               <div style={{ width: 5, height: 5, borderRadius: '50%', background: C.accent, animation: 'pulse 2s infinite' }} />
@@ -1008,7 +1024,7 @@ export default function App() {
                   </div>
                   <div style={{ ...mono, fontSize: '9px', color: p.color, background: p.color + "18", padding: "3px 9px", borderRadius: 4, textTransform: 'uppercase', letterSpacing: 1.5, border: `1px solid ${p.color}30` }}>View Details</div>
                 </div>
-                <div style={{ ...syne, fontSize: 15, fontWeight: 700, color: C.text, marginBottom: '8px' }}>{p.title}</div>
+                <div style={{ ...syne, fontSize: 15, fontWeight: 700, color: C.text, marginBottom: '8px', wordBreak: 'break-word' }}>{p.title}</div>
                 <div style={{ ...dmSans, fontSize: 12, color: C.textSub, fontWeight: 300, lineHeight: 1.7, marginBottom: '14px' }}>{p.description}</div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {p.tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: C.textMuted, padding: "2px 6px", border: `1px solid ${C.border}`, borderRadius: 4 }}>{t}</span>)}
@@ -1021,7 +1037,7 @@ export default function App() {
         {/* ACHIEVEMENTS */}
         <section id="achievements" className="section-mb" style={{}}>
           <SectionTag label="Achievement Log" color={C.accent} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Badges Earned</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Badges Earned</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Milestones unlocked from real-world missions.</p>
           <div className="achievements-grid" style={{}}>  
             {achievements.map((a, i) => <AchievementBadge key={i} {...a} />)}
@@ -1031,7 +1047,7 @@ export default function App() {
         {/* CONTACT */}
         <section id="contact" className="section-mb" style={{}}>
           <SectionTag label="DM / Collab" color={C.green} />
-          <h2 style={{ ...syne, fontSize: 38, fontWeight: 800, color: "#fff", marginBottom: 40, letterSpacing: -1.5 }}>Start a New Quest Together</h2>
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 40, letterSpacing: -1.5 }}>Start a New Quest Together</h2>
           <div className="contact-grid" style={{}}>  
             <div>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.9, fontWeight: 300, marginBottom: 32 }}>
