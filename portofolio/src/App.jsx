@@ -26,6 +26,14 @@ function useSupabaseData(fallbackData) {
         const { data: categories } = await supabase
           .from("project_categories").select("*").order("sort_order");
 
+        // Fetch experiences
+        const { data: experiences } = await supabase
+          .from("experiences").select("*").order("sort_order");
+
+        // Fetch org activities
+        const { data: orgActivities } = await supabase
+          .from("org_activities").select("*").eq("is_visible", true).order("sort_order");
+
         // Only update if we actually got data back
         setData(prev => ({
           ...prev,
@@ -52,6 +60,8 @@ function useSupabaseData(fallbackData) {
             tags: c.tags || [],
             modalContent: c.modal_content || "",
           })) : prev.projectCategories,
+          experiences: experiences?.length ? experiences : prev.experiences,
+          orgActivities: orgActivities?.length ? orgActivities : prev.orgActivities,
         }));
       } catch (e) {
         console.log("Supabase not configured, using local data:", e.message);
@@ -805,6 +815,8 @@ export default function App() {
     featuredProjects: defaultFeaturedProjects,
     skills: defaultSkills,
     projectCategories: defaultProjectCategories,
+    experiences: [],
+    orgActivities: [],
   });
 
   // Parse settings helpers
@@ -867,7 +879,8 @@ export default function App() {
 
 
 
-  const currentJobs = [
+  // ── HARDCODED FALLBACK DATA (used when Supabase tables are empty) ──
+  const fallbackCurrentJobs = [
     { title: "Corporate Strategy Social Tech Intern", company: "DANA INDONESIA — Internship", period: "Jan 2026 – Present", status: "active", tags: ["Corporate Strategy", "AI/ML", "Automation", "FinTech"] },
     { title: "Back End Developer Intern", company: "WINOSA MITRA — Internship", period: "Jan 2026 – Present", status: "active", tags: ["Backend", "API", "ML", "Laravel"] },
     { title: "Social Media Marketing Specialist", company: "WINOSA MITRA — Part-Time", period: "June 2025 – Present", status: "active", tags: ["Social Media", "Marketing"] },
@@ -877,8 +890,7 @@ export default function App() {
     { title: "Content Creator", company: "CHAMELYONE INTERIORS — Part-Time", period: "Sept 2025 – Feb 2026", status: "completed", tags: ["Content", "Interior"] },
     { title: "Marketing Director – Head of Sales & Marketing", company: "GENIUS GROWTH AI", period: "Jul 2025 – Nov 2025", status: "completed", tags: ["Leadership", "AI", "Sales"] },
   ];
-
-  const recentJobs = [
+  const fallbackRecentJobs = [
     { title: "Human Resources Assistant", company: "PT OAKM TECH INDONESIA — Freelance", period: "Nov 2024 – Jun 2025", tags: ["HR", "Tech"] },
     { title: "Content Creator", company: "LEARNRITHM.AI — Internship", period: "Nov 2024 – Jun 2025", tags: ["AI", "EdTech", "Content"] },
     { title: "Content Researcher", company: "MONTIER DESIGN — Contract", period: "Feb 2025 – May 2025", tags: ["Research", "Design"] },
@@ -886,16 +898,14 @@ export default function App() {
     { title: "Social Media Officer", company: "BOTANI BAR — Freelance", period: "Nov 2024 – Jan 2025", tags: ["Social Media", "F&B"] },
     { title: "Content Creator", company: "PERSONAL BRANDING — Part-Time", period: "Oct 2024 – Jan 2025", tags: ["Branding", "Content"] },
   ];
-
-  const jobs2024 = [
+  const fallbackJobs2024 = [
     { title: "Live Streaming Operator", company: "PEGASUS NET TECHNOLOGIES — Full-Time", period: "Sep 2024 – Des 2024", tags: ["Live", "Streaming", "Tech"] },
     { title: "Content Creator", company: "TILIEK CREATIVE AGENCY — Internship", period: "Aug 2024 – Oct 2024", tags: ["Creative", "Agency"] },
     { title: "Social Media Specialist", company: "PT. NAKAHAMA HANDAL KONSULTAMA — Freelance", period: "Jul 2024 – Oct 2024", tags: ["Social Media"] },
     { title: "Live Shopping", company: "PT. SOSIAL BERKAT KREATIF INDONESIA — Internship", period: "Jun 2024 – Sep 2024", tags: ["Live Shopping", "TikTok"] },
     { title: "Social Media Specialist", company: "PT. ACR BERSATU SEJAHTERA — Freelance", period: "Feb 2024 – Jun 2024", tags: ["Social Media"] },
   ];
-
-  const jobs2023 = [
+  const fallbackJobs2023 = [
     { title: "Host Live", company: "CLOUT INDONESIA GROUP — Freelance", period: "Nov 2023 – Jan 2024", tags: ["Live Host", "Content"] },
     { title: "KOL Specialist", company: "PT. LANTIH ADHIP GRUP — Freelance", period: "Sep 2023 – Jan 2024", tags: ["KOL", "Influencer"] },
     { title: "Marketing & KOL Specialist", company: "PT. ACR BERSATU SEJAHTERA — Freelance", period: "Apr 2023 – Jun 2023", tags: ["Marketing", "KOL"] },
@@ -903,10 +913,7 @@ export default function App() {
     { title: "Social Media Specialist", company: "NUGASITUDUIT — Freelance", period: "Oct 2021 – Jul 2023", tags: ["Social Media", "Long-Term"] },
     { title: "Content Marketing", company: "CRAFTBBARO — Freelance", period: "May 2020 – Feb 2023", tags: ["Content", "Marketing", "3yr"] },
   ];
-
-  const tabData = { current: currentJobs, recent: recentJobs, "2024": jobs2024, "2023": jobs2023 };
-
-  const organizations = [
+  const fallbackOrganizations = [
     { title: "Coordinator of Fresh Money Division", period: "Serah Tahunan UKM UMN 2025 – Nov 2025", items: ["Lead the Fresh Money Division team in managing financial transactions", "Supervised fundraising activities through paid promotions and bazaars", "Developed creative fundraising ideas to generate organizational income"] },
     { title: "Public Relations Coordinator", period: "Perkenalan Prodi Informatika UMN 2025 – Sept 2025", items: ["Lead the PR Division for Informatics Program Introduction event", "Created and supervised content plans, scripts, and video production", "Directed team talents and coordinated full production process"] },
     { title: "Coordinator of Fresh Money Division", period: "Ready To Love Qorie UMN 2025 – April 2025", items: ["Lead Fresh Money Division team to achieve revenue goals", "Supervised financial operations and bookkeeping", "Organized promotional content for fundraising activities"] },
@@ -920,7 +927,30 @@ export default function App() {
     { title: "Volunteer", period: "Voluntrip Kampung Pemulung By KitaBisa – Aug 2023", items: ["Prepare and evaluate programs for 20 person capacity", "Manage communication with community", "Cooperate with external parties for comparative studies"] },
   ];
 
-  
+  // ── BUILD EXPERIENCE DATA: Supabase first, fallback to hardcoded ──
+  const sbExperiences = sbData.experiences || [];
+  const useSbExperiences = sbExperiences.length > 0;
+
+  const mapSbJob = (e) => ({ title: e.title, company: e.company, period: e.period, status: e.is_active ? "active" : "completed", tags: e.tags || [] });
+
+  const currentJobs = useSbExperiences
+    ? sbExperiences.filter(e => e.era === "current").map(mapSbJob)
+    : fallbackCurrentJobs;
+  const recentJobs = useSbExperiences
+    ? sbExperiences.filter(e => e.era === "recent").map(mapSbJob)
+    : fallbackRecentJobs;
+  const jobs2024 = useSbExperiences
+    ? sbExperiences.filter(e => e.era === "2024").map(mapSbJob)
+    : fallbackJobs2024;
+  const jobs2023 = useSbExperiences
+    ? sbExperiences.filter(e => e.era === "2023").map(mapSbJob)
+    : fallbackJobs2023;
+
+  const tabData = { current: currentJobs, recent: recentJobs, "2024": jobs2024, "2023": jobs2023 };
+
+  // ── BUILD ORG DATA: Supabase first, fallback to hardcoded ──
+  const sbOrgs = sbData.orgActivities || [];
+  const organizations = sbOrgs.length > 0 ? sbOrgs : fallbackOrganizations;
 
   const achievements = [
     { iconKey: "award", title: "Platinum Marketer", desc: "3-year content marketing streak at Craftbbaro", rarity: "legendary", unlocked: true },
@@ -946,6 +976,7 @@ export default function App() {
     { key: "2024", label: "2024 (mid)", color: C.blue },
     { key: "2023", label: "2023 & Before", color: C.purple },
   ];
+
 
   return (
     <>

@@ -52,6 +52,26 @@ export const updateSetting = (key, value) =>
 export const getAllSettings = () =>
   supabase.from('settings').select('*');
 
+// Experiences
+export const getExperiences = () =>
+  supabase.from('experiences').select('*').order('sort_order');
+
+export const upsertExperience = (exp) =>
+  supabase.from('experiences').upsert(exp).select();
+
+export const deleteExperience = (id) =>
+  supabase.from('experiences').delete().eq('id', id);
+
+// Org Activities
+export const getOrgActivities = () =>
+  supabase.from('org_activities').select('*').order('sort_order');
+
+export const upsertOrgActivity = (org) =>
+  supabase.from('org_activities').upsert(org).select();
+
+export const deleteOrgActivity = (id) =>
+  supabase.from('org_activities').delete().eq('id', id);
+
 // Image upload
 export const uploadProjectImage = async (file) => {
   const ext = file.name.split('.').pop();

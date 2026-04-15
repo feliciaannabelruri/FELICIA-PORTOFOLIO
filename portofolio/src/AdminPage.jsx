@@ -1,9 +1,3 @@
-// src/AdminPage.jsx
-// ─────────────────────────────────────────────────────────────────
-// Halaman /admin untuk edit portfolio secara online
-// Akses: yoursite.com/#/admin
-// ─────────────────────────────────────────────────────────────────
-
 import { useState, useEffect, useRef } from 'react';
 import {
   supabase, signIn, signOut, getSession,
@@ -11,7 +5,9 @@ import {
   getSkills, upsertSkill, deleteSkill,
   getProjectCategories, upsertProjectCategory,
   getAllSettings, updateSetting,
-  uploadProjectImage
+  uploadProjectImage,
+  getExperiences, upsertExperience, deleteExperience,
+  getOrgActivities, upsertOrgActivity, deleteOrgActivity,
 } from './supabase.js';
 
 // ─── COLORS & STYLES ─────────────────────────────────────────────
@@ -638,6 +634,261 @@ function SettingsTab({ toast }) {
   );
 }
 
+// ─── EXPERIENCES TAB ─────────────────────────────────────────────
+function ExperiencesTab({ toast }) {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const ERA_OPTIONS = ['current', 'recent', '2024', '2023'];
+  const defaultForm = { title: '', company: '', period: '', era: 'current', is_active: true, tags: '', sort_order: 0 };
+  const [form, setForm] = useState(defaultForm);
+
+  const load = async () => {
+    setLoading(true);
+    const { data } = await getExperiences();
+    setItems(data || []);
+    setLoading(false);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const startEdit = (item) => {
+    setEditing(item.id);
+    setForm({ ...item, tags: Array.isArray(item.tags) ? item.tags.join(', ') : (item.tags || '') });
+  };
+  const startNew = () => { setEditing('new'); setForm(defaultForm); };
+  const cancel = () => { setEditing(null); setForm(defaultForm); };
+
+  const handleSave = async () => {
+    setSaving(true);
+    const payload = {
+      ...form,
+      tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
+      sort_order: Number(form.sort_order) || 0,
+    };
+    if (editing !== 'new') payload.id = editing;
+    const { error } = await upsertExperience(payload);
+    if (error) toast('Error: ' + error.message, 'error');
+    else { toast(editing === 'new' ? 'Experience added!' : 'Experience updated!'); cancel(); load(); }
+    setSaving(false);
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm('Delete this experience?')) return;
+    const { error } = await deleteExperience(id);
+    if (error) toast('Error: ' + error.message, 'error');
+    else { toast('Deleted!', 'success'); load(); }
+  };
+
+  const toggleActive = async (item) => {
+    const { error } = await upsertExperience({ ...item, is_active: !item.is_active });
+    if (error) toast('Error: ' + error.message, 'error');
+    else load();
+  };
+
+  const eraColor = { current: A.green, recent: A.accent, '2024': A.blue, '2023': A.purple };
+
+  if (loading) return <div style={{ textAlign: 'center', padding: 40, color: A.textMuted }}>Loading...</div>;
+
+  return (
+    <div>
+      <SectionHeader title="Experience Timeline" subtitle="Kelola semua pengalaman kerja. Toggle active/inactive atau edit per entry." />
+      <div style={{ marginBottom: 20 }}>
+        <Btn onClick={startNew} color={A.green}>+ Tambah Experience</Btn>
+      </div>
+
+      {/* Form */}
+      {editing && (
+        <div style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${A.green}40`, borderRadius: 14, padding: 24, marginBottom: 24, animation: 'fadeIn 0.2s ease' }}>
+          <div style={{ ...A.syne, fontSize: 13, color: A.green, marginBottom: 16, textTransform: 'uppercase', letterSpacing: 2, fontFamily: "'DM Mono', monospace" }}>
+            {editing === 'new' ? '+ New Experience' : 'Edit Experience'}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <div><Label>Job Title</Label><input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Backend Developer Intern" /></div>
+            <div><Label>Company & Type</Label><input value={form.company} onChange={e => setForm(f => ({ ...f, company: e.target.value }))} placeholder="e.g. WINOSA MITRA — Internship" /></div>
+            <div><Label>Period</Label><input value={form.period} onChange={e => setForm(f => ({ ...f, period: e.target.value }))} placeholder="e.g. Jan 2026 – Present" /></div>
+            <div><Label>Era / Filter Tab</Label>
+              <select value={form.era} onChange={e => setForm(f => ({ ...f, era: e.target.value }))}>
+                {ERA_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
+              </select>
+            </div>
+            <div><Label>Tags (comma-separated)</Label><input value={form.tags} onChange={e => setForm(f => ({ ...f, tags: e.target.value }))} placeholder="Backend, API, Laravel" /></div>
+            <div><Label>Sort Order</Label><input type="number" value={form.sort_order} onChange={e => setForm(f => ({ ...f, sort_order: e.target.value }))} /></div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 16 }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+              <input type="checkbox" checked={form.is_active} onChange={e => setForm(f => ({ ...f, is_active: e.target.checked }))} style={{ width: 'auto' }} />
+              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: A.textSub }}>Active (show as ▶ ACTIVE)</span>
+            </label>
+          </div>
+          <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+            <Btn onClick={handleSave} loading={saving} color={A.green}>Simpan</Btn>
+            <Btn onClick={cancel} color={A.textMuted}>Batal</Btn>
+          </div>
+        </div>
+      )}
+
+      {/* List grouped by era */}
+      {ERA_OPTIONS.map(era => {
+        const eraItems = items.filter(i => i.era === era);
+        if (!eraItems.length) return null;
+        return (
+          <div key={era} style={{ marginBottom: 28 }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: eraColor[era] || A.textMuted, textTransform: 'uppercase', letterSpacing: 2, marginBottom: 10 }}>
+              ◆ {era === 'current' ? 'Active Now' : era}
+            </div>
+            {eraItems.map(item => (
+              <div key={item.id} className="admin-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.07)', marginBottom: 6, gap: 12 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: '#fff', fontWeight: 500 }}>{item.title}</span>
+                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, padding: '2px 7px', borderRadius: 4, background: item.is_active ? A.green + '20' : 'rgba(255,255,255,0.06)', color: item.is_active ? A.green : A.textMuted, border: `1px solid ${item.is_active ? A.green + '40' : 'rgba(255,255,255,0.1)'}` }}>
+                      {item.is_active ? '▶ ACTIVE' : '○ INACTIVE'}
+                    </span>
+                  </div>
+                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: A.textMuted, marginTop: 2 }}>{item.company} · {item.period}</div>
+                  {item.tags?.length > 0 && (
+                    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginTop: 5 }}>
+                      {item.tags.map(t => <span key={t} style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, padding: '1px 6px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 3, color: A.textMuted }}>{t}</span>)}
+                    </div>
+                  )}
+                </div>
+                <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+                  <Btn small onClick={() => toggleActive(item)} color={item.is_active ? A.textMuted : A.green}>{item.is_active ? 'Deactivate' : 'Activate'}</Btn>
+                  <Btn small onClick={() => startEdit(item)} color={A.blue}>Edit</Btn>
+                  <Btn small danger onClick={() => handleDelete(item.id)}>Del</Btn>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── ORG ACTIVITIES TAB ───────────────────────────────────────────
+function OrgActivitiesTab({ toast }) {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(null);
+  const [saving, setSaving] = useState(false);
+
+  const defaultForm = { title: '', period: '', items: '', is_visible: true, sort_order: 0 };
+  const [form, setForm] = useState(defaultForm);
+
+  const load = async () => {
+    setLoading(true);
+    const { data } = await getOrgActivities();
+    setItems(data || []);
+    setLoading(false);
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const startEdit = (item) => {
+    setEditing(item.id);
+    setForm({ ...item, items: Array.isArray(item.items) ? item.items.join('\n') : (item.items || '') });
+  };
+  const startNew = () => { setEditing('new'); setForm(defaultForm); };
+  const cancel = () => { setEditing(null); setForm(defaultForm); };
+
+  const handleSave = async () => {
+    setSaving(true);
+    const payload = {
+      ...form,
+      items: form.items ? form.items.split('\n').map(s => s.trim()).filter(Boolean) : [],
+      sort_order: Number(form.sort_order) || 0,
+    };
+    if (editing !== 'new') payload.id = editing;
+    const { error } = await upsertOrgActivity(payload);
+    if (error) toast('Error: ' + error.message, 'error');
+    else { toast(editing === 'new' ? 'Activity added!' : 'Activity updated!'); cancel(); load(); }
+    setSaving(false);
+  };
+
+  const handleDelete = async (id) => {
+    if (!confirm('Delete this activity?')) return;
+    const { error } = await deleteOrgActivity(id);
+    if (error) toast('Error: ' + error.message, 'error');
+    else { toast('Deleted!'); load(); }
+  };
+
+  const toggleVisible = async (item) => {
+    const { error } = await upsertOrgActivity({ ...item, is_visible: !item.is_visible });
+    if (error) toast('Error: ' + error.message, 'error');
+    else load();
+  };
+
+  if (loading) return <div style={{ textAlign: 'center', padding: 40, color: A.textMuted }}>Loading...</div>;
+
+  return (
+    <div>
+      <SectionHeader title="Organizational Activity" subtitle="Kelola kegiatan organisasi, volunteer, dan committee roles." />
+      <div style={{ marginBottom: 20 }}>
+        <Btn onClick={startNew} color={A.purple}>+ Tambah Activity</Btn>
+      </div>
+
+      {/* Form */}
+      {editing && (
+        <div style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${A.purple}40`, borderRadius: 14, padding: 24, marginBottom: 24, animation: 'fadeIn 0.2s ease' }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: A.purple, marginBottom: 16, textTransform: 'uppercase', letterSpacing: 2 }}>
+            {editing === 'new' ? '+ New Activity' : 'Edit Activity'}
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <div><Label>Role / Title</Label><input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Coordinator of Fresh Money Division" /></div>
+            <div><Label>Event & Period</Label><input value={form.period} onChange={e => setForm(f => ({ ...f, period: e.target.value }))} placeholder="e.g. Serah Tahunan UKM UMN 2025 – Nov 2025" /></div>
+            <div style={{ gridColumn: '1 / -1' }}>
+              <Label>Description Items (satu baris = satu item)</Label>
+              <textarea rows={4} value={form.items} onChange={e => setForm(f => ({ ...f, items: e.target.value }))} placeholder={"Lead the division team\nSupervised fundraising\nDeveloped creative ideas"} style={{ resize: 'vertical' }} />
+            </div>
+            <div><Label>Sort Order</Label><input type="number" value={form.sort_order} onChange={e => setForm(f => ({ ...f, sort_order: e.target.value }))} /></div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', paddingBottom: 2 }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+                <input type="checkbox" checked={form.is_visible} onChange={e => setForm(f => ({ ...f, is_visible: e.target.checked }))} style={{ width: 'auto' }} />
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: A.textSub }}>Tampilkan di portfolio</span>
+              </label>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+            <Btn onClick={handleSave} loading={saving} color={A.purple}>Simpan</Btn>
+            <Btn onClick={cancel} color={A.textMuted}>Batal</Btn>
+          </div>
+        </div>
+      )}
+
+      {/* List */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {items.map(item => (
+          <div key={item.id} className="admin-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, border: `1px solid ${item.is_visible ? 'rgba(255,255,255,0.07)' : 'rgba(255,255,255,0.03)'}`, gap: 12, opacity: item.is_visible ? 1 : 0.45 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: '#fff', fontWeight: 500 }}>{item.title}</div>
+              <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: A.textMuted, marginTop: 2 }}>{item.period}</div>
+              {item.items?.length > 0 && (
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: A.textMuted, marginTop: 4 }}>
+                  {item.items.length} item{item.items.length > 1 ? 's' : ''}
+                </div>
+              )}
+            </div>
+            <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+              <Btn small onClick={() => toggleVisible(item)} color={item.is_visible ? A.textMuted : A.purple}>{item.is_visible ? 'Hide' : 'Show'}</Btn>
+              <Btn small onClick={() => startEdit(item)} color={A.blue}>Edit</Btn>
+              <Btn small danger onClick={() => handleDelete(item.id)}>Del</Btn>
+            </div>
+          </div>
+        ))}
+        {items.length === 0 && (
+          <div style={{ textAlign: 'center', padding: 40, color: A.textMuted, fontFamily: "'DM Mono', monospace", fontSize: 12 }}>
+            Belum ada data. Klik "+ Tambah Activity" atau data akan muncul setelah kamu import dari hardcode.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── MAIN ADMIN PAGE ──────────────────────────────────────────────
 export default function AdminPage() {
   const [session, setSession] = useState(null);
@@ -676,6 +927,8 @@ export default function AdminPage() {
     { key: 'projects', label: 'Projects', color: A.accent },
     { key: 'skills', label: 'Skills', color: A.purple },
     { key: 'categories', label: 'Categories', color: A.orange },
+    { key: 'experiences', label: 'Experiences', color: A.green },
+    { key: 'organizations', label: 'Organizations', color: A.purple },
     { key: 'settings', label: 'Settings', color: A.blue },
   ];
 
@@ -749,6 +1002,8 @@ export default function AdminPage() {
             {activeTab === 'projects' && <ProjectsTab toast={showToast} />}
             {activeTab === 'skills' && <SkillsTab toast={showToast} />}
             {activeTab === 'categories' && <CategoriesTab toast={showToast} />}
+            {activeTab === 'experiences' && <ExperiencesTab toast={showToast} />}
+            {activeTab === 'organizations' && <OrgActivitiesTab toast={showToast} />}
             {activeTab === 'settings' && <SettingsTab toast={showToast} />}
           </div>
         </div>
