@@ -308,7 +308,18 @@ const projectDetails = {
     subtitle: 'Video Production, Writing & Creative Content',
     color: "#b03cff",
     content: `
-      <h4 style="color:#b03cff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">Current Projects (2025 - Present):</h4>
+      <h4 style="color:#b03cff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">Current Projects (2026 - Present):</h4>
+      <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #b03cff;background:rgba(176,60,255,0.05);border-radius:8px;">
+        <strong style="color:#fff;">SMPLHR</strong> – Vibe Coding Instructor (Freelance)
+        <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
+          <li>Facilitated hands-on workshops for non-technical participants (HR, Marketing, Business, SMEs)</li>
+          <li>Guided participants in prompt engineering using <strong style="color:#b03cff;">Claude, Cursor, v0, and Replit</strong></li>
+          <li>Designed project-based learning: landing pages, dashboards, mini apps</li>
+          <li>Simplified complex technical concepts for non-IT audiences</li>
+          <li>Created engaging environments that drive strong "aha moments"</li>
+        </ul>
+      </div>
+      <h4 style="color:#b03cff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">2025 – Early 2026:</h4>
       <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #b03cff;background:rgba(176,60,255,0.05);border-radius:8px;">
         <strong style="color:#fff;">CHAMELYONE INTERIORS</strong> – Content Creator (Part-Time)
         <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
@@ -334,7 +345,7 @@ const projectDetails = {
         <strong style="color:#fff;">MONTIER DESIGN</strong> – Content Researcher — Raised engagement by <strong style="color:#b03cff;">64%</strong>, increased organic reach by <strong style="color:#b03cff;">40%</strong>
       </div>
       <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #b03cff;background:rgba(176,60,255,0.05);border-radius:8px;">
-        <strong style="color:#fff;">INDO AQUATIC TRADE</strong> – PA Internship — Boosted engagement by <strong style="color:#b03cff;">72%</strong>, increased organic traffic by <strong style="color:#b03cff;">58%</strong>, contributed to <strong style="color:#b03cff;">2.5× follower growth</strong> for CEO's personal brand
+        <strong style="color:#fff;">INDO AQUATIC TRADE</strong> – PA Internship — Boosted engagement by <strong style="color:#b03cff;">72%</strong>, increased organic traffic by <strong style="color:#b03cbe;">58%</strong>, contributed to <strong style="color:#b03cff;">2.5× follower growth</strong> for CEO's personal brand
       </div>
       <h4 style="color:#b03cff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">2024:</h4>
       <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #b03cff;background:rgba(176,60,255,0.05);border-radius:8px;">
@@ -426,20 +437,34 @@ const projectDetails = {
     subtitle: 'Website Projects & Technical Skills',
     color: "#3c9eff",
     content: `
+      <h4 style="color:#3c9eff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">Current (2026 - Present):</h4>
+      <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #3c9eff;background:rgba(60,158,255,0.05);border-radius:8px;">
+        <strong style="color:#fff;">CANYON ENTERTAINMENT GROUP</strong> – Website Management (Internship)
+        <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
+          <li>Managed and updated website content for accuracy, relevance, and brand consistency</li>
+          <li>Implemented design and functionality improvements to enhance UX</li>
+          <li>Optimized website performance including page load speed and usability</li>
+          <li>Collaborated with cross-functional teams to troubleshoot website issues</li>
+          <li>Maintained operations using CMS platforms and HTML/CSS</li>
+        </ul>
+      </div>
+      <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #3c9eff;background:rgba(60,158,255,0.05);border-radius:8px;">
+        <strong style="color:#fff;">WINOSA MITRA</strong> – Backend Developer (Internship)
+        <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
+          <li>Set up backend architecture: framework init, DB config, env variables, CORS handling</li>
+          <li>Designed multi-language-ready DB schemas (ID/EN/NL) for services, portfolio, blog modules</li>
+          <li>Developed scalable RESTful APIs with filtering and slug-based access</li>
+          <li>Applied ML-based text classification for content categorization</li>
+          <li>Built multilingual text processing pipelines for automated tagging</li>
+          <li>Integrated email services for contact forms and newsletter subscriptions</li>
+        </ul>
+      </div>
       <h4 style="color:#3c9eff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">Website Projects:</h4>
       <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #3c9eff;background:rgba(60,158,255,0.05);border-radius:8px;">
         <strong style="color:#fff;">simakpajak.com</strong> – PT Nakahama Handal Konsultama
         <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
           <li>Built complete website for tax consultation services</li>
           <li>Integrated SEO optimization and responsive design</li>
-          <li>Developed user-friendly interface for client consultations</li>
-        </ul>
-      </div>
-      <div style="margin-bottom:16px;padding:14px 16px;border-left:2px solid #3c9eff;background:rgba(60,158,255,0.05);border-radius:8px;">
-        <strong style="color:#fff;">INDO AQUATIC TRADE</strong> – Blog & Website Management
-        <ul style="margin-left:20px;margin-top:8px;color:rgba(255,255,255,0.7);font-size:13px;">
-          <li>Managed blog schedule (3× per week) with SEO keywords for international markets</li>
-          <li>Increased organic traffic by <strong style="color:#3c9eff;">58%</strong> within two months</li>
         </ul>
       </div>
       <h4 style="color:#3c9eff;margin:20px 0 10px 0;font-family:'Syne',sans-serif;">Academic & Personal Projects:</h4>
@@ -772,29 +797,31 @@ const defaultSkills = [
   { label: "Web Development (PHP/Laravel)", value: 75, color: C.blue },
   { label: "Video Editing", value: 78, color: C.purple },
   { label: "Figma / UI-UX Design", value: 80, color: C.accent },
-  { label: "AI / LLM Prompt Engineering", value: 85, color: C.purple },
-  { label: "Machine Learning (Basics)", value: 65, color: C.blue },
-  { label: "AI Tools & Automation", value: 88, color: C.green },
+  { label: "AI / LLM Prompt Engineering", value: 90, color: C.purple },
+  { label: "Machine Learning (Basics)", value: 70, color: C.blue },
+  { label: "AI Tools & Automation", value: 92, color: C.green },
 ];
 
 // ─── DEFAULT PROJECT CATEGORIES (fallback) ───────────────────────────────────
 const defaultProjectCategories = [
   { id: 'digital-marketing', title: "Digital Marketing", description: "Social media management, paid ads, growth campaigns, and performance analytics across 10+ brands.", color: C.accent, iconKey: "trending", tags: ["Meta Ads", "Google Ads", "Analytics", "Growth Hacking"] },
-  { id: 'content-creation', title: "Content Creation", description: "Video production, photography, copywriting, and creative strategy for brands and personal channels.", color: C.purple, iconKey: "video", tags: ["CapCut", "Video Editing", "Copywriting", "Script Writing"] },
+  { id: 'content-creation', title: "Content Creation", description: "Video production, photography, copywriting, AI tool training, and creative strategy for brands and personal channels.", color: C.purple, iconKey: "video", tags: ["CapCut", "Vibe Coding", "Copywriting", "Script Writing"] },
   { id: 'live-streaming', title: "Live Streaming", description: "Live shopping host and streaming operator with 5K+ concurrent peak viewers across TikTok & Shopee.", color: C.orange, iconKey: "radio", tags: ["TikTok Live", "Shopee Live", "Live Host", "Operations"] },
   { id: 'kol-management', title: "KOL Management", description: "Influencer relations, campaign management, and brand-talent coordination across niches.", color: C.green, iconKey: "users", tags: ["Influencer", "KOL", "Campaign", "Negotiation"] },
-  { id: 'web-development', title: "Web Development", description: "PHP, Laravel, and React projects — edtech platforms, event registration systems, and dashboards.", color: C.blue, iconKey: "code", tags: ["PHP", "Laravel", "React", "JavaScript", "Python"] },
+  { id: 'web-development', title: "Web Development", description: "PHP, Laravel, React, and CMS projects — backend APIs, website management, edtech platforms, and dashboards.", color: C.blue, iconKey: "code", tags: ["PHP", "Laravel", "React", "JavaScript", "Python"] },
   { id: 'event-organization', title: "Event Organization", description: "Campus events coordinator — PR, bazaar, creative, and fresh money divisions across 11+ UMN events.", color: C.red, iconKey: "flag", tags: ["Event", "PR", "Coordinator", "Campus", "UMN"] },
 ];
 
 // ─── DEFAULT SETTINGS (fallback) ─────────────────────────────────────────────
 const defaultSettings = {
-  hero_subtitle: "Informatics Engineering student at UMN. Corporate Strategy intern @DANA Indonesia × backend dev × AI/ML × UI/UX × digital marketer × content creator × live host. 20+ roles across 5 years. Still leveling up.",
-  hero_tags: JSON.stringify(["AI/ML Engineer", "App Developer", "UI/UX Designer", "Web Dev", "Prompt Engineer", "Digital Marketing", "Content Creator", "Live Host", "KOL Specialist"]),
-  about_paragraph_1: "Informatics Engineering student at UMN with a multi-class build: Corporate Strategy Social Tech Intern at DANA Indonesia, backend developer, digital marketer, and content creator. I've worked across 20+ companies — from FinTech giants to AI startups and creative agencies.",
-  about_paragraph_2: "Currently running 8 active roles simultaneously while finishing my degree. I thrive in fast-paced, multi-role environments and love building things that are both functional and engaging.",
+  // ✅ UPDATED: hero subtitle mencerminkan role terbaru dari CV 2026
+  hero_subtitle: "Informatics Engineering student at UMN. Corporate Strategy intern @DANA Indonesia × Website intern @Canyon Entertainment × Vibe Coding instructor @SMPLHR × backend dev × AI/ML × UI/UX × digital marketer × content creator × live host. 20+ roles across 5 years. Still leveling up.",
+  hero_tags: JSON.stringify(["AI/ML Engineer", "Vibe Coding Instructor", "App Developer", "UI/UX Designer", "Web Dev", "Prompt Engineer", "Digital Marketing", "Content Creator", "Live Host"]),
+  about_paragraph_1: "Informatics Engineering student at UMN with a multi-class build: Corporate Strategy Social Tech Intern at DANA Indonesia, Website Management Intern at Canyon Entertainment Group, Vibe Coding Instructor at SMPLHR, backend developer, digital marketer, and content creator. I've worked across 20+ companies — from FinTech giants to AI startups and creative agencies.",
+  about_paragraph_2: "Currently running multiple active roles simultaneously while finishing my degree. I thrive in fast-paced, multi-role environments and love building things that are both functional and engaging — from AI-powered web apps to social media growth campaigns.",
   status: "Not Available",
-  active_roles: "8",
+  // ✅ UPDATED: active roles sekarang ada 4 berdasarkan CV (SMPLHR, Canyon, DANA, Winosa Backend)
+  active_roles: "4",
   total_companies: "20+",
   peak_viewers: "5K+",
   experience_years: "5yr",
@@ -822,11 +849,11 @@ export default function App() {
   // Parse settings helpers
   const settings = sbData.settings || defaultSettings;
   const heroSubtitle = settings.hero_subtitle || defaultSettings.hero_subtitle;
-  const heroTags = (() => { try { return JSON.parse(settings.hero_tags || defaultSettings.hero_tags); } catch { return ["AI/ML Engineer", "Digital Marketing", "Web Dev", "Content Creator"]; } })();
+  const heroTags = (() => { try { return JSON.parse(settings.hero_tags || defaultSettings.hero_tags); } catch { return ["AI/ML Engineer", "Vibe Coding Instructor", "Digital Marketing", "Web Dev", "Content Creator"]; } })();
   const aboutP1 = settings.about_paragraph_1 || defaultSettings.about_paragraph_1;
   const aboutP2 = settings.about_paragraph_2 || defaultSettings.about_paragraph_2;
   const status = settings.status || "Not Available";
-  const activeRoles = settings.active_roles || "8";
+  const activeRoles = settings.active_roles || "4";
   const totalCompanies = settings.total_companies || "20+";
   const peakViewers = settings.peak_viewers || "5K+";
   const expYears = settings.experience_years || "5yr";
@@ -842,7 +869,6 @@ export default function App() {
   // Build projectCategories + projectDetails from Supabase or fallback
   const projectCategories = (sbData.projectCategories || defaultProjectCategories).map(c => ({
     ...c,
-    // if from Supabase, use modalContent; otherwise look up in projectDetails
     _modalContent: c.modalContent || null,
   }));
 
@@ -877,42 +903,52 @@ export default function App() {
     { id: "achievements", label: "Badges" }, { id: "contact", label: "Contact" },
   ];
 
-
-
-  // ── HARDCODED FALLBACK DATA (used when Supabase tables are empty) ──
+  // ── HARDCODED FALLBACK DATA ──────────────────────────────────────────────────
+  // ✅ UPDATED: Sesuai CV 2026 - urutan dari paling baru
   const fallbackCurrentJobs = [
-    { title: "Corporate Strategy Social Tech Intern", company: "DANA INDONESIA — Internship", period: "Jan 2026 – Present", status: "active", tags: ["Corporate Strategy", "AI/ML", "Automation", "FinTech"] },
-    { title: "Back End Developer Intern", company: "WINOSA MITRA — Internship", period: "Jan 2026 – Present", status: "active", tags: ["Backend", "API", "ML", "Laravel"] },
-    { title: "Social Media Marketing Specialist", company: "WINOSA MITRA — Part-Time", period: "June 2025 – Present", status: "active", tags: ["Social Media", "Marketing"] },
-    { title: "Content Creator", company: "JOKI PROYEK — Freelance", period: "Jan 2025 – Present", status: "active", tags: ["Content", "Freelance"] },
-    { title: "Digital Marketing Executive", company: "MOVEABROAD.CO — Part-Time", period: "Jan 2025 – Present", status: "active", tags: ["Digital Marketing", "Ads"] },
-    { title: "Marketing Manager", company: "XDEMIA", period: "Nov 2024 – Present", status: "active", tags: ["EdTech", "Marketing", "Management"] },
-    { title: "Content Creator", company: "CHAMELYONE INTERIORS — Part-Time", period: "Sept 2025 – Feb 2026", status: "completed", tags: ["Content", "Interior"] },
-    { title: "Marketing Director – Head of Sales & Marketing", company: "GENIUS GROWTH AI", period: "Jul 2025 – Nov 2025", status: "completed", tags: ["Leadership", "AI", "Sales"] },
+    // ✅ BARU dari CV 2026
+    { title: "Vibe Coding Instructor", company: "SMPLHR — Freelance", period: "March 2026 – Present", status: "active", tags: ["AI Tools", "Prompt Engineering", "Teaching", "Claude", "Cursor"] },
+    // ✅ BARU dari CV 2026
+    { title: "Website Management", company: "CANYON ENTERTAINMENT GROUP — Internship", period: "March 2026 – Present", status: "active", tags: ["CMS", "UX", "HTML/CSS", "Web Ops"] },
+    // Sudah ada sebelumnya
+    { title: "Corporate Strategy Social Technology", company: "DANA INDONESIA — Internship", period: "Jan 2026 – Present", status: "active", tags: ["Corporate Strategy", "AI/ML", "Automation", "FinTech"] },
+    // ✅ Updated: berakhir June 2026 sesuai CV
+    { title: "Back End Developer", company: "WINOSA MITRA — Internship", period: "Jan 2026 – June 2026", status: "active", tags: ["Backend", "API", "ML", "Laravel"] },
+    // ✅ Updated: sudah selesai April 2026
+    { title: "Social Media Marketing Specialist", company: "WINOSA MITRA — Part-Time", period: "June 2025 – April 2026", status: "completed", tags: ["Social Media", "Marketing", "B2B"] },
+    { title: "Marketing Manager", company: "XDEMIA — Internship", period: "Nov 2024 – Present", status: "active", tags: ["EdTech", "Marketing", "Management"] },
+    { title: "Digital Marketing Executive", company: "MOVEABROAD.CO — Part-Time", period: "Jan 2025 – April 2026", status: "completed", tags: ["Digital Marketing", "Instagram", "TikTok"] },
+    { title: "Content Creator", company: "JOKI PROYEK — Freelance", period: "Jan 2025 – Jan 2026", status: "completed", tags: ["Content", "SEO", "Copywriting"] },
   ];
+
   const fallbackRecentJobs = [
-    { title: "Human Resources Assistant", company: "PT OAKM TECH INDONESIA — Freelance", period: "Nov 2024 – Jun 2025", tags: ["HR", "Tech"] },
-    { title: "Content Creator", company: "LEARNRITHM.AI — Internship", period: "Nov 2024 – Jun 2025", tags: ["AI", "EdTech", "Content"] },
-    { title: "Content Researcher", company: "MONTIER DESIGN — Contract", period: "Feb 2025 – May 2025", tags: ["Research", "Design"] },
-    { title: "Personal Assistant", company: "INDO AQUATIC TRADE — Internship", period: "Nov 2024 – Feb 2025", tags: ["Operations"] },
-    { title: "Social Media Officer", company: "BOTANI BAR — Freelance", period: "Nov 2024 – Jan 2025", tags: ["Social Media", "F&B"] },
-    { title: "Content Creator", company: "PERSONAL BRANDING — Part-Time", period: "Oct 2024 – Jan 2025", tags: ["Branding", "Content"] },
+    { title: "Content Creator", company: "CHAMELYONE INTERIORS — Part-Time", period: "Sept 2025 – Feb 2026", status: "completed", tags: ["Content", "Interior", "Video"] },
+    { title: "Marketing Director – Head of Sales & Marketing", company: "GENIUS GROWTH AI", period: "Jul 2025 – Nov 2025", status: "completed", tags: ["Leadership", "AI", "Sales", "B2B"] },
+    { title: "Human Resources Assistant", company: "PT OAKM TECH INDONESIA — Freelance", period: "Nov 2024 – Jun 2025", status: "completed", tags: ["HR", "Recruitment"] },
+    { title: "Content Creator", company: "LEARNRITHM.AI — Internship", period: "Nov 2024 – Jun 2025", status: "completed", tags: ["AI", "EdTech", "Content"] },
+    { title: "Content Researcher", company: "MONTIER DESIGN — Contract", period: "Feb 2025 – May 2025", status: "completed", tags: ["Research", "Design"] },
+    { title: "Personal Assistant", company: "INDO AQUATIC TRADE — Internship", period: "Nov 2024 – Feb 2025", status: "completed", tags: ["Operations", "SEO", "Blog"] },
+    { title: "Social Media Officer", company: "BOTANI BAR — Freelance", period: "Nov 2024 – Jan 2025", status: "completed", tags: ["Social Media", "F&B"] },
+    { title: "Content Creator", company: "PERSONAL BRANDING — Part-Time", period: "Oct 2024 – Jan 2025", status: "completed", tags: ["Branding", "Content"] },
   ];
+
   const fallbackJobs2024 = [
     { title: "Live Streaming Operator", company: "PEGASUS NET TECHNOLOGIES — Full-Time", period: "Sep 2024 – Des 2024", tags: ["Live", "Streaming", "Tech"] },
-    { title: "Content Creator", company: "TILIEK CREATIVE AGENCY — Internship", period: "Aug 2024 – Oct 2024", tags: ["Creative", "Agency"] },
-    { title: "Social Media Specialist", company: "PT. NAKAHAMA HANDAL KONSULTAMA — Freelance", period: "Jul 2024 – Oct 2024", tags: ["Social Media"] },
+    { title: "Content Creator", company: "TILIEK CREATIVE AGENCY — Internship", period: "Aug 2024 – Oct 2024", tags: ["Creative", "Agency", "Short-form"] },
+    { title: "Social Media Specialist", company: "PT. NAKAHAMA HANDAL KONSULTAMA — Freelance", period: "Jul 2024 – Oct 2024", tags: ["Social Media", "TikTok", "Instagram"] },
     { title: "Live Shopping", company: "PT. SOSIAL BERKAT KREATIF INDONESIA — Internship", period: "Jun 2024 – Sep 2024", tags: ["Live Shopping", "TikTok"] },
     { title: "Social Media Specialist", company: "PT. ACR BERSATU SEJAHTERA — Freelance", period: "Feb 2024 – Jun 2024", tags: ["Social Media"] },
   ];
+
   const fallbackJobs2023 = [
-    { title: "Host Live", company: "CLOUT INDONESIA GROUP — Freelance", period: "Nov 2023 – Jan 2024", tags: ["Live Host", "Content"] },
+    { title: "Host Live", company: "CLOUT INDONESIA GROUP — Freelance", period: "Nov 2023 – Jan 2024", tags: ["Live Host", "TikTok", "Shopee"] },
     { title: "KOL Specialist", company: "PT. LANTIH ADHIP GRUP — Freelance", period: "Sep 2023 – Jan 2024", tags: ["KOL", "Influencer"] },
     { title: "Marketing & KOL Specialist", company: "PT. ACR BERSATU SEJAHTERA — Freelance", period: "Apr 2023 – Jun 2023", tags: ["Marketing", "KOL"] },
     { title: "Marketing Specialist", company: "CICISGENK.ID — Freelance", period: "Apr 2023 – Jun 2023", tags: ["Marketing"] },
     { title: "Social Media Specialist", company: "NUGASITUDUIT — Freelance", period: "Oct 2021 – Jul 2023", tags: ["Social Media", "Long-Term"] },
     { title: "Content Marketing", company: "CRAFTBBARO — Freelance", period: "May 2020 – Feb 2023", tags: ["Content", "Marketing", "3yr"] },
   ];
+
   const fallbackOrganizations = [
     { title: "Coordinator of Fresh Money Division", period: "Serah Tahunan UKM UMN 2025 – Nov 2025", items: ["Lead the Fresh Money Division team in managing financial transactions", "Supervised fundraising activities through paid promotions and bazaars", "Developed creative fundraising ideas to generate organizational income"] },
     { title: "Public Relations Coordinator", period: "Perkenalan Prodi Informatika UMN 2025 – Sept 2025", items: ["Lead the PR Division for Informatics Program Introduction event", "Created and supervised content plans, scripts, and video production", "Directed team talents and coordinated full production process"] },
@@ -955,8 +991,9 @@ export default function App() {
   const achievements = [
     { iconKey: "award", title: "Platinum Marketer", desc: "3-year content marketing streak at Craftbbaro", rarity: "legendary", unlocked: true },
     { iconKey: "star", title: "Marketing Director", desc: "Head of Sales & Marketing at Genius Growth AI", rarity: "legendary", unlocked: true },
+    { iconKey: "sparkles", title: "Vibe Coding Instructor", desc: "Teaching AI tools & prompt engineering to non-tech professionals at SMPLHR", rarity: "legendary", unlocked: true },
     { iconKey: "trending", title: "Triple-Digit Growth", desc: "Boosted Instagram reach by 93% at MoveAbroad.co", rarity: "epic", unlocked: true },
-    { iconKey: "zap", title: "Multi-Tasker", desc: "8 simultaneous active roles across different companies", rarity: "epic", unlocked: true },
+    { iconKey: "zap", title: "Multi-Tasker", desc: "4+ simultaneous active roles across different companies in 2026", rarity: "epic", unlocked: true },
     { iconKey: "target", title: "Conversion Specialist", desc: "Managed paid campaigns across 10+ brands", rarity: "epic", unlocked: true },
     { iconKey: "monitor", title: "Live Legend", desc: "5K+ concurrent viewers on peak streaming sessions", rarity: "rare", unlocked: true },
     { iconKey: "building", title: "Campus Leader", desc: "Coordinator in 3+ major UMN events", rarity: "rare", unlocked: true },
@@ -1113,7 +1150,7 @@ export default function App() {
           </div>
           <div className="experience-grid" style={{}}>  
             {(tabData[activeTab] || []).map((j, i) => (
-              <QuestCard key={i} {...j} status={activeTab === "current" ? "active" : "completed"} />
+              <QuestCard key={i} {...j} status={j.status || (activeTab === "current" ? "active" : "completed")} />
             ))}
           </div>
         </section>
@@ -1138,9 +1175,10 @@ export default function App() {
               { cat: "Marketing", items: ["Meta Ads Manager", "Google Analytics", "TikTok Ads", "Social Blade", "TikTok Studio", "Instagram Insights", "Canva"], color: C.accent, iconKey: "trending" },
               { cat: "Content & Creative", items: ["CapCut", "Video Editing", "Copywriting", "Content Strategy", "Live Production", "SEO Writing", "Script Writing"], color: C.purple, iconKey: "video" },
               { cat: "Development", items: ["PHP", "Laravel", "JavaScript", "HTML/CSS", "React", "Python", "Kotlin", "Git", "VS Code"], color: C.blue, iconKey: "code" },
-              { cat: "AI & LLM", items: ["ChatGPT", "Claude (Anthropic)", "Gemini", "Prompt Engineering", "LLM Workflows", "AI Content Generation", "Midjourney / Image AI"], color: C.purple, iconKey: "sparkles" },
+              // ✅ UPDATED: tambah Vibe Coding tools dari CV
+              { cat: "AI & Vibe Coding", items: ["ChatGPT", "Claude (Anthropic)", "Gemini", "Cursor", "v0", "Replit", "Prompt Engineering", "LLM Workflows", "AI Content Generation"], color: C.purple, iconKey: "sparkles" },
               { cat: "Design & Prototyping", items: ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "Design Systems", "Responsive Layouts", "Adobe Express"], color: C.accent, iconKey: "monitor" },
-              { cat: "Machine Learning", items: ["Python (Scikit-learn)", "Data Preprocessing", "Model Basics", "Jupyter Notebook", "Pandas / NumPy", "AI Automation Tools"], color: C.green, iconKey: "cpu" },
+              { cat: "Machine Learning", items: ["Python (Scikit-learn)", "Data Preprocessing", "Model Basics", "Jupyter Notebook", "Pandas / NumPy", "AI Automation Tools", "Text Classification"], color: C.green, iconKey: "cpu" },
             ].map(({ cat, items, color, iconKey }) => (
               <div key={cat} style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: 24, position: "relative", overflow: "hidden", backdropFilter: "blur(10px)" }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: color }} />
@@ -1255,7 +1293,7 @@ export default function App() {
         <div className="footer-bar" style={{ borderTop: `1px solid rgba(255,255,255,0.08)`, paddingTop: 40 }}>
           <span style={{ ...mono, fontSize: 11, color: C.textDim }}>Felicia Annabel Ruriyanto — Portfolio 2026</span>
           <span style={{ ...mono, fontSize: 11, color: C.textDim }}>XP this session: <span style={{ color: C.accent }}>{xp} XP</span></span>
-          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>LVL {level} — Digital Marketer × Developer</span>
+          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>LVL {level} — Digital Marketer × Developer × AI Instructor</span>
         </div>
       </div>
 
