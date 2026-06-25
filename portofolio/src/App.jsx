@@ -121,118 +121,201 @@ const Icons = {
 };
 
 const C = {
-  bg: "#0f0f0f",
-  surface: "rgba(255,255,255,0.06)",
-  surfaceHover: "rgba(255,255,255,0.10)",
-  border: "rgba(255,255,255,0.12)",
-  borderHover: "rgba(255,60,190,0.4)",
-  accent: "#ff3cbe",
-  purple: "#b03cff",
-  blue: "#3c9eff",
-  green: "#3cff7a",
-  orange: "#ff8c3c",
-  red: "#ff3c3c",
-  text: "#ffffff",
-  textSub: "rgba(255,255,255,0.75)",
-  textMuted: "rgba(255,255,255,0.45)",
-  textDim: "rgba(255,255,255,0.20)",
+  bg: "#F8F9FA",
+  surface: "#FFFFFF",
+  surfaceHover: "#FAFAFA",
+  border: "#EBEBEB",
+  borderHover: "#ff3cbe",
+  accent: "#E8197A",
+  purple: "#7C3AED",
+  blue: "#2563EB",
+  green: "#059669",
+  orange: "#D97706",
+  red: "#DC2626",
+  text: "#111111",
+  textSub: "#404040",
+  textMuted: "#888888",
+  textDim: "#C8C8C8",
 };
 
 const globalCSS = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   html, body { overflow-x: hidden; max-width: 100%; }
-  body { background: #0f0f0f; color: #ffffff; font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; }
-  body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px); pointer-events:none; z-index:9999; }
+  body { background: #F8F9FA; color: #111111; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #111; }
-  ::-webkit-scrollbar-thumb { background: #ff3cbe; border-radius: 2px; }
-  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,60,190,.5)} 70%{box-shadow:0 0 0 8px rgba(255,60,190,0)} }
+  ::-webkit-scrollbar-track { background: #F0F0F0; }
+  ::-webkit-scrollbar-thumb { background: #E8197A; border-radius: 2px; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,25,122,.4)} 70%{box-shadow:0 0 0 8px rgba(232,25,122,0)} }
   @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
   @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
   @keyframes modalIn { from{opacity:0;transform:scale(0.95) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
   @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
   @keyframes carouselFade { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
 
-  /* ── RESPONSIVE CLASSES ── */
-  .hud-nav { padding: 11px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .hud-nav-links { display: flex; gap: 20px; }
-  .hud-xpbar { flex: 1; max-width: 380px; }
-  .main-content { max-width: 1100px; margin: 0 auto; padding: 100px 40px 80px; }
-  .section-mb { margin-bottom: 140px; }
-  .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
-  .stat-badge { animation: floatBadge 4s ease-in-out infinite; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  /* ── LAYOUT BASE ── */
+  .hud-nav { padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .hud-nav-links { display: flex; gap: 24px; }
+  .hud-xpbar { flex: 1; max-width: 300px; }
+  .main-content { max-width: 680px; margin: 0 auto; padding: 80px 24px 80px; }
+  .section-mb { margin-bottom: 60px; scroll-margin-top: 72px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   .experience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .org-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .org-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .achievements-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
-  .carousel-img { height: 260px; }
+  .carousel-img { height: 240px; }
+
+  /* Overflow guard */
+  * { box-sizing: border-box; }
+  img { max-width: 100%; height: auto; display: block; }
+  section, div { max-width: 100%; }
 
   /* ── TABLET 1024px ── */
   @media (max-width: 1024px) {
-    .hud-nav { padding: 10px 24px !important; }
-    .main-content { padding: 90px 24px 60px !important; }
+    .hud-nav { padding: 10px 20px; }
+    .main-content { max-width: 100%; padding: 80px 20px 60px; }
     .category-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
   }
 
   /* ── MOBILE 768px ── */
   @media (max-width: 768px) {
-    .hud-nav { padding: 10px 16px !important; }
-    .carousel-info { flex-direction: column !important; align-items: flex-start !important; }
-    .carousel-info a { width: 100% !important; justify-content: center !important; text-align: center !important; }
-    .featured-card { padding: 16px !important; }
+    /* Nav */
+    .hud-nav { padding: 10px 16px; }
     .hud-nav-links { display: none !important; }
-    .hud-xpbar { max-width: 200px !important; }
+    .hud-xpbar { max-width: 160px; }
     .hamburger-btn { display: flex !important; }
-    .main-content { padding: 76px 16px 50px !important; }
-    .section-mb { margin-bottom: 80px !important; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; margin-top: 36px !important; }
-    .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+
+    /* Layout */
+    .main-content { padding: 64px 0 160px !important; }
+    .section-mb { margin-bottom: 48px !important; }
+
+    /* Hero Instagram card — no side padding so cover bleeds edge to edge */
+    .ig-cover { border-radius: 0 !important; height: 130px !important; margin-left: -0px; margin-right: -0px; }
+    .ig-profile-card { border-radius: 0 !important; padding: 0 16px 24px !important; box-shadow: none !important; border-bottom: 1px solid #EBEBEB; }
+    .ig-avatar-wrapper { width: 72px !important; height: 72px !important; margin-top: -38px !important; }
+    .ig-avatar-inner { font-size: 24px !important; }
+    .ig-profile-row { flex-direction: row !important; align-items: flex-end !important; justify-content: space-between !important; gap: 8px !important; }
+
+    /* Action buttons — icon-only on small screens */
+    .ig-action-btn-text { display: none !important; }
+    .ig-action-btn { padding: 8px 12px !important; font-size: 12px !important; }
+
+    /* Stats 2x2 grid */
+    .ig-stats-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 0 !important; border-top: 1px solid #F0F0F0 !important; border-bottom: 1px solid #F0F0F0 !important; padding: 12px 0 !important; }
+    .ig-stat-item { text-align: center; padding: 8px 0; }
+    .ig-stat-divider { display: none !important; }
+
+    /* Bio */
+    .ig-bio-row { align-items: flex-start !important; }
+
+    /* Stories row — reduce gap */
+    .stories-row { gap: 12px !important; padding-bottom: 8px !important; }
+    .story-circle-wrap { flex-shrink: 0; }
+
+    /* Sections padding */
+    .section-inner { padding: 0 16px !important; }
+
+    /* Grids */
+    .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
     .experience-grid { grid-template-columns: 1fr !important; }
     .org-grid { grid-template-columns: 1fr !important; column-gap: 0 !important; }
     .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
     .category-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
     .achievements-grid { grid-template-columns: 1fr !important; }
-    .contact-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .footer-bar { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
-    .carousel-img { height: 200px !important; }
+    .contact-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .footer-bar { flex-direction: column !important; align-items: center !important; gap: 6px !important; text-align: center !important; }
+
+    /* Carousel */
+    .carousel-info { flex-direction: column !important; align-items: flex-start !important; }
+    .carousel-info a { width: 100% !important; justify-content: center !important; text-align: center !important; }
+    .featured-card { padding: 14px !important; }
+    .carousel-img { height: 180px !important; }
+
+    /* IG post grid */
+    .ig-posts-grid { gap: 2px !important; }
   }
 
   /* ── SMALL MOBILE 480px ── */
-  @media (max-width: 768px) {
-    .hero-desc { flex-direction: column !important; align-items: flex-start !important; gap: 20px !important; }
-    .hero-section { min-height: auto !important; padding-top: 20px !important; }
-  }
-
   @media (max-width: 480px) {
-    .main-content { padding: 68px 12px 40px !important; }
-    .section-mb { margin-bottom: 60px !important; }
     .skills-grid { grid-template-columns: 1fr !important; }
     .category-grid { grid-template-columns: 1fr !important; }
-    .carousel-img { height: 170px !important; }
+    .carousel-img { height: 160px !important; }
+    .hud-xpbar { display: none !important; }
   }
-
-  /* Prevent ALL children from causing horizontal overflow */
-  * { box-sizing: border-box; }
-  img { max-width: 100%; height: auto; }
-  section, div { max-width: 100%; }
 
   /* Modal inner HTML grids responsive */
   @media (max-width: 600px) {
     [style*='grid-template-columns: 1fr 1fr'], [style*='grid-template-columns:1fr 1fr'] { grid-template-columns: 1fr !important; }
     [style*='grid-template-columns: 1fr 1fr 1fr'], [style*='grid-template-columns:repeat(3'] { grid-template-columns: 1fr !important; }
   }
+
+  /* ── PARALLAX & INSTAGRAM STYLES ── */
+  @keyframes rotateGradient { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes slideInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes orbFloat { 0%,100%{ transform: translateY(0px) scale(1); } 50%{ transform: translateY(-18px) scale(1.04); } }
+  @keyframes igPostReveal { from{ opacity:0; transform:scale(0.94); } to{ opacity:1; transform:scale(1); } }
+  @keyframes bannerFloat { 0%,100%{ transform: translateY(0) scale(1.2); } 50%{ transform: translateY(-12px) scale(1.2); } }
+
+  .parallax-orb { will-change: transform; pointer-events: none; position: absolute; border-radius: 50%; }
+  .hero-content-layer { position: relative; z-index: 2; }
+
+  /* Cover photo parallax container */
+  .ig-cover { position: relative; overflow: hidden; border-radius: 20px 20px 0 0; height: 200px; }
+  .ig-cover-bg { position: absolute; inset: -30px; background-size: cover; will-change: transform; }
+
+  /* Profile card */
+  .ig-profile-card { background: #fff; border-radius: 0 0 24px 24px; padding: 0 28px 28px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+
+  /* Stories row scrollbar hide */
+  .stories-row { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+  .stories-row::-webkit-scrollbar { display: none; }
+
+  /* Story circle */
+  .story-circle { transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s; cursor: pointer; }
+  .story-circle:hover { transform: translateY(-4px) scale(1.08); }
+
+  /* Instagram grid */
+  .ig-posts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; border-radius: 12px; overflow: hidden; }
+  .ig-post-item { position: relative; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: #F0F0F0; }
+  .ig-post-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); display:block; }
+  .ig-post-item:hover img { transform: scale(1.08); }
+  .ig-post-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.65); display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; transition: opacity 0.3s ease; padding:14px; text-align:center; backdrop-filter: blur(2px); }
+  .ig-post-item:hover .ig-post-overlay { opacity:1; }
+
+  /* Premium card */
+  .premium-card { background: #fff; border-radius: 18px; border: 1px solid #EBEBEB; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s ease !important; }
+  .premium-card:hover { transform: translateY(-5px) !important; box-shadow: 0 12px 40px rgba(0,0,0,0.10) !important; }
+
+  /* Story ring rotation */
+  .story-ring-spin { animation: rotateGradient 5s linear infinite; border-radius: 50%; }
+
+  /* Section reveal */
+  .section-reveal { animation: slideInUp 0.55s cubic-bezier(0.4,0,0.2,1) both; }
+
+  /* IG stat divider */
+  .ig-stat-divider { width: 1px; height: 36px; background: #EBEBEB; }
+
+  /* XP bar track for light mode */
+  .xp-track { background: #F0F0F0 !important; }
+
+  /* Featured card carousel light */
+  .featured-card-light { background: #fff !important; border: 1px solid #EBEBEB !important; box-shadow: 0 2px 16px rgba(0,0,0,0.06) !important; }
+
+  /* Touch targets */
+  @media (hover: none) and (pointer: coarse) {
+    .story-circle { -webkit-tap-highlight-color: transparent; }
+    .premium-card { -webkit-tap-highlight-color: transparent; }
+    a, button { -webkit-tap-highlight-color: transparent; cursor: default; }
+  }
 `
-const mono = { fontFamily: "'DM Mono', monospace" };
-const syne = { fontFamily: "'Syne', sans-serif" };
-const dmSans = { fontFamily: "'DM Sans', sans-serif" };
+const mono = { fontFamily: "'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace" };
+const syne = { fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif" };
+const dmSans = { fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif" };
 
 // ─── PROJECT DETAILS DATA ─────────────────────────────────────────────────────
 const projectDetails = {
@@ -644,20 +727,20 @@ function ProjectDetailModal({ project, onClose }) {
   if (!project) return null;
 
   return (
-    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)', zIndex: 9000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-      <div onClick={e => e.stopPropagation()} style={{ background: '#111', border: `1px solid ${project.color}40`, borderRadius: '18px', width: '100%', maxWidth: '720px', maxHeight: '85vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', animation: 'modalIn 0.3s ease', boxShadow: `0 0 60px ${project.color}20` }}>
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)', zIndex: 9000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: '#fff', border: `1px solid ${project.color}25`, borderRadius: '20px', width: '100%', maxWidth: '720px', maxHeight: '85vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', animation: 'modalIn 0.3s ease', boxShadow: `0 24px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.04)` }}>
         {/* Header */}
-        <div style={{ padding: '24px 28px', borderBottom: `1px solid rgba(255,255,255,0.08)`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexShrink: 0, background: `linear-gradient(135deg, ${project.color}10, transparent)`, position: 'relative' }}>
-          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: project.color }} />
+        <div style={{ padding: '24px 28px', borderBottom: `1px solid #F0F0F0`, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexShrink: 0, background: `linear-gradient(135deg, ${project.color}08, transparent)`, position: 'relative' }}>
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: project.color, borderRadius: "20px 20px 0 0" }} />
           <div>
-            <div style={{ ...mono, fontSize: '10px', color: project.color, textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '8px' }}>Project Details</div>
-            <h3 style={{ ...syne, fontSize: '1.375rem', fontWeight: 800, color: '#fff', marginBottom: '4px' }}>{project.title}</h3>
+            <div style={{ ...mono, fontSize: '10px', color: project.color, textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '8px', fontWeight: 600 }}>Project Details</div>
+            <h3 style={{ ...syne, fontSize: '1.375rem', fontWeight: 800, color: C.text, marginBottom: '4px' }}>{project.title}</h3>
             <p style={{ ...dmSans, fontSize: '0.875rem', color: C.textMuted }}>{project.subtitle}</p>
           </div>
-          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.08)', border: `1px solid rgba(255,255,255,0.12)`, borderRadius: '8px', padding: '8px', cursor: 'pointer', color: C.textSub, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,60,60,0.2)'; e.currentTarget.style.borderColor = 'rgba(255,60,60,0.4)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}>
-            <Icon d={Icons.x} size={16} color="#fff" />
+          <button onClick={onClose} style={{ background: '#F5F5F5', border: `1px solid #E8E8E8`, borderRadius: '10px', padding: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#FFE8F0'; e.currentTarget.style.borderColor = C.accent + '40'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#F5F5F5'; e.currentTarget.style.borderColor = '#E8E8E8'; }}>
+            <Icon d={Icons.x} size={16} color={C.textMuted} />
           </button>
         </div>
         {/* Body */}
@@ -668,7 +751,7 @@ function ProjectDetailModal({ project, onClose }) {
 }
 
 // ─── SUBCOMPONENTS ────────────────────────────────────────────────────────────
-function XPBar({ label, value, max = 100, color = "#ff3cbe", delay = 0 }) {
+function XPBar({ label, value, max = 100, color = "#E8197A", delay = 0 }) {
   const [animated, setAnimated] = useState(false);
   const ref = useRef();
   useEffect(() => {
@@ -678,13 +761,13 @@ function XPBar({ label, value, max = 100, color = "#ff3cbe", delay = 0 }) {
   }, []);
   const pct = Math.round((value / max) * 100);
   return (
-    <div ref={ref} style={{ marginBottom: 14 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-        <span style={{ ...mono, fontSize: 11, color: C.textSub, textTransform: "uppercase", letterSpacing: 2 }}>{label}</span>
-        <span style={{ ...mono, fontSize: 11, color, fontWeight: 500 }}>{pct}%</span>
+    <div ref={ref} style={{ marginBottom: 16 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 7 }}>
+        <span style={{ ...dmSans, fontSize: 13, color: C.textSub, fontWeight: 500 }}>{label}</span>
+        <span style={{ ...mono, fontSize: 11, color, fontWeight: 600 }}>{pct}%</span>
       </div>
-      <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
-        <div style={{ height: "100%", width: animated ? `${pct}%` : "0%", background: color, borderRadius: 2, transition: `width 1.2s cubic-bezier(0.4,0,0.2,1) ${delay}ms`, boxShadow: `0 0 10px ${color}90` }} />
+      <div style={{ height: 6, background: "#F0F0F0", borderRadius: 6, overflow: "hidden" }}>
+        <div style={{ height: "100%", width: animated ? `${pct}%` : "0%", background: `linear-gradient(90deg, ${color}, ${color}90)`, borderRadius: 6, transition: `width 1.2s cubic-bezier(0.4,0,0.2,1) ${delay}ms` }} />
       </div>
     </div>
   );
@@ -692,10 +775,12 @@ function XPBar({ label, value, max = 100, color = "#ff3cbe", delay = 0 }) {
 
 function StatBadge({ iconKey, value, label, color = C.accent }) {
   return (
-    <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 8, position: "relative", overflow: "hidden", cursor: "default", backdropFilter: "blur(10px)" }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: color }} />
-      <Icon d={Icons[iconKey]} size={20} color={color} />
-      <span style={{ ...syne, fontSize: 26, fontWeight: 800, color }}>{value}</span>
+    <div className="premium-card" style={{ padding: "20px 22px", display: "flex", flexDirection: "column", gap: 8, position: "relative", overflow: "hidden", cursor: "default" }}>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg, ${color}, ${color}60)`, borderRadius: "18px 18px 0 0" }} />
+      <div style={{ width: 36, height: 36, borderRadius: 10, background: `${color}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Icon d={Icons[iconKey]} size={18} color={color} />
+      </div>
+      <span style={{ ...syne, fontSize: 28, fontWeight: 800, color: C.text, lineHeight: 1 }}>{value}</span>
       <span style={{ ...mono, fontSize: 10, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2 }}>{label}</span>
     </div>
   );
@@ -703,10 +788,9 @@ function StatBadge({ iconKey, value, label, color = C.accent }) {
 
 function SectionTag({ label, color = C.accent }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 28 }}>
-      <div style={{ width: 6, height: 6, borderRadius: "50%", background: color, boxShadow: `0 0 10px ${color}`, animation: "pulse 2s infinite" }} />
-      <span style={{ ...mono, fontSize: 11, color, textTransform: "uppercase", letterSpacing: 3 }}>{label}</span>
-      <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, ${color}50, transparent)` }} />
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 16, background: `${color}10`, border: `1px solid ${color}25`, padding: "5px 14px", borderRadius: 20 }}>
+      <div style={{ width: 6, height: 6, borderRadius: "50%", background: color, animation: "pulse 2s infinite" }} />
+      <span style={{ ...mono, fontSize: 10, color, textTransform: "uppercase", letterSpacing: 2, fontWeight: 600 }}>{label}</span>
     </div>
   );
 }
@@ -715,17 +799,17 @@ function QuestCard({ title, company, period, status = "completed", tags = [] }) 
   const cfg = { active: { color: C.green, label: "ACTIVE", icon: "play" }, completed: { color: C.blue, label: "DONE", icon: "check" } };
   const s = cfg[status] || cfg.completed;
   return (
-    <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "15px 18px", marginBottom: 8, transition: "all 0.2s", cursor: "default", borderLeft: `2px solid ${s.color}`, backdropFilter: "blur(8px)" }}
-      onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.09)"; e.currentTarget.style.borderColor = s.color + "50"; e.currentTarget.style.borderLeftColor = s.color; }}
-      onMouseLeave={e => { e.currentTarget.style.background = C.surface; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.borderLeftColor = s.color; }}>
+    <div style={{ background: "#fff", border: `1px solid #EBEBEB`, borderRadius: 14, padding: "16px 20px", marginBottom: 10, transition: "all 0.22s", cursor: "default", borderLeft: `3px solid ${s.color}`, boxShadow: "0 1px 6px rgba(0,0,0,0.04)" }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 6px 24px rgba(0,0,0,0.08)`; e.currentTarget.style.transform = "translateY(-2px)"; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 6px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 10 }}>
         <div style={{ flex: 1 }}>
           <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 3 }}>{title}</div>
           <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginBottom: tags.length ? 8 : 0, wordBreak: "break-word" }}>{company}</div>
-          {tags.length > 0 && <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>{tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: s.color, background: s.color + "18", padding: "2px 7px", borderRadius: 4, textTransform: "uppercase", letterSpacing: 1 }}>{t}</span>)}</div>}
+          {tags.length > 0 && <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>{tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: s.color, background: `${s.color}14`, padding: "2px 8px", borderRadius: 20, textTransform: "uppercase", letterSpacing: 0.8 }}>{t}</span>)}</div>}
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4, flexShrink: 0 }}>
-          <span style={{ ...mono, fontSize: 9, color: s.color, background: s.color + "18", padding: "2px 8px", borderRadius: 4, display: "flex", alignItems: "center", gap: 4 }}>
+          <span style={{ ...mono, fontSize: 9, color: s.color, background: `${s.color}12`, padding: "3px 9px", borderRadius: 20, display: "flex", alignItems: "center", gap: 4, fontWeight: 600 }}>
             <Icon d={Icons[s.icon]} size={9} color={s.color} strokeWidth={2.5} /> {s.label}
           </span>
           <span style={{ ...mono, fontSize: 9, color: C.textDim, whiteSpace: "normal", textAlign: "right" }}>{period}</span>
@@ -738,24 +822,24 @@ function QuestCard({ title, company, period, status = "completed", tags = [] }) 
 function OrgCard({ title, period, items }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden", marginBottom: 8, transition: "border-color 0.2s", backdropFilter: "blur(8px)" }}
-      onMouseEnter={e => e.currentTarget.style.borderColor = C.accent + "50"}
-      onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
-      <div style={{ padding: "14px 18px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", gap: 12 }} onClick={() => setOpen(!open)}>
+    <div style={{ background: "#fff", border: "1px solid #EBEBEB", borderRadius: 14, overflow: "hidden", marginBottom: 10, transition: "box-shadow 0.22s, transform 0.22s", boxShadow: "0 1px 6px rgba(0,0,0,0.04)" }}
+      onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 1px 6px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}>
+      <div style={{ padding: "16px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer", gap: 12 }} onClick={() => setOpen(!open)}>
         <div style={{ flex: 1 }}>
-          <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text, wordBreak: "break-word", overflowWrap: "break-word" }}>{title}</div>
-          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginTop: 2, wordBreak: "break-word" }}>{period}</div>
+          <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text, wordBreak: "break-word" }}>{title}</div>
+          <div style={{ ...mono, fontSize: 10, color: C.textMuted, marginTop: 3, wordBreak: "break-word" }}>{period}</div>
         </div>
-        <div style={{ color: C.accent, transition: "transform 0.2s", transform: open ? "rotate(45deg)" : "none", flexShrink: 0 }}>
-          <Icon d={Icons.plus} size={16} color={C.accent} />
+        <div style={{ width: 28, height: 28, borderRadius: "50%", background: `${C.accent}10`, display: "flex", alignItems: "center", justifyContent: "center", transition: "transform 0.2s, background 0.2s", transform: open ? "rotate(45deg)" : "none", flexShrink: 0 }}>
+          <Icon d={Icons.plus} size={14} color={C.accent} />
         </div>
       </div>
       {open && (
-        <div style={{ borderTop: `1px solid ${C.border}`, padding: "12px 18px 14px", animation: "fadeIn 0.2s ease" }}>
+        <div style={{ borderTop: "1px solid #F5F5F5", padding: "14px 20px 16px", animation: "fadeIn 0.2s ease", background: "#FAFAFA" }}>
           {items.map((item, i) => (
-            <div key={i} style={{ display: "flex", gap: 10, marginBottom: 7, alignItems: "flex-start" }}>
-              <div style={{ marginTop: 5, flexShrink: 0 }}><Icon d={Icons.minus} size={10} color={C.accent} /></div>
-              <span style={{ ...dmSans, fontSize: 12, color: C.textSub, fontWeight: 300 }}>{item}</span>
+            <div key={i} style={{ display: "flex", gap: 10, marginBottom: 8, alignItems: "flex-start" }}>
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: C.accent, flexShrink: 0, marginTop: 5 }} />
+              <span style={{ ...dmSans, fontSize: 13, color: C.textSub, fontWeight: 400 }}>{item}</span>
             </div>
           ))}
         </div>
@@ -768,18 +852,18 @@ function AchievementBadge({ iconKey, title, desc, unlocked = true, rarity = "com
   const rarityColors = { common: C.textMuted, uncommon: C.green, rare: C.blue, epic: C.purple, legendary: C.accent };
   const col = rarityColors[rarity];
   return (
-    <div style={{ background: unlocked ? C.surface : "rgba(255,255,255,0.03)", border: `1px solid ${unlocked ? col + "50" : C.border}`, borderRadius: 12, padding: "15px 18px", display: "flex", alignItems: "center", gap: 14, opacity: unlocked ? 1 : 0.35, transition: "all 0.2s", cursor: "default", backdropFilter: "blur(8px)" }}
-      onMouseEnter={e => { if (unlocked) { e.currentTarget.style.borderColor = col; e.currentTarget.style.background = col + "12"; }}}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = unlocked ? col + "50" : C.border; e.currentTarget.style.background = unlocked ? C.surface : "rgba(255,255,255,0.03)"; }}>
-      <div style={{ width: 44, height: 44, borderRadius: 10, background: unlocked ? col + "20" : "rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, boxShadow: unlocked ? `0 0 16px ${col}30` : "none" }}>
+    <div style={{ background: unlocked ? "#fff" : "#FAFAFA", border: `1px solid ${unlocked ? col + "30" : "#EBEBEB"}`, borderRadius: 14, padding: "16px 20px", display: "flex", alignItems: "center", gap: 14, opacity: unlocked ? 1 : 0.4, transition: "all 0.22s", cursor: "default", boxShadow: unlocked ? "0 2px 10px rgba(0,0,0,0.05)" : "none" }}
+      onMouseEnter={e => { if (unlocked) { e.currentTarget.style.boxShadow = `0 8px 28px ${col}20`; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = col + "60"; }}}
+      onMouseLeave={e => { e.currentTarget.style.boxShadow = unlocked ? "0 2px 10px rgba(0,0,0,0.05)" : "none"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = unlocked ? col + "30" : "#EBEBEB"; }}>
+      <div style={{ width: 46, height: 46, borderRadius: 12, background: unlocked ? `${col}14` : "#F0F0F0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
         <Icon d={unlocked ? Icons[iconKey] : Icons.lock} size={20} color={unlocked ? col : C.textDim} />
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
           <span style={{ ...syne, fontSize: 13, fontWeight: 700, color: unlocked ? C.text : C.textMuted }}>{title}</span>
-          <span style={{ ...mono, fontSize: 9, color: col, textTransform: "uppercase", letterSpacing: 2, padding: "2px 5px", background: col + "20", borderRadius: 4 }}>{rarity}</span>
+          <span style={{ ...mono, fontSize: 9, color: col, textTransform: "uppercase", letterSpacing: 1.5, padding: "2px 7px", background: `${col}14`, borderRadius: 20 }}>{rarity}</span>
         </div>
-        <span style={{ ...dmSans, fontSize: 12, color: C.textSub, fontWeight: 300 }}>{desc}</span>
+        <span style={{ ...dmSans, fontSize: 12, color: C.textMuted, fontWeight: 400 }}>{desc}</span>
       </div>
     </div>
   );
@@ -835,6 +919,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState("current");
   const [selectedProject, setSelectedProject] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [parallaxY, setParallaxY] = useState(0);
+  const heroRef = useRef(null);
 
   // Supabase live data (with fallbacks)
   const { data: sbData } = useSupabaseData({
@@ -887,20 +973,22 @@ export default function App() {
 
   useEffect(() => {
     const onScroll = () => {
-      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      const scrollY = window.scrollY;
+      const pct = scrollY / (document.documentElement.scrollHeight - window.innerHeight);
       const newXp = Math.round(pct * 4200);
       setXp(newXp);
       setLevel(Math.floor(newXp / 700) + 1);
+      setParallaxY(scrollY);
     };
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const navItems = [
     { id: "home", label: "Home" }, { id: "about", label: "About" },
-    { id: "experience", label: "Quests" }, { id: "organizations", label: "Guild" },
-    { id: "skills", label: "Skills" }, { id: "projects", label: "Inventory" },
-    { id: "achievements", label: "Badges" }, { id: "contact", label: "Contact" },
+    { id: "experience", label: "Experience" }, { id: "organizations", label: "Orgs" },
+    { id: "skills", label: "Skills" }, { id: "projects", label: "Projects" },
+    { id: "achievements", label: "Achievements" }, { id: "contact", label: "Contact" },
   ];
 
   // ── HARDCODED FALLBACK DATA ──────────────────────────────────────────────────
@@ -1020,97 +1108,186 @@ export default function App() {
       <style>{globalCSS}</style>
 
       {/* ── BACKGROUND ─── */}
-      <div style={{ position: "fixed", inset: 0, zIndex: -1, background: "radial-gradient(ellipse at 20% 20%, rgba(176,60,255,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(255,60,190,0.08) 0%, transparent 60%), #0f0f0f" }} />
+      <div style={{ position: "fixed", inset: 0, zIndex: -1, background: "#F8F9FA" }}>
+        <div style={{ position: "absolute", top: "8%", right: "-5%", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(232,25,122,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: "10%", left: "-8%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(124,58,237,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
+      </div>
 
-      {/* ── HUD NAV ─── */}
-      <div className="hud-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "rgba(10,2,18,0.72)", backdropFilter: "blur(24px)", borderBottom: `1px solid rgba(255,255,255,0.08)`, zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "11px 40px" }}>
-        <div style={{ ...syne, fontWeight: 800, fontSize: 18, color: "#fff", letterSpacing: -1 }}>FA<span style={{ color: C.accent }}>_</span></div>
-        <div className="hud-xpbar" style={{ flex: 1, maxWidth: 380 }}>
+      {/* ── NAV ─── */}
+      <div className="hud-nav" style={{ position: "fixed", top: 0, left: 0, right: 0, background: "rgba(255,255,255,0.90)", backdropFilter: "blur(20px)", borderBottom: "1px solid #EBEBEB", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, padding: "10px 40px", boxShadow: "0 1px 12px rgba(0,0,0,0.06)" }}>
+        <div style={{ ...syne, fontWeight: 800, fontSize: 18, color: C.text, letterSpacing: -1 }}>felicia<span style={{ color: C.accent }}>.</span></div>
+        <div className="hud-xpbar" style={{ flex: 1, maxWidth: 300 }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-            <span style={{ ...mono, fontSize: 10, color: C.textMuted }}>LVL <span style={{ color: C.accent, fontWeight: 500 }}>{level}</span> — Felicia Annabel</span>
-            <span style={{ ...mono, fontSize: 10, color: C.textMuted }}><span style={{ color: C.accent }}>{currentXp}</span> / {xpToNextLevel} XP</span>
+            <span style={{ ...mono, fontSize: 9, color: C.textMuted }}>LVL <span style={{ color: C.accent, fontWeight: 600 }}>{level}</span></span>
+            <span style={{ ...mono, fontSize: 9, color: C.textMuted }}><span style={{ color: C.accent }}>{currentXp}</span>/{xpToNextLevel} xp</span>
           </div>
-          <div style={{ height: 3, background: "rgba(255,255,255,0.08)", borderRadius: 2, overflow: "hidden" }}>
-            <div style={{ height: "100%", width: `${levelProgress}%`, background: `linear-gradient(90deg, ${C.accent}, ${C.purple})`, borderRadius: 2, transition: "width 0.1s", boxShadow: `0 0 8px ${C.accent}70` }} />
+          <div style={{ height: 3, background: "#F0F0F0", borderRadius: 2, overflow: "hidden" }}>
+            <div style={{ height: "100%", width: `${levelProgress}%`, background: `linear-gradient(90deg, ${C.accent}, ${C.purple})`, borderRadius: 2, transition: "width 0.1s" }} />
           </div>
         </div>
 
-        {/* Desktop nav links */}
-        <nav className="hud-nav-links" style={{ display: "flex", gap: 20 }}>
+        <nav className="hud-nav-links" style={{ display: "flex", gap: 24 }}>
           {navItems.map(n => (
-            <a key={n.id} href={`#${n.id}`} style={{ ...mono, fontSize: 10, color: C.textMuted, textDecoration: "none", textTransform: "uppercase", letterSpacing: 1.5, transition: "color 0.2s" }}
+            <a key={n.id} href={`#${n.id}`} style={{ ...mono, fontSize: 10, color: C.textMuted, textDecoration: "none", textTransform: "uppercase", letterSpacing: 1.5, transition: "color 0.2s", fontWeight: 500 }}
               onMouseEnter={e => e.currentTarget.style.color = C.accent}
               onMouseLeave={e => e.currentTarget.style.color = C.textMuted}>{n.label}</a>
           ))}
         </nav>
 
-        {/* Hamburger button — mobile only */}
-        <button
-          className="hamburger-btn"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          style={{ display: "none", flexDirection: "column", gap: "5px", background: "transparent", border: "none", cursor: "pointer", padding: "4px", flexShrink: 0 }}
-        >
-          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : "#fff", borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
-          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? "transparent" : "#fff", borderRadius: 2, transition: "all 0.3s", opacity: mobileMenuOpen ? 0 : 1 }} />
-          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : "#fff", borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
+        <button className="hamburger-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{ display: "none", flexDirection: "column", gap: "5px", background: "transparent", border: "none", cursor: "pointer", padding: "4px", flexShrink: 0 }}>
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.text, borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }} />
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? "transparent" : C.text, borderRadius: 2, transition: "all 0.3s", opacity: mobileMenuOpen ? 0 : 1 }} />
+          <span style={{ display: "block", width: 22, height: 2, background: mobileMenuOpen ? C.accent : C.text, borderRadius: 2, transition: "all 0.3s", transform: mobileMenuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }} />
         </button>
       </div>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="mobile-menu" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(8,2,14,0.97)", backdropFilter: "blur(20px)", zIndex: 999, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, animation: "fadeIn 0.2s ease" }}>
+        <div className="mobile-menu" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(255,255,255,0.97)", backdropFilter: "blur(20px)", zIndex: 999, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6, animation: "fadeIn 0.2s ease" }}>
           {navItems.map((n, i) => (
-            <a
-              key={n.id}
-              href={`#${n.id}`}
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ ...syne, fontSize: "clamp(22px, 7vw, 32px)", fontWeight: 700, color: "rgba(255,255,255,0.5)", textDecoration: "none", textTransform: "uppercase", letterSpacing: 2, transition: "all 0.2s", padding: "10px 0", animationDelay: `${i * 50}ms` }}
+            <a key={n.id} href={`#${n.id}`} onClick={() => setMobileMenuOpen(false)}
+              style={{ ...syne, fontSize: "clamp(22px, 7vw, 32px)", fontWeight: 700, color: C.textMuted, textDecoration: "none", textTransform: "uppercase", letterSpacing: 2, transition: "all 0.2s", padding: "10px 0" }}
               onMouseEnter={e => { e.currentTarget.style.color = C.accent; e.currentTarget.style.letterSpacing = "4px"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.letterSpacing = "2px"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = C.textMuted; e.currentTarget.style.letterSpacing = "2px"; }}
             >{n.label}</a>
           ))}
-          <div style={{ ...mono, fontSize: 10, color: C.textDim, marginTop: 24, textTransform: "uppercase", letterSpacing: 3 }}>
-            LVL {level} — {currentXp} XP
-          </div>
+          <div style={{ ...mono, fontSize: 10, color: C.textDim, marginTop: 24, textTransform: "uppercase", letterSpacing: 3 }}>LVL {level} — {currentXp} XP</div>
         </div>
       )}
 
       {/* ── CONTENT ─── */}
       <div className="main-content" style={{}}>
 
-        {/* HERO */}
-        <section id="home" className="section-mb hero-section" style={{ minHeight: "90vh", display: "flex", flexDirection: "column", justifyContent: "center", paddingTop: "60px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 40 }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: statusColor, boxShadow: `0 0 12px ${statusColor}` }} />
-            <span style={{ ...mono, fontSize: 11, color: C.textSub, textTransform: "uppercase", letterSpacing: 3 }}>{status} — Tangerang, Indonesia</span>
-          </div>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: "#fff", marginBottom: 8, letterSpacing: "clamp(-2px, -0.5vw, -4px)", textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}>Felicia</h1>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: C.accent, marginBottom: 4, letterSpacing: "clamp(-2px, -0.5vw, -4px)", textShadow: `0 2px 30px ${C.accent}50` }}>Annabel</h1>
-          <h1 style={{ ...syne, fontWeight: 800, lineHeight: 0.95, fontSize: "clamp(40px, 8vw, 110px)", color: "rgba(255,255,255,0.25)", marginBottom: 40, letterSpacing: "clamp(-2px, -0.5vw, -4px)" }}>Ruriyanto</h1>
-          <div className="hero-desc" style={{ display: "flex", gap: 40, alignItems: "flex-end", flexWrap: "wrap" }}>
-            <p style={{ ...dmSans, fontSize: 16, color: C.textSub, maxWidth: 420, lineHeight: 1.85, fontWeight: 300 }}>
-              {heroSubtitle}
-            </p>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              {heroTags.map(tag => (
-                <span key={tag} style={{ ...mono, fontSize: 10, color: C.textSub, border: `1px solid rgba(255,255,255,0.18)`, padding: "5px 11px", borderRadius: 6, textTransform: "uppercase", letterSpacing: 1 }}>{tag}</span>
-              ))}
+        {/* HERO — Instagram Profile */}
+        <section id="home" ref={heroRef} className="section-mb hero-section" style={{ paddingTop: "72px" }}>
+
+          {/* ── Cover photo with parallax ── */}
+          <div className="ig-cover" style={{ marginBottom: 0 }}>
+            <div className="ig-cover-bg" style={{
+              background: `linear-gradient(135deg, ${C.accent}22 0%, ${C.purple}18 40%, ${C.blue}12 80%)`,
+              transform: `translateY(${parallaxY * 0.28}px) scale(1.2)`,
+              transition: "transform 0.05s linear",
+            }}>
+              {/* Floating shapes in banner */}
+              <div style={{ position: "absolute", top: "20%", left: "8%", width: 90, height: 90, borderRadius: "50%", background: `${C.accent}22`, transform: `translateY(${parallaxY * -0.12}px)`, transition: "transform 0.05s linear" }} />
+              <div style={{ position: "absolute", top: "40%", left: "25%", width: 50, height: 50, borderRadius: "50%", background: `${C.purple}18`, transform: `translateY(${parallaxY * 0.09}px)`, transition: "transform 0.05s linear" }} />
+              <div style={{ position: "absolute", top: "15%", right: "12%", width: 70, height: 70, borderRadius: "50%", background: `${C.blue}18`, transform: `translateY(${parallaxY * 0.15}px)`, transition: "transform 0.05s linear" }} />
+              <div style={{ position: "absolute", top: "55%", right: "28%", width: 40, height: 40, borderRadius: "50%", background: `${C.orange}20`, transform: `translateY(${parallaxY * -0.08}px)`, transition: "transform 0.05s linear" }} />
+              <div style={{ position: "absolute", top: "30%", right: "40%", width: 24, height: 24, borderRadius: "50%", background: `${C.green}20`, animation: "orbFloat 4s ease-in-out infinite" }} />
+              {/* Decorative horizontal lines */}
+              <div style={{ position: "absolute", bottom: 24, left: 28, right: 28, height: 1, background: `linear-gradient(90deg, transparent, ${C.accent}30, ${C.purple}30, transparent)` }} />
             </div>
           </div>
-          <div className="hero-stats" style={{}}>  
-            <StatBadge iconKey="zap" value={activeRoles} label="Active Roles" color={C.accent} />
-            <StatBadge iconKey="building" value={totalCompanies} label="Total Companies" color={C.purple} />
-            <StatBadge iconKey="monitor" value={peakViewers} label="Peak Viewers" color={C.orange} />
-            <StatBadge iconKey="calendar" value={expYears} label="Experience" color={C.blue} />
+
+          {/* ── Profile card ── */}
+          <div className="ig-profile-card">
+
+            {/* Avatar + action buttons row */}
+            <div className="ig-profile-row" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 20, marginBottom: 16, paddingTop: 0 }}>
+
+              {/* Avatar (overlaps cover) */}
+              <div className="ig-avatar-wrapper" style={{ position: "relative", width: 100, height: 100, marginTop: -50, flexShrink: 0 }}>
+                <div className="story-ring-spin" style={{ position: "absolute", inset: -3, background: `conic-gradient(${C.accent}, ${C.purple}, ${C.blue}, ${C.orange}, ${C.accent})`, borderRadius: "50%", zIndex: 0 }} />
+                <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#FFFFFF", border: "3px solid #FFFFFF", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 }}>
+                  <span className="ig-avatar-inner" style={{ ...syne, fontSize: 32, fontWeight: 800, background: `linear-gradient(135deg, ${C.accent}, ${C.purple})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>FA</span>
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 4, flexShrink: 0 }}>
+                <a href="https://linkedin.com/in/felicia-annabel-ruriyanto-227a9125b" target="_blank" rel="noopener noreferrer"
+                  className="ig-action-btn"
+                  style={{ ...syne, fontSize: 13, fontWeight: 600, color: "#fff", background: C.accent, padding: "9px 18px", borderRadius: 10, textDecoration: "none", display: "flex", alignItems: "center", gap: 6, transition: "opacity 0.2s", boxShadow: `0 4px 14px ${C.accent}35`, whiteSpace: "nowrap" }}
+                  onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+                  onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
+                  <Icon d={Icons.linkedin} size={13} color="#fff" />
+                  <span className="ig-action-btn-text">Connect</span>
+                </a>
+                <a href="mailto:ffeliciaannabelruriyanto@gmail.com"
+                  className="ig-action-btn"
+                  style={{ ...syne, fontSize: 13, fontWeight: 600, color: C.text, background: "#EDEDED", padding: "9px 18px", borderRadius: 10, textDecoration: "none", display: "flex", alignItems: "center", gap: 6, transition: "background 0.2s", whiteSpace: "nowrap" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "#E0E0E0"}
+                  onMouseLeave={e => e.currentTarget.style.background = "#EDEDED"}>
+                  <Icon d={Icons.mail} size={13} color={C.textMuted} />
+                  <span className="ig-action-btn-text">Message</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Name + stats */}
+            <div style={{ transform: `translateY(${parallaxY * -0.02}px)`, transition: "transform 0.05s linear" }}>
+              <h1 style={{ ...syne, fontWeight: 800, fontSize: "clamp(22px, 4vw, 36px)", color: C.text, marginBottom: 2, letterSpacing: -0.5, lineHeight: 1.15 }}>
+                Felicia Annabel Ruriyanto
+              </h1>
+              <div style={{ ...mono, fontSize: 12, color: C.textMuted, marginBottom: 16 }}>@felicia.annabel · Tangerang, Indonesia</div>
+            </div>
+
+            {/* Instagram-style stats row */}
+            <div className="ig-stats-row" style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 18, borderTop: "1px solid #F0F0F0", borderBottom: "1px solid #F0F0F0", padding: "14px 0" }}>
+              {[
+                { value: totalCompanies, label: "Companies" },
+                { value: expYears, label: "Experience" },
+                { value: activeRoles, label: "Roles" },
+                { value: peakViewers, label: "Peak Views" },
+              ].map(({ value, label }, i) => (
+                <div key={label} className="ig-stat-item" style={{ display: "flex", alignItems: "center", flex: 1 }}>
+                  {i > 0 && <div className="ig-stat-divider" />}
+                  <div style={{ flex: 1, textAlign: "center" }}>
+                    <div style={{ ...syne, fontSize: "clamp(18px, 3vw, 26px)", fontWeight: 700, color: C.text, lineHeight: 1, letterSpacing: -0.5 }}>{value}</div>
+                    <div style={{ ...dmSans, fontSize: 11, color: C.textMuted, marginTop: 4, letterSpacing: 0 }}>{label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bio */}
+            <div className="ig-bio-row" style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 20 }}>
+              <p style={{ ...dmSans, fontSize: 14, color: C.textSub, lineHeight: 1.75, fontWeight: 400, maxWidth: 580 }}>{heroSubtitle}</p>
+              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+                {heroTags.map(tag => (
+                  <span key={tag} style={{ ...mono, fontSize: 10, color: C.accent, border: `1px solid ${C.accent}30`, padding: "4px 11px", borderRadius: 20, textTransform: "uppercase", letterSpacing: 0.8, background: `${C.accent}08`, transition: "all 0.2s", cursor: "default" }}
+                    onMouseEnter={e => { e.currentTarget.style.background = C.accent; e.currentTarget.style.color = "#fff"; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = `${C.accent}08`; e.currentTarget.style.color = C.accent; }}
+                  >{tag}</span>
+                ))}
+              </div>
+
+              {/* Status indicator */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+                <div style={{ width: 7, height: 7, borderRadius: "50%", background: statusColor, animation: "pulse 2s infinite" }} />
+                <span style={{ ...mono, fontSize: 10, color: statusColor, textTransform: "uppercase", letterSpacing: 2 }}>{status}</span>
+              </div>
+            </div>
+
+            {/* Story Highlights */}
+            <div style={{ borderTop: "1px solid #F0F0F0", paddingTop: 20 }}>
+              <div style={{ ...mono, fontSize: 10, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2, marginBottom: 16 }}>Highlights</div>
+              <div className="stories-row" style={{ display: "flex", gap: 20, paddingBottom: 4 }}>
+                {projectCategories.map((cat) => (
+                  <a key={cat.id} href="#projects" className="story-circle"
+                    style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, flexShrink: 0, textDecoration: "none" }}>
+                    <div style={{ width: 66, height: 66, borderRadius: "50%", background: `linear-gradient(135deg, ${cat.color}, ${cat.color}70)`, padding: 2.5 }}>
+                      <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "#FFFFFF", border: "2px solid #FFFFFF", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <Icon d={Icons[cat.iconKey]} size={22} color={cat.color} />
+                      </div>
+                    </div>
+                    <span style={{ ...mono, fontSize: 9, color: C.textMuted, textTransform: "uppercase", letterSpacing: 0.5, textAlign: "center", maxWidth: 66, lineHeight: 1.3 }}>{cat.title.split(' ')[0]}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="section-mb" style={{}}>
-          <SectionTag label="Character Sheet" color={C.accent} />
-          <div className="about-grid" style={{}}>  
+        <section id="about" className="section-mb" style={{ position: "relative", overflow: "hidden" }}>
+          {/* Parallax accent blob */}
+          <div className="parallax-orb" style={{ top: -60, right: -80, width: 360, height: 360, background: `radial-gradient(circle, ${C.accent}08 0%, transparent 70%)`, transform: `translateY(${Math.max(0, parallaxY - 400) * 0.12}px)` }} />
+          <SectionTag label="About" color={C.accent} />
+          <div className="about-grid" style={{}}>
             <div>
-              <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 24, letterSpacing: -1.5 }}>Who am I</h2>
+              <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 24, letterSpacing: -1.5 }}>Who am I</h2>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.95, fontWeight: 300, marginBottom: 20 }}>
                 {aboutP1}
               </p>
@@ -1124,9 +1301,9 @@ export default function App() {
                   { label: "Location", value: "Tangerang, Banten" },
                   { label: "Status", value: status },
                 ].map(({ label, value }) => (
-                  <div key={label} style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 10, padding: "12px 16px", backdropFilter: "blur(8px)" }}>
-                    <div style={{ ...mono, fontSize: 9, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2, marginBottom: 5 }}>{label}</div>
-                    <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: "#fff" }}>{value}</div>
+                  <div key={label} style={{ background: "#fff", border: "1px solid #EBEBEB", borderRadius: 12, padding: "14px 18px", boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+                    <div style={{ ...mono, fontSize: 9, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2, marginBottom: 6 }}>{label}</div>
+                    <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: C.text }}>{value}</div>
                   </div>
                 ))}
               </div>
@@ -1140,8 +1317,8 @@ export default function App() {
 
         {/* EXPERIENCE */}
         <section id="experience" className="section-mb" style={{}}>
-          <SectionTag label="Quest Log" color={C.green} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Experience Timeline</h2>
+          <SectionTag label="Experience" color={C.green} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -1.5 }}>Experience Timeline</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 32, fontWeight: 300 }}>20+ roles across 5 years. Filter by era.</p>
           <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}>
             {tabConfig.map(({ key, label, color }) => (
@@ -1157,8 +1334,8 @@ export default function App() {
 
         {/* ORGANIZATIONS */}
         <section id="organizations" className="section-mb" style={{}}>
-          <SectionTag label="Guild Log" color={C.purple} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Organizational Activity</h2>
+          <SectionTag label="Organizations" color={C.purple} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -1.5 }}>Organizational Activity</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Campus events, volunteer work, and committee roles — click to expand.</p>
           <div className="org-grid" style={{}}>  
             {organizations.map((org, i) => <OrgCard key={i} {...org} />)}
@@ -1166,9 +1343,10 @@ export default function App() {
         </section>
 
         {/* SKILLS */}
-        <section id="skills" className="section-mb" style={{}}>
-          <SectionTag label="Equipment" color={C.blue} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Tools & Tech Stack</h2>
+        <section id="skills" className="section-mb" style={{ position: "relative", overflow: "hidden" }}>
+          <div className="parallax-orb" style={{ top: -40, right: -80, width: 340, height: 340, background: `radial-gradient(circle, ${C.blue}08 0%, transparent 70%)`, transform: `translateY(${Math.max(0, parallaxY - 1600) * 0.09}px)` }} />
+          <SectionTag label="Skills" color={C.blue} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -1.5 }}>Tools & Tech Stack</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Software, platforms, and skills in active daily use.</p>
           <div className="skills-grid" style={{}}>  
             {[
@@ -1180,16 +1358,18 @@ export default function App() {
               { cat: "Design & Prototyping", items: ["Figma", "UI/UX Design", "Wireframing", "Prototyping", "Design Systems", "Responsive Layouts", "Adobe Express"], color: C.accent, iconKey: "monitor" },
               { cat: "Machine Learning", items: ["Python (Scikit-learn)", "Data Preprocessing", "Model Basics", "Jupyter Notebook", "Pandas / NumPy", "AI Automation Tools", "Text Classification"], color: C.green, iconKey: "cpu" },
             ].map(({ cat, items, color, iconKey }) => (
-              <div key={cat} style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 14, padding: 24, position: "relative", overflow: "hidden", backdropFilter: "blur(10px)" }}>
+              <div key={cat} className="premium-card" style={{ padding: 24, position: "relative", overflow: "hidden" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = color + "40"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "#EBEBEB"; }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: color }} />
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
                   <Icon d={Icons[iconKey]} size={14} color={color} />
                   <span style={{ ...mono, fontSize: 10, color, textTransform: "uppercase", letterSpacing: 2 }}>{cat}</span>
                 </div>
                 {items.map(item => (
-                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 9 }}>
-                    <div style={{ width: 3, height: 3, borderRadius: "50%", background: color, flexShrink: 0 }} />
-                    <span style={{ ...dmSans, fontSize: 13, color: C.textSub, fontWeight: 300 }}>{item}</span>
+                  <div key={item} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                    <div style={{ width: 5, height: 5, borderRadius: "50%", background: color, flexShrink: 0, opacity: 0.7 }} />
+                    <span style={{ ...dmSans, fontSize: 13, color: C.textSub, fontWeight: 400 }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -1198,29 +1378,31 @@ export default function App() {
         </section>
 
         {/* PROJECTS / INVENTORY */}
-        <section id="projects" className="section-mb" style={{}}>
-          <SectionTag label="Inventory" color={C.orange} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Project Categories</h2>
-          <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>6 major domains — collected across 5 years of active play.</p>
+        <section id="projects" className="section-mb" style={{ position: "relative", overflow: "hidden" }}>
+          <div className="parallax-orb" style={{ top: -80, left: -100, width: 400, height: 400, background: `radial-gradient(circle, ${C.orange}08 0%, transparent 70%)`, transform: `translateY(${Math.max(0, parallaxY - 2000) * 0.1}px)` }} />
+          <SectionTag label="Projects" color={C.orange} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -1.5 }}>Project Categories</h2>
+          <p style={{ ...dmSans, fontSize: 14, color: C.textMuted, marginBottom: 40, fontWeight: 400 }}>6 domains across 5 years of work experience.</p>
 
           {/* ── FEATURED CAROUSEL ── */}
-          <div className='featured-card' style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: '28px', marginBottom: 40, backdropFilter: "blur(10px)", position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: `linear-gradient(90deg, ${C.accent}, ${C.purple}, ${C.blue})` }} />
+          <div className='featured-card' style={{ background: "#fff", border: "1px solid #EBEBEB", borderRadius: 20, padding: '28px', marginBottom: 40, boxShadow: "0 2px 20px rgba(0,0,0,0.06)", position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: `linear-gradient(90deg, ${C.accent}, ${C.purple}, ${C.blue})`, borderRadius: "20px 20px 0 0" }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
               <div style={{ width: 5, height: 5, borderRadius: '50%', background: C.accent, animation: 'pulse 2s infinite' }} />
-              <span style={{ ...mono, fontSize: '11px', color: C.accent, textTransform: 'uppercase', letterSpacing: '3px' }}>Featured Projects</span>
+              <span style={{ ...mono, fontSize: '11px', color: C.accent, textTransform: 'uppercase', letterSpacing: '3px', fontWeight: 600 }}>Featured Projects</span>
             </div>
             <FeaturedProjectCarousel projects={featuredProjects} />
           </div>
 
           {/* ── CATEGORY CARDS ── */}
-          <div className="category-grid" style={{}}>  
+          <div className="category-grid" style={{}}>
             {projectCategories.map((p) => (
               <div key={p.id}
+                className="premium-card"
                 onClick={() => setSelectedProject(buildModalData(p))}
-                style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: '22px', transition: "all 0.25s", cursor: "pointer", backdropFilter: "blur(10px)", position: 'relative', overflow: 'hidden' }}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.09)"; e.currentTarget.style.borderColor = p.color + "60"; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = `0 8px 30px ${p.color}18`; }}
-                onMouseLeave={e => { e.currentTarget.style.background = C.surface; e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                style={{ padding: '24px', cursor: "pointer", position: 'relative', overflow: 'hidden' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = p.color + "50"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "#EBEBEB"; }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: p.color }} />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
                   <div style={{ width: 40, height: 40, borderRadius: 10, background: p.color + "20", display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 16px ${p.color}20` }}>
@@ -1231,17 +1413,45 @@ export default function App() {
                 <div style={{ ...syne, fontSize: 15, fontWeight: 700, color: C.text, marginBottom: '8px', wordBreak: 'break-word' }}>{p.title}</div>
                 <div style={{ ...dmSans, fontSize: 12, color: C.textSub, fontWeight: 300, lineHeight: 1.7, marginBottom: '14px' }}>{p.description}</div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                  {p.tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: C.textMuted, padding: "2px 6px", border: `1px solid ${C.border}`, borderRadius: 4 }}>{t}</span>)}
+                  {p.tags.map(t => <span key={t} style={{ ...mono, fontSize: 9, color: C.textMuted, padding: "3px 8px", border: "1px solid #EBEBEB", borderRadius: 20, background: "#F8F8F8" }}>{t}</span>)}
                 </div>
               </div>
             ))}
           </div>
+
+          {/* ── INSTAGRAM POST GRID ── */}
+          <div style={{ marginTop: 48 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={C.textMuted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              </svg>
+              <span style={{ ...mono, fontSize: 10, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2 }}>Posts · {featuredProjects.length}</span>
+              <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, rgba(255,255,255,0.08), transparent)` }} />
+            </div>
+            <div className="ig-posts-grid">
+              {featuredProjects.map((p, i) => (
+                <div key={p.id || i} className="ig-post-item" style={{ animationDelay: `${i * 0.04}s`, animation: "igPostReveal 0.5s ease both" }}>
+                  {p.img ? (
+                    <img src={p.img} alt={p.title} onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }} />
+                  ) : null}
+                  <div style={{ width: "100%", height: "100%", background: `linear-gradient(135deg, ${C.accent}18, ${C.purple}18)`, display: p.img ? "none" : "flex", alignItems: "center", justifyContent: "center", fontSize: 36 }}>
+                    {["📊","🎬","🖥️","💼","🌐","📱","🤖","🎯","💡","🛒","🎨","📅"][i % 12]}
+                  </div>
+                  <div className="ig-post-overlay">
+                    <div style={{ ...syne, fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 5 }}>{p.title}</div>
+                    <div style={{ ...mono, fontSize: 9, color: C.accent, textTransform: "uppercase", letterSpacing: 1 }}>{p.category}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* ACHIEVEMENTS */}
-        <section id="achievements" className="section-mb" style={{}}>
-          <SectionTag label="Achievement Log" color={C.accent} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 8, letterSpacing: -1.5 }}>Badges Earned</h2>
+        <section id="achievements" className="section-mb" style={{ position: "relative", overflow: "hidden" }}>
+          <div className="parallax-orb" style={{ top: -60, left: -60, width: 320, height: 320, background: `radial-gradient(circle, ${C.purple}08 0%, transparent 70%)`, transform: `translateY(${Math.max(0, parallaxY - 2800) * 0.1}px)` }} />
+          <SectionTag label="Achievements" color={C.accent} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -1.5 }}>Badges Earned</h2>
           <p style={{ ...dmSans, fontSize: 14, color: C.textSub, marginBottom: 40, fontWeight: 300 }}>Milestones unlocked from real-world missions.</p>
           <div className="achievements-grid" style={{}}>  
             {achievements.map((a, i) => <AchievementBadge key={i} {...a} />)}
@@ -1250,8 +1460,8 @@ export default function App() {
 
         {/* CONTACT */}
         <section id="contact" className="section-mb" style={{}}>
-          <SectionTag label="DM / Collab" color={C.green} />
-          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: "#fff", marginBottom: 40, letterSpacing: -1.5 }}>Start a New Quest Together</h2>
+          <SectionTag label="Contact" color={C.green} />
+          <h2 style={{ ...syne, fontSize: "clamp(26px, 5vw, 38px)", fontWeight: 800, color: C.text, marginBottom: 40, letterSpacing: -1.5 }}>Get in Touch</h2>
           <div className="contact-grid" style={{}}>  
             <div>
               <p style={{ ...dmSans, fontSize: 15, color: C.textSub, lineHeight: 1.9, fontWeight: 300, marginBottom: 32 }}>
@@ -1273,13 +1483,13 @@ export default function App() {
                 { iconKey: "mappin", label: "Location", value: "Kab. Tangerang, Pagedangan, Banten", href: null },
               ].map(({ iconKey, label, value, href }) => (
                 <a key={label} href={href || "#"} target={href ? "_blank" : ""} rel="noopener noreferrer" style={{ textDecoration: "none", display: "block" }}>
-                  <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14, transition: "all 0.2s", cursor: href ? "pointer" : "default", backdropFilter: "blur(8px)" }}
-                    onMouseEnter={e => { if (href) { e.currentTarget.style.borderColor = C.accent + "60"; e.currentTarget.style.background = C.accent + "10"; }}}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.background = C.surface; }}>
+                  <div style={{ background: "#fff", border: "1px solid #EBEBEB", borderRadius: 14, padding: "15px 20px", display: "flex", alignItems: "center", gap: 14, transition: "all 0.22s", cursor: href ? "pointer" : "default", boxShadow: "0 1px 6px rgba(0,0,0,0.04)" }}
+                    onMouseEnter={e => { if (href) { e.currentTarget.style.borderColor = C.accent + "40"; e.currentTarget.style.boxShadow = `0 6px 24px ${C.accent}14`; e.currentTarget.style.transform = "translateY(-2px)"; }}}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = "#EBEBEB"; e.currentTarget.style.boxShadow = "0 1px 6px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}>
                     <Icon d={Icons[iconKey]} size={16} color={C.accent} />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ ...mono, fontSize: 9, color: C.textMuted, textTransform: "uppercase", letterSpacing: 2, marginBottom: 3 }}>{label}</div>
-                      <div style={{ ...dmSans, fontSize: 13, color: "#fff", fontWeight: 400, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{value}</div>
+                      <div style={{ ...dmSans, fontSize: 13, color: C.text, fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{value}</div>
                     </div>
                     {href && <Icon d={Icons.arrowUpRight} size={14} color={C.textDim} />}
                   </div>
@@ -1290,10 +1500,10 @@ export default function App() {
         </section>
 
         {/* FOOTER */}
-        <div className="footer-bar" style={{ borderTop: `1px solid rgba(255,255,255,0.08)`, paddingTop: 40 }}>
-          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>Felicia Annabel Ruriyanto — Portfolio 2026</span>
-          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>XP this session: <span style={{ color: C.accent }}>{xp} XP</span></span>
-          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>LVL {level} — Digital Marketer × Developer × AI Instructor</span>
+        <div className="footer-bar" style={{ borderTop: "1px solid #EBEBEB", paddingTop: 40, marginTop: 20 }}>
+          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>Felicia Annabel Ruriyanto — 2026</span>
+          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>LVL <span style={{ color: C.accent }}>{level}</span> · {xp} XP</span>
+          <span style={{ ...mono, fontSize: 11, color: C.textDim }}>Digital Marketer × Developer × AI Instructor</span>
         </div>
       </div>
 
