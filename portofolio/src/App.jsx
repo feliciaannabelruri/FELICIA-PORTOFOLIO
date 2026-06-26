@@ -142,7 +142,7 @@ const globalCSS = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   html, body { overflow-x: hidden; max-width: 100%; }
-  body { background: #F8F9FA; color: #111111; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { background: #F8F9FA; color: #111111; font-family: 'Poppins', sans-serif; font-weight: 400; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: #F0F0F0; }
   ::-webkit-scrollbar-thumb { background: #E8197A; border-radius: 2px; }
@@ -193,6 +193,10 @@ const globalCSS = `
     /* Layout */
     .main-content { padding: 64px 0 160px !important; }
     .section-mb { margin-bottom: 48px !important; }
+    .hero-section { padding-top: 0 !important; }
+
+    /* Non-hero sections get side padding */
+    #about, #experience, #organizations, #skills, #projects, #achievements, #contact { padding-left: 16px !important; padding-right: 16px !important; }
 
     /* Hero Instagram card — no side padding so cover bleeds edge to edge */
     .ig-cover { border-radius: 0 !important; height: 130px !important; margin-left: -0px; margin-right: -0px; }
@@ -313,9 +317,9 @@ const globalCSS = `
     a, button { -webkit-tap-highlight-color: transparent; cursor: default; }
   }
 `
-const mono = { fontFamily: "'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, monospace" };
-const syne = { fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif" };
-const dmSans = { fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif" };
+const mono = { fontFamily: "'Poppins', sans-serif" };
+const syne = { fontFamily: "'Poppins', sans-serif" };
+const dmSans = { fontFamily: "'Poppins', sans-serif" };
 
 // ─── PROJECT DETAILS DATA ─────────────────────────────────────────────────────
 const projectDetails = {
